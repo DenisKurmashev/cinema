@@ -1,6 +1,6 @@
 {
   "db": {
-    "host": "ENTER_YOUR_DB",
+    "host": "mongodb://localhost:27017/cinema",
     "options": {
       "user": "",
       "pass": "",

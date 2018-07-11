@@ -1,0 +1,12 @@
+{
+  "db": {
+    "host": "ENTER_YOUR_DB",
+    "options": {
+      "user": "",
+      "pass": "",
+      "autoIndex": true,
+      "poolSize": 10
+    }
+  },
+  "jwt": "some string"
+}

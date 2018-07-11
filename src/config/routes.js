@@ -4,7 +4,7 @@ import { Router } from "react-router-dom";
 import createBrowserHistory from "history/createBrowserHistory";
 
 import store from "./configStore";
-import App from "../App";
+import App from "../containers/App";
 
 const history = createBrowserHistory();
 

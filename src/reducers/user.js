@@ -2,7 +2,9 @@ import types from "../types/user";
 
 const initialState = {
     isAuth: false,
-    user: {},
+    user: {
+        role: "user"
+    },
 };
 
 const UserReducer = (state = initialState, action) => {

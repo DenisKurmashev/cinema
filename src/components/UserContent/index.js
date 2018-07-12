@@ -1,10 +1,11 @@
 import React from "react";
-import AuthForm from "./AuthForm";
+import AuthForm from "./Forms/AuthForm";
+import RegForm from "./Forms/RegForm"
 
 const UserContent = ({  }) => {
     return (
         <div>
-            <AuthForm />
+            <RegForm />
         </div>
     );
 };

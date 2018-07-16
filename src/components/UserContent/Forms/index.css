@@ -1,0 +1,21 @@
+.default-form {
+    padding: 10px 0;
+    display: flex;
+    width: 35%;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.default-form__title {
+    width: 90%;
+    font-size: 45px;
+    color: #565656;
+    font-family: 'Slabo 27px', serif;
+    text-align: center;
+}
+
+.default-form__error {
+    width: 90%;
+    min-height: 10px;
+}

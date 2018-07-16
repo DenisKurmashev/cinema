@@ -13,7 +13,7 @@ const App = ({ user, userActions }) => {
             {
                 user.isAuth && user.user.role === "admin" ?
                 <AdminContent /> :
-                <UserContent />
+                <UserContent user={user} userActions={userActions} />
             }
         </div>
     );

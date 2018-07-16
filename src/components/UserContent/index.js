@@ -1,11 +1,10 @@
 import React from "react";
-import AuthForm from "./Forms/AuthForm";
-import RegForm from "./Forms/RegForm"
+import LoginAndRegisterForm from "./Forms/login-register";
 
-const UserContent = ({  }) => {
+const UserContent = ({ user, userActions }) => {
     return (
         <div>
-            <RegForm />
+            <LoginAndRegisterForm user={user} userActions={userActions} />
         </div>
     );
 };

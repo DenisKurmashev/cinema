@@ -18,10 +18,3 @@ input[type="password"]:focus,
 input[type="email"]:focus {
     border-color: #6C9BC7;
 }
-
-input[type="text"]:hover, 
-input[type="number"]:hover, 
-input[type="password"]:hover, 
-input[type="email"]:hover {
-    border-color: #B9B9B9;
-}

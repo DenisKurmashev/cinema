@@ -1,10 +1,28 @@
+.login-register-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-position-y: 0%;
+    background: linear-gradient(#6C9BC7, #B88D8D);
+    animation: GradientBackground 3s infinite linear forwards;
+    transition: 3s;
+    /* background: linear-gradient(rgba(104,150,193, .9), rgba(184,141,141, .9)) */
+}
+
 .default-form {
-    padding: 10px 0;
+    padding: 30px 0;
     display: flex;
     width: 35%;
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
+    background: #FFF;
+    border-radius: 3px;
 }
 
 .default-form__title {
@@ -13,9 +31,19 @@
     color: #565656;
     font-family: 'Slabo 27px', serif;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .default-form__error {
     width: 90%;
     min-height: 10px;
+}
+
+@keyframes GradientBackground {
+    0% {
+        background-position-y: 0%;
+    }
+    100% {
+        background-position-y: 100%;        
+    }
 }

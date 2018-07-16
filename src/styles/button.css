@@ -22,3 +22,17 @@
     background: #77ABDC;
     opacity: .7;
 }
+
+.btn-underline {
+    background: none;
+    border-width: 0;
+    outline: none;
+    color: #565656;
+    min-width: 70%;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.btn-underline:hover {
+    color: #646464;
+}

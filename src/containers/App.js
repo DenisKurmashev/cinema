@@ -32,4 +32,5 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// bug described here: https://github.com/ReactTraining/react-router/issues/4671
+export default connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(App);

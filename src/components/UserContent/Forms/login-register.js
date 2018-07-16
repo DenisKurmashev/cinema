@@ -1,23 +1,25 @@
 import React from "react";
-import { Route } from "react-router-dom";
-import AuthForm from "./LoginForm";
-import RegForm from "./RegisterForm";
+import { Switch, Route, withRouter } from "react-router-dom";
+import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
 
 import "./index.css";
 
 // wrappers 
-const AuthFormWrapper = ({ ...rest }) => (
-    <Route {...rest} render={props => <AuthForm {...props} />} />
+const LoginFormWrapper = ({ user, userActions, ...rest }) => (
+    <Route {...rest} render={props => <LoginForm user={user} userActions={userActions} {...props} />} />
 );
-const RegFormWrapper = ({ ...rest }) => (
-    <Route {...rest} render={props => <RegForm {...props} />} />
+const RegisterFormWrapper = ({ user, userActions, ...rest }) => (
+    <Route {...rest} render={props => <RegisterForm user={user} userActions={userActions} {...props} />} />
 );
 
 const LoginAndRegisterForm = ({ user, userActions }) => (
-    <div>
-        <AuthFormWrapper path="/login" user={user} userActions={userActions} />
-        <RegFormWrapper path="/register" user={user} userActions={userActions} />
+    <div className="login-register-container">
+        <Switch>
+            <LoginFormWrapper exact path="/login" user={user} userActions={userActions} />
+            <RegisterFormWrapper exact path="/register" user={user} userActions={userActions} />
+        </Switch>
     </div>
 );
 
-export default LoginAndRegisterForm;
+export default withRouter(LoginAndRegisterForm);

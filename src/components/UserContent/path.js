@@ -2,3 +2,5 @@
 export const PROFILE = "/profile";
 export const LOGIN = `${PROFILE}/login`;
 export const REGISTER = `${PROFILE}/register`;
+
+export const ROOT = "/";

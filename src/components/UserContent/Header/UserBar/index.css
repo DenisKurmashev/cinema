@@ -1,0 +1,13 @@
+.user-bar {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    float: right;
+}
+
+.user-bar-item {
+    margin: 0 10px;
+    color: #565656;
+    min-width: 30px;
+}

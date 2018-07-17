@@ -1,3 +1,4 @@
 export default {
     ON_USER_AUTH_STATUS_CHANGE: "ON_USER_AUTH_STATUS_CHANGE",
+    ON_LOGOUT: "ON_LOGOUT",
 };

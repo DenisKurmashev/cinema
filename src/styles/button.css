@@ -35,4 +35,5 @@
 
 .btn-underline:hover {
     color: #646464;
+    cursor: pointer;
 }

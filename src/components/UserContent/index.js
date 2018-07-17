@@ -18,8 +18,8 @@ const InnerUserContent = ({ ...rest }) => (
 const LoginAndRegisterFormWrapper = ({ user, userActions, ...rest }) => (
     <Route {...rest} render={props => <LoginAndRegisterForm {...props} user={user} userActions={userActions} />} />
 );
-const InnerUserContentWrapper = ({ ...rest }) => (
-    <Route {...rest} render={props => <InnerUserContent {...props} />} />
+const InnerUserContentWrapper = ({ user, userActions, ...rest }) => (
+    <Route {...rest} render={props => <InnerUserContent {...props} user={user} userActions={userActions} />} />
 );
 
 const UserContent = ({ user, userActions }) => {
@@ -27,7 +27,7 @@ const UserContent = ({ user, userActions }) => {
         <div>
             <Switch>
                 <LoginAndRegisterFormWrapper path={PROFILE} user={user} userActions={userActions} />
-                <InnerUserContentWrapper exact path={ROOT} />
+                <InnerUserContentWrapper exact path={ROOT} user={user} userActions={userActions} />
                 <Route component={PageNotFound} />
             </Switch>
         </div>

@@ -4,3 +4,8 @@ export const onUserAuthStatusChange = (payload) => ({
     type: types.ON_USER_AUTH_STATUS_CHANGE,
     payload,
 });
+
+export const onLogout = (payload) => ({
+    type: types.ON_LOGOUT,
+    payload,
+});

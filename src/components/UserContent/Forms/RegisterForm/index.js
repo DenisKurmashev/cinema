@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { withFormik } from "formik";
 import { validate, handleSubmit } from "../util";
+import { LOGIN } from "../../path";
 
 const InnerRegisterForm = ({ values, errors, touched, handleChange, handleSubmit, }) => {
     return (
@@ -18,7 +19,7 @@ const InnerRegisterForm = ({ values, errors, touched, handleChange, handleSubmit
 			<input type="password" placeholder="Password" name="password" onChange={handleChange} value={values.password} />
 
 			<button type="submit" className="btn">Sign up</button>
-			<NavLink className="btn-underline" to="/login">Already have account? Sign in.</NavLink>
+			<NavLink className="btn-underline" to={LOGIN}>Already have account? Sign in.</NavLink>
         </form>	
     );
 }

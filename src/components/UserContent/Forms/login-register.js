@@ -1,7 +1,9 @@
 import React from "react";
-import { Switch, Route, withRouter } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
+import { LOGIN, REGISTER } from "../path";
+import PageNotFound from "../../PageNotFound";
 
 import "./index.css";
 
@@ -16,10 +18,11 @@ const RegisterFormWrapper = ({ user, userActions, ...rest }) => (
 const LoginAndRegisterForm = ({ user, userActions }) => (
     <div className="login-register-container">
         <Switch>
-            <LoginFormWrapper exact path="/login" user={user} userActions={userActions} />
-            <RegisterFormWrapper exact path="/register" user={user} userActions={userActions} />
+            <LoginFormWrapper exact path={LOGIN} user={user} userActions={userActions} />
+            <RegisterFormWrapper exact path={REGISTER} user={user} userActions={userActions} />
+            <Route component={PageNotFound} />
         </Switch>
     </div>
 );
 
-export default withRouter(LoginAndRegisterForm);
+export default LoginAndRegisterForm;

@@ -36,6 +36,12 @@ export const validate = (values, props) => {
     return errors;
 };
 
-export const handleSubmit = values => {
-    console.log(values);
+export const handleLogin = async (values, actions) => {
+    await actions.props.userActions.login({ email: values.email, password: values.password });
+    actions.setSubmitting(false);
+};
+
+export const handleRegister = async (values, actions) => {
+    await actions.props.userActions.register({ name: values.name, email: values.email, password: values.password });    
+    actions.setSubmitting(false);
 };

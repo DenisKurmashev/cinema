@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { withFormik } from "formik";
-import { validate, handleSubmit } from "../util";
+import { validate, handleRegister } from "../util";
 import { LOGIN } from "../../path";
 
-const InnerRegisterForm = ({ values, errors, touched, handleChange, handleSubmit, }) => {
+const InnerRegisterForm = ({ values, errors, touched, handleChange, handleSubmit }) => {
     return (
         <form onSubmit={handleSubmit} className="default-form">
 			<div className="default-form__title">Sign up</div>
@@ -18,16 +18,16 @@ const InnerRegisterForm = ({ values, errors, touched, handleChange, handleSubmit
 			<div className="default-form__error">{touched.password && errors.password}</div>
 			<input type="password" placeholder="Password" name="password" onChange={handleChange} value={values.password} />
 
-			<button type="submit" className="btn">Sign up</button>
+			<button type="submit" className="btn" disabled={values.user.isFetching}>Sign up</button>
 			<NavLink className="btn-underline" to={LOGIN}>Already have account? Sign in.</NavLink>
         </form>	
     );
 }
 
 const RegisterForm = withFormik({
-	mapPropsToValues: props => ({ name: "", email: "", password: "" }),
+	mapPropsToValues: props => ({ name: "", email: "", password: "", user: props.user, userActions: props.userActions }),
 	validate,
-	handleSubmit,
+	handleSubmit: handleRegister
 })(InnerRegisterForm);
 
 export default RegisterForm;

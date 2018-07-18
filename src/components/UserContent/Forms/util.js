@@ -4,7 +4,7 @@ export const validate = (values, props) => {
     // if name exist in values
     // therefore it is validate of reg form
     if ("name" in values) {
-        if (values.name.length < 5) {
+        if (values.name.length < 3) {
             errors.name = "Name should contain at least 5 characters!";
         } else if (!/[a-z]/gi.test(values.name)) {
             errors.name = "Name should contain only from characters!";

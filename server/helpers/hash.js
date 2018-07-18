@@ -1,5 +1,5 @@
 module.exports = {
-    get: plain => {},
+    get: plain => plain,
 
-    isValid: (plain, hash) => {},
+    isValid: (plain, hash) => true,
 };

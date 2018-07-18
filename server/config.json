@@ -5,8 +5,12 @@
       "user": "",
       "pass": "",
       "autoIndex": true,
-      "poolSize": 10
+      "poolSize": 10,
+      "useNewUrlParser": true 
     }
   },
-  "jwt": "some string"
+  "jwt": "some string",
+  "jwtOptions": {
+      "session": false
+  }
 }

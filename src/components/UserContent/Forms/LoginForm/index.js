@@ -6,7 +6,7 @@ import { REGISTER } from "../../path";
 
 const InnerLoginForm = ({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => {
     return (
-        <form onSubmit={handleSubmit} className="default-form">
+        <form onSubmit={handleSubmit} className="default-form" noValidate>
 			<div className="default-form__title">Sign in</div>
 
 			<div className="default-form__error">{touched.email && errors.email}</div>

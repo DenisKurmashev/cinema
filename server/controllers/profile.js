@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 const joi = require("joi");
 
 const User = require("../models/user");
-const passport = require("../global-controllers/passport");
 const config = require("../config.json");
 const errors = require("../helpers/errors");
 
@@ -39,6 +38,7 @@ exports.login = async ctx => {
             role: user.role,
         };
 
+        ctx.status = 200;
         ctx.body = { user: userObject, token: "bearer " + jwt.sign({ id: user._id }, config.jwt) };
 
     }
@@ -58,12 +58,24 @@ exports.register = async ctx => {
         try {
             await joi.validate(ctx.request.body, validateSchema);
         } catch(ex) {
-            return ctx.body = ex.details;
+            console.log(ex);
+            ctx.status = errors.wrongCredentials.status;
+            ctx.body = ex.details;
+            return;
         }
 
-        let user = new User(ctx.request.body);
-
-        await user.save();
+        let user; 
+        
+        try {
+            user = new User(ctx.request.body);
+            await user.save(); 
+        } catch(ex) {
+            console.log(ex);
+            ctx.status = errors.wrongCredentials.status;
+            ctx.body = ex;
+            console.log(ctx.status, ctx.body)
+            return;
+        }
 
         const userObject = {
             name: user.name,
@@ -72,6 +84,7 @@ exports.register = async ctx => {
             role: user.role,
         };
         
+        ctx.status = 201;
         ctx.body = { user: userObject, token: "bearer " + jwt.sign({ id: user._id }, config.jwt) };
 
     }

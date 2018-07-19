@@ -1,5 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import PropTypes from "prop-types";
+
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import { LOGIN, REGISTER } from "../path";
@@ -24,5 +26,42 @@ const LoginAndRegisterForm = ({ user, userActions }) => (
         </Switch>
     </div>
 );
+
+LoginAndRegisterForm.propTypes = {
+    user: PropTypes.shape({
+        isLoginOrRegisterFetching: PropTypes.bool,
+        isAuth: PropTypes.bool,
+        error: PropTypes.string,
+        info: PropTypes.shape({
+            name: PropTypes.string,
+            role: PropTypes.string,
+        }),
+    }),
+
+    userActions: PropTypes.shape({
+        onLoginOrRegisterFetch: PropTypes.func,
+        login: PropTypes.func,
+        register: PropTypes.func, 
+        onLogout: PropTypes.func,
+    }),
+};
+LoginAndRegisterForm.defaultProps = {
+    user: {
+        isLoginOrRegisterFetching: false,
+        isAuth: false,
+        error: "",
+        info: {
+            name: "",
+            role: "",
+        },
+    },
+
+    userActions: {
+        onLoginOrRegisterFetch: () => {},
+        login: () => {},
+        register: () => {}, 
+        onLogout: () => {},
+    },
+};
 
 export default LoginAndRegisterForm;

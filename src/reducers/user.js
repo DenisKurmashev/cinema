@@ -1,10 +1,10 @@
 import types from "../types/user";
 
 const initialState = {
-    isFetching: false,
+    isLoginOrRegisterFetching: false,
     isAuth: false,
-    loginOrRegisterError: "",
-    user: {
+    error: "",
+    info: {
         name: "Denis",
         role: "user"
     },
@@ -12,20 +12,17 @@ const initialState = {
 
 const UserReducer = (state = initialState, action) => {
     switch(action.type) {
-        case types.ON_USER_AUTH_STATUS_CHANGE: 
-            return { ...state, isAuth: !state.isAuth };
-
-        case types.ON_FETCH:
-            return { ...state, isFetching: true };
+        case types.ON_LOGIN_OR_REGISTER_FETCHING:
+            return { ...state, isLoginOrRegisterFetching: true };
 
         case types.ON_LOGIN_OR_REGISTER_FAILED: 
-            return { ...state, isFetching: false, loginOrRegisterError: action.payload };
+            return { ...state, isLoginOrRegisterFetching: false, error: action.payload };
 
         case types.ON_LOGIN_OR_REGISTER_SUCCESS:
-            return { ...state, isAuth: true, isFetching: false, user: action.payload.user || state.user, token: action.payload.token };
+            return { ...state, isAuth: true, isLoginOrRegisterFetching: false, info: action.payload.user || state.info, token: action.payload.token };
 
         case types.ON_LOGOUT: 
-            return { ...state, isAuth: false, user: { ...initialState.user } };
+            return { ...state, isAuth: false, info: { ...initialState.info } };
 
         default:
             return state;

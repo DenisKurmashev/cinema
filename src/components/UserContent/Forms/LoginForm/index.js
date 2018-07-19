@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { withFormik } from "formik";
+import PropTypes from "prop-types";
 import { validate, handleLogin } from "../util";
 import { REGISTER } from "../../path";
 
@@ -29,5 +30,42 @@ const LoginForm = withFormik({
 		actions.setSubmitting(true);
 	},
 })(InnerLoginForm);
+
+LoginForm.propTypes = {
+    user: PropTypes.shape({
+        isLoginOrRegisterFetching: PropTypes.bool,
+        isAuth: PropTypes.bool,
+        error: PropTypes.string,
+        info: PropTypes.shape({
+            name: PropTypes.string,
+            role: PropTypes.string,
+        }),
+    }),
+
+    userActions: PropTypes.shape({
+        onLoginOrRegisterFetch: PropTypes.func,
+        login: PropTypes.func,
+        register: PropTypes.func, 
+        onLogout: PropTypes.func,
+    }),
+};
+LoginForm.defaultProps = {
+    user: {
+        isLoginOrRegisterFetching: false,
+        isAuth: false,
+        error: "",
+        info: {
+            name: "",
+            role: "",
+        },
+    },
+
+    userActions: {
+        onLoginOrRegisterFetch: () => {},
+        login: () => {},
+        register: () => {}, 
+        onLogout: () => {},
+    },
+};
 
 export default LoginForm;

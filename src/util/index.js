@@ -1,10 +1,10 @@
 import * as config from "../config/config.json";
 
-export function getConfig() {
+export const getConfig = () => {
     return config || {};
-}
+};
 
-export function getApiObject() {
+export const getApiObject = () => {
     const config = getConfig();
 
     return {
@@ -25,4 +25,45 @@ export function getApiObject() {
             return this.host + this.api + this._products;
         }
     };
-}
+};
+
+export const readUserFromLocalStorage = () => {
+    if (localStorage.getItem("user") === null || localStorage.getItem("token") === null)
+        return null;
+
+    let obj = {
+        token: "",
+        user: {},
+    };
+    try {
+        obj.token = JSON.parse(localStorage.getItem("token"));
+        obj.user = JSON.parse(localStorage.getItem("user"));
+
+    } catch(ex) {
+        console.log("Can't read user from localStorage. " + ex);
+        return null;
+    }
+
+    return obj;
+};
+
+export const writeUserToLocalStorageAsync = async obj => {
+    if (!obj.token || !obj.user) 
+        return false;
+
+    if (localStorage.getItem("user")) 
+        localStorage.removeItem("user");
+
+    if (localStorage.getItem("token"))
+        localStorage.removeItem("token");
+
+    try {
+        localStorage.setItem("user", JSON.stringify(obj.user));
+        localStorage.setItem("token", obj.token.toString());
+
+    } catch(ex) {
+        return false;
+    }
+
+    return true;
+};

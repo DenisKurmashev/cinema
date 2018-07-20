@@ -1,5 +1,7 @@
 const Film = require("../models/film");
 
+// ONLY FOR ADMIN
+
 exports.getAll = async ctx => {
     ctx.body = ctx.state.user;
 };

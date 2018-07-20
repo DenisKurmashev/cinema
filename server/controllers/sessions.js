@@ -34,7 +34,7 @@ exports.getAll = async ctx => {
         ctx.body = ex;
         return;
     }
-console.log(sessions);
+
     ctx.status = 200;
     ctx.body = sessions;    
     

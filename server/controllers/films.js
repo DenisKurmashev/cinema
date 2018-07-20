@@ -7,3 +7,5 @@ exports.getAll = async ctx => {
 exports.getById = async ctx => {
     ctx.body = ctx.params.id;
 };
+
+exports.addFilm = async ctx => {};

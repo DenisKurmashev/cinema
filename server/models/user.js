@@ -28,8 +28,8 @@ const USER = new Schema({
     },
 });
 
-USER.methods.verify = function(value) {
-    return hash.isValid(value, this.password);
+USER.methods.verify = async function(value) {
+    return await hash.isValid(value, this.password);
 };
 
 module.exports = mongoose.model("User", USER);

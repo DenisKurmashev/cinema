@@ -8,7 +8,6 @@ module.exports = () => {
     const app = new Koa();
     
     // middleware
-    const logger = require("./global-controllers/logger");
     const passport = require("./global-controllers/passport");
     const cors = require("./global-controllers/cors");
 

@@ -25,9 +25,9 @@ exports.login = async ctx => {
 
         const { email, password } = ctx.request.body;
 
-        let user = await User.findOne({ email }).select("name email role created");
+        let user = await User.findOne({ email }).select("name email role created password");
 
-        if (!user || !user.verify(password)) {
+        if (!user || !(await user.verify(password))) {
             ctx.status = errors.wrongCredentials.status;
             ctx.body = errors.wrongCredentials;
             return;
@@ -75,7 +75,6 @@ exports.register = async ctx => {
             console.log(ex);
             ctx.status = errors.wrongCredentials.status;
             ctx.body = ex;
-            console.log(ctx.status, ctx.body)
             return;
         }
 

@@ -1,5 +1,12 @@
-module.exports = {
-    get: plain => plain,
+const bcrypt = require("bcrypt");
+const config = require("../config.json");
 
-    isValid: (plain, hash) => true,
+module.exports = {
+    get: plain => {
+        return bcrypt.hashSync(plain, config.bcryptSalt);
+    },
+
+    isValid: async (plain, hash) => {
+        return await bcrypt.compare(plain, hash);
+    },
 };

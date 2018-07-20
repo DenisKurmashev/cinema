@@ -9,6 +9,7 @@
       "useNewUrlParser": true 
     }
   },
+  "bcryptSalt": 10,
   "jwt": "some string",
   "jwtOptions": {
       "session": false

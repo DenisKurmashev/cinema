@@ -23,6 +23,9 @@ exports.getAll = async ctx => {
             .find({})
             .skip(skip)
             .limit(10)
+            .populate("cinema", "name city rooms")
+            .populate("film", "name released cover description")
+            .select("cinema film date")
             .lean();
 
     } catch(ex) {
@@ -31,7 +34,7 @@ exports.getAll = async ctx => {
         ctx.body = ex;
         return;
     }
-
+console.log(sessions);
     ctx.status = 200;
     ctx.body = sessions;    
     
@@ -54,6 +57,9 @@ exports.getById = async ctx => {
     try {
         session = await Session
             .findById(id)
+            .populate("cinema", "name city rooms")
+            .populate("film", "name released cover description")
+            .select("cinema film date")
             .lean();
 
     } catch(ex) {

@@ -20,8 +20,7 @@ const UserReducer = (state = initialState, action) => {
             return { ...state, isLoginOrRegisterFetching: false, error: action.payload };
 
         case types.ON_LOGIN_OR_REGISTER_SUCCESS:
-            writeUserToLocalStorageAsync();
-
+            writeUserToLocalStorageAsync(action.payload);
             return { ...state, isAuth: true, isLoginOrRegisterFetching: false, info: action.payload.user || state.info, token: action.payload.token };
 
         case types.ON_LOGOUT: 

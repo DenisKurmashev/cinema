@@ -18,6 +18,8 @@ exports.login = async ctx => {
         try {
             await joi.validate(ctx.request.body, validateSchema);
         } catch(ex) {
+            console.log(ex);
+            ctx.status = errors.wrongCredentials.status;
             return ctx.body = ex.details;
         }
 

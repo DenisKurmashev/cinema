@@ -5,8 +5,8 @@ const permission = require("../../../global-controllers/permission");
 
 const router = new Router();
 
-router.get("/", controller.getAll);
-router.get("/:id", controller.getById);
+router.get("/:pageId", controller.getAll);
+router.get("/one/:id", controller.getById);
 router.post("/new", permission(), controller.new);
 
 module.exports = router.routes();

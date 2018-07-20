@@ -36,7 +36,7 @@ export const readUserFromLocalStorage = () => {
         user: {},
     };
     try {
-        obj.token = JSON.parse(localStorage.getItem("token"));
+        obj.token = localStorage.getItem("token") ;
         obj.user = JSON.parse(localStorage.getItem("user"));
 
     } catch(ex) {
@@ -51,11 +51,7 @@ export const writeUserToLocalStorageAsync = async obj => {
     if (!obj.token || !obj.user) 
         return false;
 
-    if (localStorage.getItem("user")) 
-        localStorage.removeItem("user");
-
-    if (localStorage.getItem("token"))
-        localStorage.removeItem("token");
+    await removeUserFromLocalStorageAsync();
 
     try {
         localStorage.setItem("user", JSON.stringify(obj.user));
@@ -66,4 +62,12 @@ export const writeUserToLocalStorageAsync = async obj => {
     }
 
     return true;
+};
+
+export const removeUserFromLocalStorageAsync = async () => {
+    if (localStorage.getItem("user")) 
+        localStorage.removeItem("user");
+
+    if (localStorage.getItem("token"))
+        localStorage.removeItem("token");
 };

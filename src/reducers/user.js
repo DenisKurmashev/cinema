@@ -1,5 +1,5 @@
 import types from "../types/user";
-import { writeUserToLocalStorageAsync } from "../util";
+import { writeUserToLocalStorageAsync, removeUserFromLocalStorageAsync } from "../util";
 
 const initialState = {
     isLoginOrRegisterFetching: false,
@@ -24,6 +24,7 @@ const UserReducer = (state = initialState, action) => {
             return { ...state, isAuth: true, isLoginOrRegisterFetching: false, info: action.payload.user || state.info, token: action.payload.token };
 
         case types.ON_LOGOUT: 
+            removeUserFromLocalStorageAsync();
             return { ...state, isAuth: false, info: { ...initialState.info } };
 
         default:

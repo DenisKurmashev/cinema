@@ -1,5 +1,5 @@
 const Router = require("koa-router");
-const controller = require("../../../controllers/films");
+const controller = require("../../../controllers/cinema");
 
 const router = new Router();
 

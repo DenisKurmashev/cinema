@@ -5,28 +5,35 @@ const CINEMA = new Schema({
     name: {
         type: Schema.Types.String,
         required: true,
+        unique: true,
     },
     city: {
         type: Schema.Types.String,
         required: true,
     },
-    rooms: [
-        {
-            places: [
-                {
-                    number: {
-                        type: Schema.Types.Number,
-                        required: true,
-                    },
-                    isPending: {
-                        type: Schema.Types.Boolean,
-                        default: false,
+    rooms: {
+        type: [
+            {
+                places: [
+                    {
+                        number: {
+                            type: Schema.Types.Number,
+                            required: true,
+                        },
+                        isPending: {
+                            type: Schema.Types.Boolean,
+                            default: false,
+                        }
                     }
-                }
-            ],
-            schema: Schema.Types.String
-        }
-    ],
+                ],
+                placeSchema: Schema.Types.String
+            }
+        ],
+        default: [
+            // TO-DO: write default rooms schemas
+        ],      
+    },
 });
 
 module.exports = mongoose.model("Cinema", CINEMA);
+

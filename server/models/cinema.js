@@ -12,10 +12,18 @@ const CINEMA = new Schema({
     },
     rooms: [
         {
-            placesCount: {
-                type: Schema.Types.Number,
-                required: true,
-            },
+            places: [
+                {
+                    number: {
+                        type: Schema.Types.Number,
+                        required: true,
+                    },
+                    isPending: {
+                        type: Schema.Types.Boolean,
+                        default: false,
+                    }
+                }
+            ],
             schema: Schema.Types.String
         }
     ],

@@ -7,6 +7,6 @@ const router = new Router();
 
 router.get("/", controller.getAll);
 router.get("/:id", controller.getById);
-router.post("/new", controller.new);
+router.post("/new", permission(), controller.new);
 
 module.exports = router.routes();

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -9,10 +9,10 @@ import Header from "./Header";
 import FilmList from "./FilmList";
 
 const InnerUserContent = ({ ...rest }) => (
-    <div>
+    <Fragment>
         <Header {...rest} />
         <FilmList {...rest} />    
-    </div>
+    </Fragment>
 );
 
 // wrappers
@@ -25,13 +25,13 @@ const InnerUserContentWrapper = ({ user, userActions, ...rest }) => (
 
 const UserContent = ({ user, userActions }) => {
     return (
-        <div>
+        <Fragment>
             <Switch>
                 <LoginAndRegisterFormWrapper path={PROFILE} user={user} userActions={userActions} />
                 <InnerUserContentWrapper exact path={ROOT} user={user} userActions={userActions} />
                 <Route component={PageNotFound} />
             </Switch>
-        </div>
+        </Fragment>
     );
 };
 

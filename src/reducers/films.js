@@ -10,6 +10,7 @@ const FilmsReducer = (state = initialState, action) => {
     switch(action.type) {
         case types.ON_FILMS_FETCHING: 
             // TO-DO: show loading animation
+            return;
 
         case types.ON_FILMS_FAILED:
             return { ...state, error: action.payload };

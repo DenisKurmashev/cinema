@@ -16,8 +16,14 @@ const InnerUserContent = ({ ...rest }) => (
 );
 
 // wrappers
-const LoginAndRegisterFormWrapper = ({ user, userActions, ...rest }) => (
-    <Route {...rest} render={props => <LoginAndRegisterForm {...props} user={user} userActions={userActions} />} />
+const LoginAndRegisterFormWrapper = ({ user, userActions, films, filmsActions, ...rest }) => (
+    <Route {...rest} render={props => <LoginAndRegisterForm 
+        {...props} 
+        user={user} 
+        userActions={userActions} 
+        films={films}
+		filmsActions={filmsActions}
+    />} />
 );
 const InnerUserContentWrapper = ({ user, userActions, films, filmsActions, ...rest }) => (
     <Route {...rest} render={props => <InnerUserContent 

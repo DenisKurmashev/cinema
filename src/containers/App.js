@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -11,7 +11,7 @@ import AdminContent from "../components/AdminContent";
 
 const App = ({ user, userActions, films, filmsActions}) => {
 	return (
-		<div className="App">
+		<Fragment>
 			{
 				user.isAuth && user.info.role === "admin" ?
 					<AdminContent /> :
@@ -22,7 +22,7 @@ const App = ({ user, userActions, films, filmsActions}) => {
 						filmsActions={filmsActions}
 					/>
 			}
-		</div>
+		</Fragment>
 	);
 };
 
@@ -32,7 +32,6 @@ const mapStateToProps = state => {
 		films: state.films,
 	};
 };
-
 
 const mapDispatchToProps = dispatch => {
 	return {

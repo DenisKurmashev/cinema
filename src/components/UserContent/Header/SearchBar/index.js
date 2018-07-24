@@ -4,8 +4,7 @@ import "./index.css";
 class SearchBar extends React.Component {
 
     handleChange = async event => {
-        console.log(this.props);
-        this.props.filmsActions.onFilmsChange(event.target.name);    
+        this.props.filmsActions.onFilmsChange(event.target.value);    
     }
 
     render() {

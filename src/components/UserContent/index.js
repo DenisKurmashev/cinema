@@ -19,16 +19,28 @@ const InnerUserContent = ({ ...rest }) => (
 const LoginAndRegisterFormWrapper = ({ user, userActions, ...rest }) => (
     <Route {...rest} render={props => <LoginAndRegisterForm {...props} user={user} userActions={userActions} />} />
 );
-const InnerUserContentWrapper = ({ user, userActions, ...rest }) => (
-    <Route {...rest} render={props => <InnerUserContent {...props} user={user} userActions={userActions} />} />
+const InnerUserContentWrapper = ({ user, userActions, films, filmsActions, ...rest }) => (
+    <Route {...rest} render={props => <InnerUserContent 
+        {...props} 
+        user={user} 
+        userActions={userActions}
+        films={films}
+		filmsActions={filmsActions}    
+    />} />
 );
 
-const UserContent = ({ user, userActions }) => {
+const UserContent = ({ user, userActions, films, filmsActions }) => {
     return (
         <Fragment>
             <Switch>
                 <LoginAndRegisterFormWrapper path={PROFILE} user={user} userActions={userActions} />
-                <InnerUserContentWrapper exact path={ROOT} user={user} userActions={userActions} />
+                <InnerUserContentWrapper exact 
+                    path={ROOT} 
+                    user={user} 
+                    userActions={userActions}
+                    films={films}
+					filmsActions={filmsActions}
+                />
                 <Route component={PageNotFound} />
             </Switch>
         </Fragment>

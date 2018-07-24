@@ -6,11 +6,12 @@ import "../../../styles/button.css";
 import SearchBar from "./SearchBar";
 import UserBar from "./UserBar";
 
-const Header = ({ user, userActions }) => (
+const Header = ({ user, userActions, films, filmsActions }) => (
     <header>
         <div className="header-mask">
             <UserBar user={user} userActions={userActions} />
-            <SearchBar user={user} userActions={userActions} />
+            <SearchBar 
+                 films={films} filmsActions={filmsActions} />
         </div>
     </header>
 );

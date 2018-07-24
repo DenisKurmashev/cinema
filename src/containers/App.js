@@ -4,17 +4,23 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import * as userActions from "../actions/user";
+import * as filmsActions from "../actions/films";
 
 import UserContent from "../components/UserContent";
 import AdminContent from "../components/AdminContent";
 
-const App = ({ user, userActions }) => {
+const App = ({ user, userActions, films, filmsActions}) => {
 	return (
 		<div className="App">
 			{
 				user.isAuth && user.info.role === "admin" ?
 					<AdminContent /> :
-					<UserContent user={user} userActions={userActions} />
+					<UserContent 
+						user={user} 
+						userActions={userActions} 
+						films={films}
+						filmsActions={filmsActions}
+					/>
 			}
 		</div>
 	);
@@ -23,6 +29,7 @@ const App = ({ user, userActions }) => {
 const mapStateToProps = state => {
 	return {
 		user: state.user,
+		films: state.films,
 	};
 };
 
@@ -30,6 +37,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		userActions: bindActionCreators(userActions, dispatch),
+		filmsActions: bindActionCreators(filmsActions, dispatch),
 	};
 };
 

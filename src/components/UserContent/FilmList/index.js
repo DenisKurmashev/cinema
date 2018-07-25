@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import FilmItemInfo from "./FilmItemInfo/FilmItemInfo";
 import "./index.css";
+import FilmLoading from "./FilmLoading";
 
 const FilmList = ({ user, userActions, films, filmsActions }) => {
     return (
         <div className="film-container width-60">
-
+   
         {
-            films.currentFilms.map 
+            !films.isFetching
             ? films.currentFilms.map(item => (
                 <div key={item._id} className="film-container-item">
                     <div className="film-container-item__title">{item.film.name}</div>
@@ -19,7 +20,7 @@ const FilmList = ({ user, userActions, films, filmsActions }) => {
                     <Link className="btn text-upper" to={`/session/${item._id}`}>Buy ticket</Link>
                 </div>
             )) 
-            : null
+            : <FilmLoading />
         }
             
         </div>

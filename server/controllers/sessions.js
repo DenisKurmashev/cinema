@@ -15,7 +15,6 @@ exports.getAll = async ctx => {
         return;
     }
 
-
     let sessions;
     
     try {

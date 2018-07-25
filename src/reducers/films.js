@@ -2,6 +2,7 @@ import types from "../types/films";
 
 const initialState = {
     error: null,
+    isFetching: false,
     currentFilms: [],
     allFilms: [],
 };
@@ -9,17 +10,17 @@ const initialState = {
 const FilmsReducer = (state = initialState, action) => {
     switch(action.type) {
         case types.ON_FILMS_FETCHING: 
-            // TO-DO: show loading animation
-            return state;
+            return { ...state, isFetching: true };
 
         case types.ON_FILMS_FAILED:
-            return { ...state, error: action.payload };
+            return { ...state, error: action.payload, isFetching: false };
 
         case types.ON_FILMS_SUCCESS:
             return { 
                 ...state, 
                 allFilms: [ ...state.allFilms, ...(action.payload || []) ], 
-                currentFilms: action.payload.slice(0, 10) || [] 
+                currentFilms: action.payload.slice(0, 10) || [],
+                isFetching: false 
             };
 
         case types.ON_FILMS_CHANGE: 

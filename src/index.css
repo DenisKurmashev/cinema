@@ -10,3 +10,8 @@ body {
   font-family: sans-serif;
   background: #F5F5F5;
 }
+
+#root {
+  width: 100%;
+  height: 100%;
+}

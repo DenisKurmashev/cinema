@@ -21,8 +21,9 @@ exports.getAll = async ctx => {
     try {
         sessions = await Session
             .find({})
-            .skip((skip - 1) * 10)
-            .limit(10)
+            .where("date").gte(Date.now())
+            .skip((skip - 1) * 9)
+            .limit(9)
             .populate("cinema", "name city rooms")
             .populate("film", "name released cover description")
             .select("cinema film date")

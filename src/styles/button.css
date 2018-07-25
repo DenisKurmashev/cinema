@@ -10,6 +10,8 @@
     transition: .2s;
     min-width: 40%;
     margin: 20px 0;
+    text-decoration: none;
+    text-align: center;
 }
 
 .btn:hover {

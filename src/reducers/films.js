@@ -3,7 +3,7 @@ import types from "../types/films";
 const initialState = {
     error: null,
     currentFilms: [],
-    films: [],
+    allFilms: [],
 };
 
 const FilmsReducer = (state = initialState, action) => {
@@ -18,7 +18,7 @@ const FilmsReducer = (state = initialState, action) => {
         case types.ON_FILMS_SUCCESS:
             return { 
                 ...state, 
-                films: action.payload || [], 
+                allFilms: [ ...state.allFilms, ...(action.payload || []) ], 
                 currentFilms: action.payload.slice(0, 10) || [] 
             };
 

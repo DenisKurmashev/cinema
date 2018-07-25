@@ -3,3 +3,11 @@
 .width-100 {
     width: 100%;
 }
+
+.width-60 {
+    width: 60%;
+}
+
+.text-upper {
+    text-transform: uppercase;
+}

@@ -1,3 +1,53 @@
 .film-container {
-    
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 10px auto;
+}
+
+.film-container-item {
+    margin: 15px;
+    background: #FAFAFA;
+    border-radius: 5px;
+    padding: 3px 0;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    box-shadow: 0 0 5px rgba(23,23,23,0.5);
+    transition: 0.3s;
+}
+
+.film-container-item:hover {
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.film-container-item__title {
+    font-family: 'Slabo 27px', serif;
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+
+.film-container-item__info {
+    width: 96%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.film-container-item__info div {
+    color: #565656;
+    font-size: .8em;
+    text-align: center;
+}
+
+.film-container-item__cover {
+    width: 96%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 200px;
+    overflow: hidden;
+    border-radius: 5px;
 }

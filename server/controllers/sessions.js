@@ -21,7 +21,7 @@ exports.getAll = async ctx => {
     try {
         sessions = await Session
             .find({})
-            .skip(skip)
+            .skip((skip - 1) * 10)
             .limit(10)
             .populate("cinema", "name city rooms")
             .populate("film", "name released cover description")

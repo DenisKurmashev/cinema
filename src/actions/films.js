@@ -1,4 +1,6 @@
 import types from "../types/films";
+import axios from "axios";
+import { getApiObject } from "../util";
 
 export const onFilmsFetching = (payload) => ({
     type: types.ON_FILMS_FETCHING,
@@ -11,9 +13,20 @@ export const onFilmsFailed = (payload) => ({
 }); 
 
 export const onFilmsSuccess = (payload) => ({
-    type: types.ON_FILMS_FETCHING,
+    type: types.ON_FILMS_SUCCESS,
     payload,
 }); 
+
+export const onFilmsLoad = (pageId) => {
+    return (dispatch, getState) => {
+        dispatch(onFilmsFetching());
+
+        return axios.get(`${getApiObject().sessions}/${pageId}`)
+            .then(response => dispatch(onFilmsSuccess(response.data)))
+            .catch(error => dispatch(onFilmsFailed(error)));
+
+    };
+};
 
 export const onFilmsChange = (payload) => ({
     type: types.ON_FILMS_CHANGE,

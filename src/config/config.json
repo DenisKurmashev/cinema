@@ -4,5 +4,6 @@
     "profile": "/profile",
     "login": "/login",
     "register": "/register",
-    "products": "/products"
+    "products": "/products",
+    "sessions": "/sessions"
 }

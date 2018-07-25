@@ -12,7 +12,7 @@ const router = new Router();
 
 router.use("/profile", profile);
 router.use("/films", passport.authenticate(), permission(), films);
-router.use("/sessions", passport.authenticate(), sessions);
+router.use("/sessions", sessions);
 router.use("/cinema", passport.authenticate(), permission(), cinema);
 
 module.exports = router.routes();

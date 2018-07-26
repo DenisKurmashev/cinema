@@ -6,3 +6,35 @@
     justify-content: center;
     align-items: center;
 }
+
+.search-bar-form {
+    width: 60%;
+    background: #FAFAFA;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.search-bar-form__input, .search-bar-form__options {
+    width: 98%;
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    justify-content: center
+}
+
+.search-bar-form__input input[type="text"] {
+    text-transform: uppercase;
+    padding: 14px 10px;
+    font-family: 'Slabo 27px', serif;
+    font-size: 1.1em;
+}
+
+.search-bar-form__options-item {
+    margin: 0 15px;
+}
+
+

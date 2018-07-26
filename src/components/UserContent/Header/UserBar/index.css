@@ -3,7 +3,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .user-bar-item {

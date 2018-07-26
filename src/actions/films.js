@@ -2,6 +2,11 @@ import types from "../types/films";
 import axios from "axios";
 import { getApiObject } from "../util";
 
+export const onFilmsFilterChange = (payload) => ({
+    type: types.ON_FILMS_FILTER_CHANGE,
+    payload,
+});
+
 export const onFilmsFetching = (payload) => ({
     type: types.ON_FILMS_FETCHING,
     payload,

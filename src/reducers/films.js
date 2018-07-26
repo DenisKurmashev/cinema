@@ -1,6 +1,8 @@
 import types from "../types/films";
+import { FILTER_TYPES } from "../constants/constants";
 
 const initialState = {
+    filter: FILTER_TYPES[0].value,
     error: null,
     isFetching: false,
     currentFilms: [],
@@ -9,6 +11,9 @@ const initialState = {
 
 const FilmsReducer = (state = initialState, action) => {
     switch(action.type) {
+        case types.ON_FILMS_FILTER_CHANGE:
+            return { ...state, filter: action.payload };
+
         case types.ON_FILMS_FETCHING: 
             return { ...state, isFetching: true };
 
@@ -26,7 +31,7 @@ const FilmsReducer = (state = initialState, action) => {
         case types.ON_FILMS_CHANGE: 
             return { 
                 ...state,  
-                currentFilms: state.films.filter((el, index) => {
+                currentFilms: state.allFilms.filter((el, index) => {
                     // TO-DO: search logic
                 }).slice(0, 10)
             };

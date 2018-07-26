@@ -7,10 +7,9 @@ export const onFilmsFilterChange = (payload) => ({
     payload,
 });
 
-export const onFilmsPageChange = (payload) => ({
-    // TO-DO: ...
-    type: types.ON_FILMS_FILTER_CHANGE,
-    payload,
+export const onFilmsPageChange = (films) => ({
+    type: types.ON_FILMS_PAGE_CHANGE,
+    films,
 });
 
 export const onFilmsFetching = (payload) => ({

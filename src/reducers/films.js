@@ -15,6 +15,9 @@ const FilmsReducer = (state = initialState, action) => {
         case types.ON_FILMS_FILTER_CHANGE:
             return { ...state, filter: action.payload };
 
+        case types.ON_FILMS_PAGE_CHANGE: 
+            return { ...state, currentFilms: action.films };
+
         case types.ON_FILMS_FETCHING: 
             return { ...state, isFetching: true };
 
@@ -32,9 +35,7 @@ const FilmsReducer = (state = initialState, action) => {
         case types.ON_FILMS_CHANGE: 
             return { 
                 ...state,  
-                currentFilms: state.allFilms.filter((el, index) => {
-                    return true;
-                }).slice(0, 10)
+                currentFilms: action.payload
             };
 
         default:

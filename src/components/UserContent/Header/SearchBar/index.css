@@ -16,6 +16,7 @@
     align-items: center;
     padding: 5px 10px;
     border-radius: 3px;
+    box-shadow: 0 0 5px rgba(23,23,23,0.5);
 }
 
 .search-bar-form__input, .search-bar-form__options {

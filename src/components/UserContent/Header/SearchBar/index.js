@@ -1,4 +1,5 @@
 import React from "react";
+import { DebounceInput } from "react-debounce-input";
 import { FILTER_TYPES } from "../../../../constants/constants";
 import "./index.css";
 
@@ -17,7 +18,7 @@ class SearchBar extends React.Component {
             <div className="search-bar">
                 <form className="search-bar-form" noValidate>
                     <div className="search-bar-form__input">
-                        <input type="text" autoComplete="off" onChange={this.handleChange} autoFocus name="searchText" placeholder="Enter the search query" />
+                        <DebounceInput debounceTimeout={300} type="text" autoComplete="off" onChange={this.handleTextInputChange} autoFocus name="searchText" placeholder="Enter the search query" />
                     </div>
                     <div className="search-bar-form__options">
                         {FILTER_TYPES.map(item => (

@@ -37,6 +37,7 @@ const mapDispatchToProps = dispatch => {
 	return {
 		userActions: bindActionCreators(userActions, dispatch),
 		filmsActions: bindActionCreators(filmsActions, dispatch),
+		
 	};
 };
 

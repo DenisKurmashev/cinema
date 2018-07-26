@@ -3,6 +3,7 @@ import { FILTER_TYPES } from "../constants/constants";
 
 const initialState = {
     filter: FILTER_TYPES[0].value,
+    pageId: 1,
     error: null,
     isFetching: false,
     currentFilms: [],
@@ -32,7 +33,7 @@ const FilmsReducer = (state = initialState, action) => {
             return { 
                 ...state,  
                 currentFilms: state.allFilms.filter((el, index) => {
-                    // TO-DO: search logic
+                    return true;
                 }).slice(0, 10)
             };
 

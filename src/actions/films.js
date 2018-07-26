@@ -7,6 +7,12 @@ export const onFilmsFilterChange = (payload) => ({
     payload,
 });
 
+export const onFilmsPageChange = (payload) => ({
+    // TO-DO: ...
+    type: types.ON_FILMS_FILTER_CHANGE,
+    payload,
+});
+
 export const onFilmsFetching = (payload) => ({
     type: types.ON_FILMS_FETCHING,
     payload,

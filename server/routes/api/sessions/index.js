@@ -8,6 +8,7 @@ const router = new Router();
 
 router.get("/:pageId", controller.getAll);
 router.get("/one/:id", controller.getById);
+router.post("/search", controller.search);
 router.post("/new", passport.authenticate(), permission(), controller.new);
 
 module.exports = router.routes();

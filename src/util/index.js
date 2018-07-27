@@ -15,6 +15,7 @@ export const getApiObject = () => {
         _register: config.register,
         _products: config.products,
         _sessions: config.sessions,
+        _search: config.search,
 
         get login() {
             return this.host + this.api + this._profile + this._login;
@@ -28,6 +29,9 @@ export const getApiObject = () => {
         get sessions() {
             return this.host + this.api + this._sessions;
         },
+        get search() {
+            return this.host + this.api + this._sessions + this._search;
+        }
     };
 };
 

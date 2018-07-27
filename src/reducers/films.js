@@ -32,12 +32,6 @@ const FilmsReducer = (state = initialState, action) => {
                 isFetching: false 
             };
 
-        case types.ON_FILMS_CHANGE: 
-            return { 
-                ...state,  
-                currentFilms: action.payload
-            };
-
         default:
             return state;
     }

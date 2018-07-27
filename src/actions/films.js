@@ -27,7 +27,7 @@ export const onFilmsSuccess = (payload) => ({
     payload,
 }); 
 
-export const onFilmsLoad = (pageId) => {
+export const onFilmsLoad = (pageId = 1) => {
     return (dispatch, getState) => {
         dispatch(onFilmsFetching());
 
@@ -38,7 +38,18 @@ export const onFilmsLoad = (pageId) => {
     };
 };
 
-export const onFilmsChange = (payload) => ({
-    type: types.ON_FILMS_CHANGE,
-    payload,
-});
+export const onFilmsChange = (text) => {
+    return (dispatch, getState) => {
+        dispatch(onFilmsFetching());
+
+        const data = {  
+            text: text,
+            filter: getState().films.filter
+        };
+
+        return axios.post(getApiObject().search, data)
+            .then(response => dispatch(onFilmsSuccess(response.data)))
+            .catch(error => dispatch(onFilmsFailed(error)));
+
+    };
+};

@@ -120,20 +120,22 @@ exports.search = async ctx => {
         }
 
         if (filter === "city") {
-            result = _result.filter(item => item.cinema.city.includes(text));                
+            result = _result.filter(item => item.cinema.city.toLowerCase().includes(text.toLowerCase()));                
         } else if (filter === "cinema") {
-            result = _result.filter(item => item.cinema.name.includes(text));  
+            result = _result.filter(item => item.cinema.name.toLowerCase().includes(text.toLowerCase()));  
         } else if (filter === "film_name") {
-            result = _result.filter(item => item.film.name.includes(text));  
+            result = _result.filter(item => item.film.name.toLowerCase().includes(text.toLowerCase()));  
         } else if (filter === "date") {
             // TO-DO: optimize data search
             result = _result.filter(item => Date.parse(item.date) === Date.parse(text));  
         } else if (filter === "one_place_exist") {
-            result = util.isMoreThanOnePlaceExist(_result); 
+            result = _result.filter(item => item.film.name.toLowerCase().includes(text.toLowerCase()));
+            result = util.isMoreThanOnePlaceExist(result); 
+            
         }
 
         ctx.body = 200;
-        ctx.body = result;
+        ctx.body = util.optimizeSessions(result);
 
     }
 };

@@ -5,5 +5,6 @@
     "login": "/login",
     "register": "/register",
     "products": "/products",
-    "sessions": "/sessions"
+    "sessions": "/sessions",
+    "search": "/search"
 }

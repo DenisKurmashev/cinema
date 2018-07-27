@@ -139,7 +139,10 @@ exports.search = async ctx => {
 
 // Access only for admin
 exports.new = async ctx => {
-    if (!ctx.request.body.cinema || !ctx.request.body.film || !ctx.request.body.date) {
+    const { cinema, film, date, roomNumber } 
+        =  ctx.request.body;
+
+    if (!cinema || !film || !date || !roomNumber) {
         ctx.status = errors.wrongCredentials.status;
         ctx.body = errors.wrongCredentials;
     } else {
@@ -147,6 +150,7 @@ exports.new = async ctx => {
             cinema: joi.string().min(24),
             film: joi.string().min(24),
             date: joi.date(),
+            roomNumber: joi.number(),
         });
 
         try {

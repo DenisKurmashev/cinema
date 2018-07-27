@@ -14,23 +14,34 @@ const CINEMA = new Schema({
     rooms: {
         type: [
             {
-                places: [
-                    {
-                        number: {
-                            type: Schema.Types.Number,
-                            required: true,
-                        },
-                        isPending: {
-                            type: Schema.Types.Boolean,
-                            default: false,
-                        }
-                    }
-                ],
-                placeSchema: Schema.Types.String
+                placeSchema: [[]],
             }
         ],
         default: [
             // TO-DO: write default rooms schemas
+            {
+                placeSchema: [
+                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
+                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
+                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
+                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
+                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
+                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
+                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
+                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
+                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
+                    [ 2, 2, 0, 2, 2, 0, 0, 3, 3, 3 ],
+                ]
+            },
+            {
+                placeSchema: [
+                    [ 1, 1, 1, 1, 1, 1, 1 ],
+                    [ 1, 1, 1, 1, 1, 1, 1 ],
+                    [ 1, 1, 1, 1, 1, 1, 1 ],
+                    [ 1, 1, 1, 1, 1, 1, 1 ],
+                    [ 0, 2, 2, 0, 2, 2, 0 ],
+                ]
+            }
         ],      
     },
 });

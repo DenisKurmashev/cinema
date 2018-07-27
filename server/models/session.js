@@ -16,6 +16,23 @@ const SESSION = new Schema({
         type: Schema.Types.Date,
         required: true,
     },
+    roomNumber: {
+        type: Schema.Types.Number,
+        required: true,
+    },
+    selectedPlaces: [
+        { 
+            x: Schema.Types.Number,
+            y: Schema.Types.Number, 
+        }
+    ],
+    pendingPlaces: [
+        {
+            x: Schema.Types.Number,
+            y: Schema.Types.Number, 
+            removeAt: Schema.Types.Date,
+        }
+    ]
 });
 
 module.exports = mongoose.model("Session", SESSION);

@@ -2,6 +2,7 @@ const joi = require("joi");
 
 const Session = require("../models/session");
 const errors = require("../helpers/errors");
+const util = require("../util/util");
 
 exports.getAll = async ctx => {
     const skip = parseInt(ctx.params.pageId);
@@ -25,7 +26,7 @@ exports.getAll = async ctx => {
             .limit(9)
             .populate("cinema", "name city rooms")
             .populate("film", "name released cover description")
-            .select("cinema film date")
+            .select("cinema film date roomNumber selectedPlaces pendingPlaces")
             .lean();
 
     } catch(ex) {
@@ -36,7 +37,7 @@ exports.getAll = async ctx => {
     }
 
     ctx.status = 200;
-    ctx.body = sessions;    
+    ctx.body = util.optimizeSessions(sessions);    
     
 };
 
@@ -59,7 +60,7 @@ exports.getById = async ctx => {
             .findById(id)
             .populate("cinema", "name city rooms")
             .populate("film", "name released cover description")
-            .select("cinema film date")
+            .select("cinema film date roomNumber selectedPlaces pendingPlaces")
             .lean();
 
     } catch(ex) {

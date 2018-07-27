@@ -76,7 +76,7 @@ exports.getById = async ctx => {
         ctx.body = {}; 
     } else {
         ctx.status = 200;
-        ctx.body = session; 
+        ctx.body = util.optimizeSession(session); 
     }
 
 };
@@ -110,7 +110,7 @@ exports.search = async ctx => {
                 .find({})
                 .populate("cinema", "name city rooms")
                 .populate("film", "name released cover description")
-                .select("cinema film date")
+                .select("cinema film date roomNumber selectedPlaces pendingPlaces")
                 .lean();
         } catch(ex) {
             console.log(ex);
@@ -126,10 +126,10 @@ exports.search = async ctx => {
         } else if (filter === "film_name") {
             result = _result.filter(item => item.film.name.includes(text));  
         } else if (filter === "date") {
+            // TO-DO: optimize data search
             result = _result.filter(item => Date.parse(item.date) === Date.parse(text));  
         } else if (filter === "one_place_exist") {
-            // TO-DO: 
-            result = _result.filter(item => item.cinema.city.includes(text));  
+            result = util.isMoreThanOnePlaceExist(_result); 
         }
 
         ctx.body = 200;

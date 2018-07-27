@@ -20,16 +20,48 @@ const optimizeSessions = (sessions) => {
     if (!Array.isArray(sessions))
         return sessions;
 
-    const result = Array.from(sessions);
+    return sessions.map(item => optimizeSession(item)).reverse();
+};
 
-    for (let i = 0; i < result.length; i++) 
-        result[i] = optimizeSession(result[i]);
+const getPlaceCountFromRoomSchema = (schema) => {
+    if (!Array.isArray(schema))
+        return null;
 
-    return result;
+    let count = 0;
+
+    for (line of schema) 
+        for (item of line) {
+            if (item === 1) count++;
+            else if (item === 2) count += count / 2;
+            else if (item === 3) count += count / 3;
+        }
+        
+    return Math.round(count);
+};
+
+const isMoreThanOnePlaceExist = (sessions) => {
+    if (!Array.isArray(sessions)) 
+        return sessions;
+
+    return sessions.filter(item => {
+        if (!item.selectedPlaces && !item.pendingPlaces)
+            return true;
+
+        const currentRoom = deepCopy(item.cinema.rooms[item.roomNumber]);
+
+        const placeCount = getPlaceCountFromRoomSchema(currentRoom);
+
+        if (item.selectedPlaces.length === placeCount || item.pendingPlaces.length === placeCount)
+            return false;
+
+        return true;
+    });
+
 };
 
 module.exports = {
     deepCopy,
     optimizeSession,
     optimizeSessions,
+    isMoreThanOnePlaceExist
 };

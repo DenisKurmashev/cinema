@@ -15,7 +15,7 @@ class Pagination extends Component {
                 nextLabel={"next"}
                 breakLabel="..."
                 breakClassName={"break-me"}
-                pageCount={3}
+                pageCount={this.props.films.pageCount}
                 marginPagesDisplayed={2}
                 pageRangeDisplayed={5}
                 onPageChange={this.handlePageChange}

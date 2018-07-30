@@ -108,10 +108,10 @@ class FilmList extends React.Component {
                 }
 
                 {
-                    films.currentFilms.length !== 0 
+                    films.pageCount > 1 
                     ? ( 
                         <div className="width-100">
-                            <Pagination filmsActions={filmsActions} />
+                            <Pagination films={films} filmsActions={filmsActions} />
                         </div>
                     )
                     : ""

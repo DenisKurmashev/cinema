@@ -6,7 +6,7 @@ import "./index.css";
 class SearchBar extends React.Component {
 
     handleTextInputChange = event => {
-        if (!event.target.value) this.props.filmsActions.onFilmsLoad()
+        if (!event.target.value) this.props.filmsActions.onFilmsLoad(1)
         else this.props.filmsActions.onFilmsChange(event.target.value);    
     }
 

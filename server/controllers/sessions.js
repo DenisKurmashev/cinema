@@ -17,6 +17,7 @@ exports.getAll = async ctx => {
     }
 
     let sessions;
+    let count = 0;
     
     try {
         sessions = await Session
@@ -29,6 +30,8 @@ exports.getAll = async ctx => {
             .select("cinema film date roomNumber selectedPlaces pendingPlaces")
             .lean();
 
+        count = await Session.count();
+
     } catch(ex) {
         console.log(ex);
         ctx.status = errors.wrongCredentials.status;
@@ -37,7 +40,7 @@ exports.getAll = async ctx => {
     }
 
     ctx.status = 200;
-    ctx.body = util.optimizeSessions(sessions);    
+    ctx.body = { data: util.optimizeSessions(sessions), count };    
     
 };
 

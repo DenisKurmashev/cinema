@@ -4,6 +4,7 @@ import { FILTER_TYPES } from "../constants/constants";
 const initialState = {
     filter: FILTER_TYPES[0].value,
     pageId: 1,
+    pageCount: 0,
     error: null,
     isFetching: false,
     currentFilms: [],
@@ -28,7 +29,8 @@ const FilmsReducer = (state = initialState, action) => {
             return { 
                 ...state, 
                 allFilms: [ ...state.allFilms, ...(action.payload || []) ], 
-                currentFilms: action.payload.slice(0, 10) || [],
+                currentFilms: action.payload.data || action.payload,
+                pageCount: Math.ceil(action.payload.count / 9),
                 isFetching: false 
             };
 

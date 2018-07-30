@@ -3,7 +3,8 @@ import { FILTER_TYPES } from "../constants/constants";
 
 const initialState = {
     filter: FILTER_TYPES[0].value,
-    pageId: 1,
+    searchText: "",
+    pageId: 0,
     pageCount: 0,
     error: null,
     isFetching: false,
@@ -15,6 +16,9 @@ const FilmsReducer = (state = initialState, action) => {
     switch(action.type) {
         case types.ON_FILMS_FILTER_CHANGE:
             return { ...state, filter: action.payload };
+
+        case types.ON_SEARCH_TEXT_CHANGE:
+            return { ...state, searchText: action.payload };
 
         case types.ON_FILMS_PAGE_CHANGE: 
             return { ...state, pageId: action.pageId };
@@ -29,7 +33,7 @@ const FilmsReducer = (state = initialState, action) => {
             return { 
                 ...state, 
                 allFilms: [ ...state.allFilms, ...(action.payload || []) ], 
-                currentFilms: action.payload.data || action.payload,
+                currentFilms: action.payload.data,
                 pageCount: Math.ceil(action.payload.count / 9),
                 isFetching: false 
             };

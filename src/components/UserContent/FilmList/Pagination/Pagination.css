@@ -23,6 +23,6 @@
     border-radius: 3px; 
 }
 
-.pagination .break-me:hover {
+.pagination .break-me:hover, .pagination .disabled:hover {
     cursor: not-allowed;
 }

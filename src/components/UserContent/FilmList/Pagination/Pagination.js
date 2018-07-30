@@ -6,7 +6,12 @@ class Pagination extends Component {
 
     handlePageChange = (data) => {
         this.props.filmsActions.onFilmsPageChange(data.selected);
-        this.props.filmsActions.onFilmsLoad(data.selected + 1);
+console.log(this.props.films.searchText)
+        if (this.props.films.searchText)
+            this.props.filmsActions.onFilmsChange(null, data.selected + 1);
+        else 
+            this.props.filmsActions.onFilmsLoad(data.selected + 1);
+        
     }
 
     render() {

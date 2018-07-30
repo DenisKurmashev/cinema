@@ -27,6 +27,11 @@ export const onFilmsSuccess = (payload) => ({
     payload,
 }); 
 
+export const onSearchTextChange = (payload) => ({
+    type: types.ON_SEARCH_TEXT_CHANGE,
+    payload,
+});
+
 export const onFilmsLoad = (pageId) => {
     return (dispatch, getState) => {
         dispatch(onFilmsFetching());
@@ -41,16 +46,19 @@ export const onFilmsLoad = (pageId) => {
     };
 };
 
-export const onFilmsChange = (text) => {
+export const onFilmsChange = (text, pageId) => {
     return (dispatch, getState) => {
         dispatch(onFilmsFetching());
 
+        if (!pageId) 
+            pageId = getState().films.pageId + 1
+
         const data = {  
-            text: text,
+            text: text || getState().films.searchText,
             filter: getState().films.filter
         };
 
-        return axios.post(getApiObject().search, data)
+        return axios.post(`${getApiObject().search}/${pageId}`, data)
             .then(response => dispatch(onFilmsSuccess(response.data)))
             .catch(error => dispatch(onFilmsFailed(error)));
 

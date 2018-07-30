@@ -40,8 +40,7 @@ exports.getAll = async ctx => {
     }
 
     ctx.status = 200;
-    ctx.body = { data: util.optimizeSessions(sessions), count };    
-    
+    ctx.body = { data: util.optimizeSessions(sessions), count };
 };
 
 exports.getById = async ctx => {
@@ -85,6 +84,8 @@ exports.getById = async ctx => {
 };
 
 exports.search = async ctx => {
+    const skip = parseInt(ctx.params.pageId);
+
     if (!ctx.request.body.filter || !ctx.request.body.text) {
         ctx.status = errors.wrongCredentials.status;
         ctx.body = errors.wrongCredentials;
@@ -93,11 +94,12 @@ exports.search = async ctx => {
 
         const validateSchema = joi.object().keys({
             filter: joi.string().min(4).valid("city", "cinema", "film_name", "date", "one_place_exist"),
-            text: filter !== "date" ? joi.string() : joi.date()
+            text: filter !== "date" ? joi.string() : joi.date(),
+            skip: joi.number(),
         });
 
         try {
-            await joi.validate(ctx.request.body, validateSchema);
+            await joi.validate({ ...ctx.request.body, skip }, validateSchema);
         } catch(ex) {
             console.log(ex);
             ctx.status = errors.wrongCredentials.status;
@@ -107,6 +109,7 @@ exports.search = async ctx => {
 
         let result;
         let _result;
+        let count = 0;
 
         try {
             _result = await Session
@@ -123,22 +126,26 @@ exports.search = async ctx => {
         }
 
         if (filter === "city") {
-            result = _result.filter(item => item.cinema.city.toLowerCase().includes(text.toLowerCase()));                
+            result = _result.filter(item => item.cinema.city.toLowerCase().includes(text.toLowerCase()));  
+            count = result.length;              
         } else if (filter === "cinema") {
             result = _result.filter(item => item.cinema.name.toLowerCase().includes(text.toLowerCase()));  
+            count = result.length;      
         } else if (filter === "film_name") {
             result = _result.filter(item => item.film.name.toLowerCase().includes(text.toLowerCase()));  
+            count = result.length;      
         } else if (filter === "date") {
             // TO-DO: optimize data search
             result = _result.filter(item => Date.parse(item.date) === Date.parse(text));  
+            count = result.length;      
         } else if (filter === "one_place_exist") {
             result = _result.filter(item => item.film.name.toLowerCase().includes(text.toLowerCase()));
             result = util.isMoreThanOnePlaceExist(result); 
-            
+            count = result.length;      
         }
 
         ctx.body = 200;
-        ctx.body = util.optimizeSessions(result);
+        ctx.body = { data: util.optimizeSessions(result.slice((skip - 1) * 9, ((skip - 1) * 9) + 9)), count };
 
     }
 };

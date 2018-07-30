@@ -32,12 +32,11 @@ const FilmItemInfo = ({ city, name, date }) => {
             <div>{name}</div>
             <div>
                 {
-                    _date !== 0 ?
-                    `In ${_date} day${_date > 1 ? "s" : ""}` :
-                    
-                    hours !== 0 ?
-                    `In ${hours} hour${hours > 1 ? "s" : ""}` :
-                    `In ${minutes} minute${minutes > 1 ? "s" : ""}`
+                    _date !== 0 
+                    ? `In ${_date} day${_date > 1 ? "s" : ""}`  
+                    : hours !== 0 
+                        ? `In ${hours} hour${hours > 1 ? "s" : ""}` 
+                        : `In ${minutes} minute${minutes > 1 ? "s" : ""}`
                 }
             </div>
         </div>

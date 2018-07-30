@@ -7,9 +7,9 @@ export const onFilmsFilterChange = (payload) => ({
     payload,
 });
 
-export const onFilmsPageChange = (films) => ({
+export const onFilmsPageChange = (pageId) => ({
     type: types.ON_FILMS_PAGE_CHANGE,
-    films,
+    pageId,
 });
 
 export const onFilmsFetching = (payload) => ({
@@ -27,9 +27,12 @@ export const onFilmsSuccess = (payload) => ({
     payload,
 }); 
 
-export const onFilmsLoad = (pageId = 1) => {
+export const onFilmsLoad = (pageId) => {
     return (dispatch, getState) => {
         dispatch(onFilmsFetching());
+
+        if (!pageId)
+            pageId = getState().films.pageId + 1;
 
         return axios.get(`${getApiObject().sessions}/${pageId}`)
             .then(response => dispatch(onFilmsSuccess(response.data)))

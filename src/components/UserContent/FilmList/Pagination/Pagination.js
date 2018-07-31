@@ -6,7 +6,7 @@ class Pagination extends Component {
 
     handlePageChange = (data) => {
         this.props.filmsActions.onFilmsPageChange(data.selected);
-console.log(this.props.films.searchText)
+
         if (this.props.films.searchText)
             this.props.filmsActions.onFilmsChange(null, data.selected + 1);
         else 
@@ -17,6 +17,7 @@ console.log(this.props.films.searchText)
     render() {
         return (
             <ReactPaginate previousLabel={"previous"}
+                forcePage={this.props.films.pageId}
                 nextLabel={"next"}
                 breakLabel="..."
                 breakClassName={"break-me"}

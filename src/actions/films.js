@@ -2,6 +2,11 @@ import types from "../types/films";
 import axios from "axios";
 import { getApiObject } from "../util";
 
+export const onSetInitialState = (payload) => ({
+    type: types.ON_SET_INITIAL_STATE,
+    payload
+});
+
 export const onFilmsFilterChange = (payload) => ({
     type: types.ON_FILMS_FILTER_CHANGE,
     payload,

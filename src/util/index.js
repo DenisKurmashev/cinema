@@ -79,3 +79,19 @@ export const removeUserFromLocalStorageAsync = async () => {
     if (localStorage.getItem("token"))
         localStorage.removeItem("token");
 };
+
+export const parseGetParams = (search = window.location.search) => {
+    const params = search
+        .replace("?", "")
+        .split("&");
+
+    let result = {};
+    let splitStr;    
+
+    for (let i = 0; i < params.length; i++) {
+        splitStr = params[i].split("=");
+        result[splitStr[0]] = splitStr[1];
+    }
+
+    return result;
+};

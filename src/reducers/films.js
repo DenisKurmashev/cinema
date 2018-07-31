@@ -14,6 +14,9 @@ const initialState = {
 
 const FilmsReducer = (state = initialState, action) => {
     switch(action.type) {
+        case types.ON_SET_INITIAL_STATE: 
+            return { ...state, ...action.payload };
+
         case types.ON_FILMS_FILTER_CHANGE:
             return { ...state, filter: action.payload };
 

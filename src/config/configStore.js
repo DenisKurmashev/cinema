@@ -4,7 +4,8 @@ import { logger } from "redux-logger";
 
 import rootReducer from "./rootReducer";
 import { onLoginOrRegisterSuccess } from "../actions/user";
-import { readUserFromLocalStorage } from "../util";
+import { onSetInitialState } from "../actions/films";
+import { readUserFromLocalStorage, parseGetParams } from "../util";
 
 let store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
@@ -12,6 +13,11 @@ let store = createStore(rootReducer, applyMiddleware(thunk, logger));
 const user = readUserFromLocalStorage();
 if (user) {
     store.dispatch(onLoginOrRegisterSuccess(user));
+}
+
+const params = parseGetParams();
+if (params.filter || params.searchText) {
+    store.dispatch(onSetInitialState(params));
 }
 
 export default store;

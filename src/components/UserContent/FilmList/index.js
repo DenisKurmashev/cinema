@@ -81,7 +81,11 @@ class FilmList extends React.Component {
     }
 
     componentDidMount() {
-        this.props.filmsActions.onFilmsLoad(1)
+        const { searchText } = this.props.films;
+        const { onFilmsLoad, onFilmsChange } = this.props.filmsActions;
+
+        if (!searchText) onFilmsLoad(1)
+        else onFilmsChange();
     }
 
     render() {

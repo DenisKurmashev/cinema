@@ -25,7 +25,7 @@ class SearchBar extends React.Component {
             <div className="search-bar">
                 <form className="search-bar-form" noValidate>
                     <div className="search-bar-form__input">
-                        <DebounceInput debounceTimeout={300} type="text" autoComplete="off" onChange={this.handleTextInputChange} autoFocus name="searchText" placeholder="Enter the search query" />
+                        <DebounceInput debounceTimeout={300} value={this.props.films.searchText} type="text" autoComplete="off" onChange={this.handleTextInputChange} autoFocus name="searchText" placeholder="Enter the search query" />
                     </div>
                     <div className="search-bar-form__options">
                         {FILTER_TYPES.map(item => (

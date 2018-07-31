@@ -106,7 +106,7 @@ class FilmList extends React.Component {
                                     <img className="width-100" src={item.film.cover} alt={item.film.name}/>
                                 </div>
                                 <FilmItemInfo city={item.cinema.city} name={item.cinema.name} date={item.date} />
-                                <Link className="btn text-upper" to={`/session/${item._id}`}>Buy ticket</Link>
+                                <Link className="btn text-upper" to={`/seance/${item._id}`}>Buy ticket</Link>
                             </div>
                         ))
                 }

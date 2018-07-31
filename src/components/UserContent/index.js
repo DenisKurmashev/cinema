@@ -3,10 +3,11 @@ import { Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import LoginAndRegisterForm from "./Forms/login-register";
-import { PROFILE, ROOT } from "./path";
+import { PROFILE, ROOT, SEANCE } from "./path";
 import PageNotFound from "../PageNotFound";
 import Header from "./Header";
 import FilmList from "./FilmList";
+import FilmCart from "./FilmCart/FilmCart";
 
 const InnerUserContent = ({ ...rest }) => (
     <Fragment>
@@ -35,6 +36,16 @@ const InnerUserContentWrapper = ({ user, userActions, films, filmsActions, ...re
     />} />
 );
 
+const SeanceWrapper = ({ user, userActions, films, filmsActions, ...rest }) => (
+    <Route {...rest} render={props => <FilmCart 
+        {...props} 
+        user={user} 
+        userActions={userActions}
+        films={films}
+		filmsActions={filmsActions}    
+    />} />
+);
+
 const UserContent = ({ user, userActions, films, filmsActions }) => {
     return (
         <Fragment>
@@ -42,6 +53,12 @@ const UserContent = ({ user, userActions, films, filmsActions }) => {
                 <LoginAndRegisterFormWrapper path={PROFILE} user={user} userActions={userActions} />
                 <InnerUserContentWrapper exact 
                     path={ROOT} 
+                    user={user} 
+                    userActions={userActions}
+                    films={films}
+					filmsActions={filmsActions}
+                />
+                <SeanceWrapper path={SEANCE}
                     user={user} 
                     userActions={userActions}
                     films={films}

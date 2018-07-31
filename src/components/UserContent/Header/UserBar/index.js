@@ -1,10 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import "./index.css";
 
 const UserBar = ({ user, userActions }) => {
     if (!user.isAuth)
-        return null;
+        return (
+            <div className="user-bar">
+                <div className="user-bar-item">
+                    <Link className="btn-underline" to="/profile/register">Register</Link>
+                </div>
+                <div className="user-bar-item">
+                    <Link className="btn-underline" to="/profile/login">Login</Link>
+                </div>
+            </div>
+        );
 
     const welcomeText = `Hello, ${user.info.name || "-user-"}`;
 

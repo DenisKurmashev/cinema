@@ -1,4 +1,37 @@
 .seance-header {
     width: 100%;
     background: #FAFAFA;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.seance-header__cover {
+    width: 10%;
+    padding: 10px;
+}
+
+.seance-header__cover img {
+    width: 100%;
+    border-radius: 3px;
+}
+
+.seance-header__content {
+    width: 80%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.seance-header__content .seance-header__content-header,
+.seance-header__content .seance-header__content-info {
+    width: 80%;
+}
+
+.seance-header__content .seance-header__content-header {
+    font-family: 'Slabo 27px', serif;
+    font-size: 1.7em;
 }

@@ -8,7 +8,7 @@ const FilmCartHeader = ({ currentSeance }) => {console.log(currentSeance);
                 <img src={currentSeance.film.cover} alt={currentSeance.film.name}/>
             </div>
             <div className="seance-header__content">
-                <div className="seance-header__content-header"></div>
+                <div className="seance-header__content-header">{currentSeance.film.name}</div>
                 <div className="seance-header__content-info"></div>
             </div>
         </div>

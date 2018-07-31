@@ -17,7 +17,13 @@ class SearchBar extends React.Component {
     }
 
     handleRadioInputChange = event => {
-        this.props.filmsActions.onFilmsFilterChange(event.target.value);
+        const { onFilmsLoad, onFilmsChange, onFilmsFilterChange } = this.props.filmsActions;
+        const { searchText } = this.props.films;
+
+        onFilmsFilterChange(event.target.value);
+
+        if (!searchText) onFilmsLoad(1)
+        else onFilmsChange(searchText);
     }
 
     render() {

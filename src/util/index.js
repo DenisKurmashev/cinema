@@ -31,7 +31,7 @@ export const getApiObject = () => {
             return this.host + this.api + this._sessions;
         },
         get search() {
-            return this.host + this.api + this._sessions + this._search;
+            return this.host + this.api + this._sessionsById + this._search;
         },
         get sessionsById() {
             return this.host + this.api + this._sessionsById;

@@ -87,11 +87,29 @@ export const parseGetParams = (search = window.location.search) => {
 
     let result = {};
     let splitStr;    
-
+ 
     for (let i = 0; i < params.length; i++) {
+        if (!params[i]) continue;
         splitStr = params[i].split("=");
         result[splitStr[0]] = splitStr[1];
     }
 
     return result;
+};
+
+export const setGetParam = (key, value) => {
+    const params = parseGetParams();
+    let search = "/?";
+
+    params[key] = value;
+
+    for (let paramKey in params) {
+        search += `${paramKey}=${params[paramKey]}&`;
+    }
+
+    window.history.pushState(
+        null, 
+        null, 
+        window.location.origin + search.substring(0, search.length - 1)
+    );
 };

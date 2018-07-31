@@ -1,16 +1,19 @@
 import types from "../types/films";
 import axios from "axios";
-import { getApiObject } from "../util";
+import { getApiObject, setGetParam } from "../util";
 
 export const onSetInitialState = (payload) => ({
     type: types.ON_SET_INITIAL_STATE,
     payload
 });
 
-export const onFilmsFilterChange = (payload) => ({
-    type: types.ON_FILMS_FILTER_CHANGE,
-    payload,
-});
+export const onFilmsFilterChange = (payload) =>{
+    setGetParam("filter", payload);
+    return {
+        type: types.ON_FILMS_FILTER_CHANGE,
+        payload,
+    };
+};
 
 export const onFilmsPageChange = (pageId) => ({
     type: types.ON_FILMS_PAGE_CHANGE,
@@ -32,10 +35,13 @@ export const onFilmsSuccess = (payload) => ({
     payload,
 }); 
 
-export const onSearchTextChange = (payload) => ({
-    type: types.ON_SEARCH_TEXT_CHANGE,
-    payload,
-});
+export const onSearchTextChange = (payload) => {
+    setGetParam("searchText", payload);
+    return {
+        type: types.ON_SEARCH_TEXT_CHANGE,
+        payload,
+    };
+}
 
 export const onFilmsLoad = (pageId) => {
     return (dispatch, getState) => {

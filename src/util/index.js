@@ -16,6 +16,7 @@ export const getApiObject = () => {
         _products: config.products,
         _sessions: config.sessions,
         _search: config.search,
+        _sessionsById: config.sessionsById,
 
         get login() {
             return this.host + this.api + this._profile + this._login;
@@ -31,7 +32,10 @@ export const getApiObject = () => {
         },
         get search() {
             return this.host + this.api + this._sessions + this._search;
-        }
+        },
+        get sessionsById() {
+            return this.host + this.api + this._sessionsById;
+        },
     };
 };
 

@@ -10,6 +10,7 @@ const initialState = {
     isFetching: false,
     currentFilms: [],
     allFilms: [],
+    openedSeance: {},
 };
 
 const FilmsReducer = (state = initialState, action) => {
@@ -40,6 +41,9 @@ const FilmsReducer = (state = initialState, action) => {
                 pageCount: Math.ceil(action.payload.count / 9),
                 isFetching: false 
             };
+
+        case types.ON_FILM_SUCCESS:
+            return { ...state, openedSeance: action.seance };
 
         default:
             return state;

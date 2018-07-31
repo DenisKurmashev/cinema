@@ -5,7 +5,7 @@ const errors = require("../helpers/errors");
 const util = require("../util/util");
 
 exports.getAll = async ctx => {
-    const skip = parseInt(ctx.params.pageId);
+    const skip = parseInt(ctx.query.pageId || 1);
     
     try {
         await joi.validate(skip, joi.number());

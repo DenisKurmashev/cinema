@@ -6,8 +6,8 @@ const passport = require("../../../global-controllers/passport");
 
 const router = new Router();
 
-router.get("/:pageId", controller.getAll);
-router.get("/one/:id", controller.getById);
+router.get("/", controller.getAll); // ?pageId=1
+router.get("/:id", controller.getById);
 router.post("/search/:pageId", controller.search);
 router.post("/new", passport.authenticate(), permission(), controller.new);
 

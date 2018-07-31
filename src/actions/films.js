@@ -35,6 +35,11 @@ export const onFilmsSuccess = (payload) => ({
     payload,
 }); 
 
+export const onFilmSuccess = (seance) => ({
+    type: types.ON_FILM_SUCCESS,
+    seance,
+});
+
 export const onSearchTextChange = (payload) => {
     setGetParam("searchText", payload);
     return {
@@ -50,8 +55,19 @@ export const onFilmsLoad = (pageId) => {
         if (!pageId)
             pageId = getState().films.pageId + 1;
 
-        return axios.get(`${getApiObject().sessions}/${pageId}`)
+        return axios.get(getApiObject().sessions + pageId)
             .then(response => dispatch(onFilmsSuccess(response.data)))
+            .catch(error => dispatch(onFilmsFailed(error)));
+
+    };
+};
+
+export const onFilmLoad = (seanceId) => {
+    return (dispatch, getState) => {
+        dispatch(onFilmsFetching());
+
+        return axios.get(`${getApiObject().sessionsById}/${seanceId}`)
+            .then(response => dispatch(onFilmSuccess(response.data)))
             .catch(error => dispatch(onFilmsFailed(error)));
 
     };

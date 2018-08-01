@@ -1,14 +1,16 @@
 .seance-header {
     width: 100%;
-    background: #FAFAFA;
+    /* background: #FAFAFA; */
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
+    border-top: 1px solid #C8C8C8;
+    border-bottom: 1px solid #C8C8C8;
 }
 
 .seance-header__cover {
-    width: 10%;
+    width: 5%;
     padding: 10px;
 }
 
@@ -18,20 +20,33 @@
 }
 
 .seance-header__content {
-    width: 80%;
+    width: 90%;
     padding: 10px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: left;
     flex-wrap: wrap;
 }
 
 .seance-header__content .seance-header__content-header,
 .seance-header__content .seance-header__content-info {
     width: 80%;
+    margin: 5px 0;
 }
 
 .seance-header__content .seance-header__content-header {
     font-family: 'Slabo 27px', serif;
-    font-size: 1.7em;
+    font-size: 2em;
+    
+}
+
+.seance-header__content-info {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: #565656;
+}
+
+.seance-header__content-info div {
+    margin-right: 20px;
 }

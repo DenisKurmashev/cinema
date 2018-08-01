@@ -1,6 +1,7 @@
 import React from "react";
 
 import FilmCartHeader from "./FilmCartHeader/FilmCartHeader";
+import FilmCartContent from "./FilmCartContent/FilmCartContent";
 
 import "./FilmCart.css";
 
@@ -25,7 +26,7 @@ class FilmCart extends React.Component {
         return (
             <div className="seance" >
                 <FilmCartHeader currentSeance={currentSeance} />
-                <div className="seance-content"></div>
+                <FilmCartContent currentSeance={currentSeance} />
             </div>
         );
     }

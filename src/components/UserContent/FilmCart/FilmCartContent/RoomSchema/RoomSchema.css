@@ -44,10 +44,18 @@
     box-shadow: 0 0 5px rgba(23,23,23,0.5);
 }
 
+.room-schema__row-item:hover {
+    cursor: pointer;
+}
+
 .room-schema__row-item.none {
     border-width: 0;
     content: none;
     box-shadow: none;
+}
+
+.room-schema__row-item.none:hover {
+    cursor: default;
 }
 
 .room-schema__row-item.love-seats,

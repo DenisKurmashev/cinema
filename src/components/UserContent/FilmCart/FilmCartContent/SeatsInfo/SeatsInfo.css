@@ -1,0 +1,22 @@
+.seance-content__info {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.seance-content__info-title {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.1em;
+    width: 100%;
+}
+
+.seance-content__info-list {
+    width: 96%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}

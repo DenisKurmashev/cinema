@@ -1,5 +1,5 @@
 import types from "../types/films";
-import { FILTER_TYPES } from "../constants/constants";
+import { FILTER_TYPES, PAGE_ITEMS_COUNT } from "../constants/constants";
 
 const initialState = {
     filter: FILTER_TYPES[0].value,
@@ -38,7 +38,7 @@ const FilmsReducer = (state = initialState, action) => {
                 ...state, 
                 allFilms: [ ...state.allFilms, ...(action.payload || []) ], 
                 currentFilms: action.payload.data,
-                pageCount: Math.ceil(action.payload.count / 9),
+                pageCount: Math.ceil(action.payload.count / PAGE_ITEMS_COUNT),
                 isFetching: false 
             };
 

@@ -5,3 +5,5 @@ export const FILTER_TYPES = [
     { name: "by Date",           value: "date" },
     { name: "more than 1 place", value: "one_place_exist" },
 ];
+
+export const PAGE_ITEMS_COUNT = 9;

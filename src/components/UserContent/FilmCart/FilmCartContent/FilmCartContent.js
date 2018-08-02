@@ -9,7 +9,7 @@ const FilmCartContent = ({ currentSeance }) => {
     return (
         <div className="seance-content">
             <RoomSchema currentSeance={currentSeance} />
-            <SeatsInfo />
+            <SeatsInfo types={currentSeance.typesOfRoomSeats} />
         </div>
     );
 };

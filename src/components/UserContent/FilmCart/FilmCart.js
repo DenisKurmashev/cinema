@@ -16,9 +16,7 @@ class FilmCart extends React.Component {
         const { films, match } = this.props;
         const seanceId = match.params.seanceId;
 
-        const currentSeance 
-            =  films.currentFilms.find(item => item._id === seanceId) 
-            || films.openedSeance;
+        const currentSeance =  films.openedSeance;
 
         if (!currentSeance._id) 
             return null;

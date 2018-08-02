@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    overflow: auto;
 }
 
 .room-schema__screen {
@@ -33,7 +34,7 @@
 }
 
 .room-schema__row-item {
-    flex: 1;
+    width: 25px;
     text-align: center;
     margin: 3px;
     padding: 13px 3px;
@@ -66,13 +67,13 @@
 
 .room-schema__row-item.love-seats {
     border-color: #C87A7A;
-    flex: 2;
+    width: 50px;
     box-shadow: 0 0 7px rgba(200,122,122,0.5);
 }
 
 .room-schema__row-item.vip {
     border-color: #57B53D;
-    flex: 3;
+    width: 75px;
     box-shadow: 0 0 7px rgba(87,181,61,0.5);
 }
 

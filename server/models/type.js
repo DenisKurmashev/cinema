@@ -2,6 +2,11 @@ const mongoose = require("../context");
 const Schema = mongoose.Schema;
 
 const TYPE = new Schema({
+    matrixNumber: {
+        type: Schema.Types.Number,
+        unique: true,
+        required: true,
+    },
     name: {
         type: Schema.Types.String,
         required: true,

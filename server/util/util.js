@@ -59,9 +59,61 @@ const isMoreThanOnePlaceExist = (sessions) => {
 
 };
 
+const findPlaceTypes = (roomSchema) => {
+    let result = [];
+
+    for (let i = 0; i < roomSchema.length; i++)
+        for (let j = 0; j < roomSchema[i].length; j++) {
+            if (roomSchema[i][j] === 1) { 
+                result.push(1);
+                continue;
+            }
+            if (roomSchema[i][j] === 2) { 
+                result.push(2);
+                continue;
+            }
+            if (roomSchema[i][j] === 3) {
+                result.push(3);
+                continue;
+            }
+        }
+
+    return result;
+};
+
+const getUniqueArrayElements = (array) => {
+    let obj = {};
+    array.forEach(el => obj[el] = null);
+    return Object.keys(obj);
+}
+
+const addRoomTypes = (_types, _session) => {
+    const types = deepCopy(_types)
+        .map(el => {
+            delete el._id;
+            return el;
+        });
+
+    let result = findPlaceTypes(_session.cinema.rooms[_session.roomNumber].placeSchema);
+    result = getUniqueArrayElements(result);
+
+    // set model field 'typesOfRoomSeats' equal empty array
+    let session = deepCopy(_session);
+    session.typesOfRoomSeats = [];
+
+    for (let i = 0; i < types.length; i++) 
+        for (let j = 0; j < result.length; j++) 
+            if (types[i].matrixNumber === parseInt(result[j])) 
+                session.typesOfRoomSeats.push(types[i]);
+
+    return session;
+}
+
 module.exports = {
     deepCopy,
     optimizeSession,
     optimizeSessions,
-    isMoreThanOnePlaceExist
+    isMoreThanOnePlaceExist,
+    findPlaceTypes,
+    addRoomTypes,
 };

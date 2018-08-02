@@ -1,6 +1,7 @@
 const joi = require("joi");
 
 const Session = require("../models/session");
+const Type = require("../models/type");
 const errors = require("../helpers/errors");
 const util = require("../util/util");
 
@@ -64,6 +65,9 @@ exports.getById = async ctx => {
             .populate("film", "name released cover description")
             .select("cinema film date roomNumber selectedPlaces pendingPlaces")
             .lean();
+
+        const types = await Type.find({}).lean();
+        session = util.addRoomTypes(types, session);
 
     } catch(ex) {
         console.log(ex);

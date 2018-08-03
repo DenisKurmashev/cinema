@@ -13,8 +13,8 @@ const ORDER = new Schema({
         ref: "User",
     },
     place: {
-        x: Schema.Types.Number,
-        y: Schema.Types.Number, 
+        type: Schema.Types.Number,
+        required: true,
     },
     additional: [
         {

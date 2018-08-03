@@ -109,6 +109,26 @@ const addRoomTypes = (_types, _session) => {
     return session;
 }
 
+const parsePlaceString = (placeString) => {
+    // {placeString} format = "X-Y"
+    // where {X} - number of row
+    // and   {Y} - number of column
+    if (!/(\d+)-(\d+)/.test(placeString))
+        return null;
+    
+    const placeCoordinates = placeString.split("-");
+
+    const result = {
+        x: parseInt(placeCoordinates[0]),
+        y: parseInt(placeCoordinates[1]),
+    };
+
+    if (!result.x || !result.y)
+        return null;
+    
+    return result;
+}
+
 module.exports = {
     deepCopy,
     optimizeSession,
@@ -116,4 +136,5 @@ module.exports = {
     isMoreThanOnePlaceExist,
     findPlaceTypes,
     addRoomTypes,
+    parsePlaceString,
 };

@@ -1,9 +1,10 @@
 const Router = require("koa-router");
 
-const profile = require("./profile");
-const films = require("./films");
+const profile  = require("./profile");
+const films    = require("./films");
 const sessions = require("./sessions");
-const cinema = require("./cinema");
+const cinema   = require("./cinema");
+const order    = require("./orders");
 
 const passport = require("../../global-controllers/passport");
 const permission = require("../../global-controllers/permission");
@@ -14,5 +15,6 @@ router.use("/profile", profile);
 router.use("/films", passport.authenticate(), permission(), films);
 router.use("/sessions", sessions);
 router.use("/cinema", passport.authenticate(), permission(), cinema);
+router.use("/orders", passport.authenticate(), order);
 
 module.exports = router.routes();

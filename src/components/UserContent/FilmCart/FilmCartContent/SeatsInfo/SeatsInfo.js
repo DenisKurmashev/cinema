@@ -32,7 +32,7 @@ const SeatsInfo = ({ userIsAuth, types }) => {
             {
                 !userIsAuth 
                 ? <div className="seance-content__info-not-auth-warn">You need to authenticate for buy tickets!</div>
-                : null
+                : <div className="seance-content__info-auth-warn">Select the place and click for it!</div>
             }
         </div>
     );

@@ -21,3 +21,5 @@ class OrderModal extends React.PureComponent {
     }
 
 }
+
+export default OrderModal;

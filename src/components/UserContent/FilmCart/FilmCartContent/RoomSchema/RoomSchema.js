@@ -1,8 +1,19 @@
 import React from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+
+import * as OrderActions from "../../../../../actions/order-form";
+import * as UserActions from "../../../../../actions/user";
+
+import OrderModal from "../../../OrderModal/OrderModal";
 
 import "./RoomSchema.css";
 
 class RoomSchema extends React.Component {
+
+    openOrderModal = (event) => {
+        this.props.orderActions.onOrderFormOpen({});
+    }
 
     isSelected = (x, y) => {
         const { pendingPlaces, selectedPlaces } = this.props.currentSeance;
@@ -22,6 +33,13 @@ class RoomSchema extends React.Component {
     
         return (
             <div className="room-schema">
+
+                <OrderModal 
+                    userActions={this.props.userActions}
+                    close={this.props.orderActions.onOrderFormClose}
+                    isOpen={this.props.order.isOpened} 
+                    isAuth={this.props.user.isAuth} />
+
                 <div className="room-schema__screen">Screen</div>
                 {
                     schema.map((row, rowIndex) => (
@@ -52,7 +70,7 @@ class RoomSchema extends React.Component {
                                         additionally += "selected-vip";
     
                                     return (
-                                        <div key={columnIndex} className={"room-schema__row-item " + additionally}></div>
+                                        <div key={columnIndex} onClick={this.openOrderModal} className={"room-schema__row-item " + additionally}></div>
                                     );
                                 })
                             }
@@ -66,4 +84,18 @@ class RoomSchema extends React.Component {
 
 }
 
-export default RoomSchema;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        order: state.order,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        userActions: bindActionCreators(UserActions, dispatch),
+        orderActions: bindActionCreators(OrderActions, dispatch)
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RoomSchema);

@@ -1,9 +1,9 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
 import { withFormik } from "formik";
 import PropTypes from "prop-types";
 import { validate, handleLogin } from "../util";
-import { REGISTER } from "../../path";
+import { REGISTER, LOGIN } from "../../path";
 
 const InnerLoginForm = ({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => {
     return (
@@ -17,12 +17,14 @@ const InnerLoginForm = ({ values, errors, touched, handleChange, handleSubmit, i
 			<input type="password" placeholder="Password" name="password" onChange={handleChange} value={values.password} />
 
 			<button type="submit" className="btn" disabled={isSubmitting}>Sign in</button>
-			<NavLink className="btn-underline" to={REGISTER}>Not have account? Sign up.</NavLink>
+			
+            <Route path={LOGIN} render={props => <NavLink {...props} className="btn-underline" to={REGISTER}>Not have account? Sign up.</NavLink>} />
         </form>
     );
 }
 
 const LoginForm = withFormik({
+    validateOnBlur: false,
 	mapPropsToValues: props => ({ email: "", password: "", user: props.user, userActions: props.userActions }),
 	validate,
 	handleSubmit: handleLogin,

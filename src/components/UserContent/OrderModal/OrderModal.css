@@ -1,0 +1,24 @@
+.ReactModal__Overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-modal {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-modal__login-or-register {
+    width: 50%;
+    padding: 15px 10px;
+    padding-bottom: 30px;
+    background: #FFF;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}

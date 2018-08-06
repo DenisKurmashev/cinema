@@ -12,6 +12,7 @@
 # IDE & Editor
 /.vscode
 /.idea
+/.vs
 
 # misc
 .DS_Store

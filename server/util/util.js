@@ -3,7 +3,7 @@ const deepCopy = (original) => JSON.parse(JSON.stringify(original));
 const optimizeSession = (session) => {
     const roomNumber = session.roomNumber;
     let result = deepCopy(session);
-    
+    console.log(session.cinema)
     const currentRoomSchema = deepCopy(session.cinema.rooms[roomNumber]);
     delete currentRoomSchema._id;
     

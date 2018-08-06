@@ -13,7 +13,7 @@ class FilmCart extends React.Component {
     }
 
     render() {
-        const { films, match } = this.props;
+        const { user, films, match } = this.props;
         const seanceId = match.params.seanceId;
 
         const currentSeance =  films.openedSeance;
@@ -24,7 +24,7 @@ class FilmCart extends React.Component {
         return (
             <div className="seance" >
                 <FilmCartHeader currentSeance={currentSeance} />
-                <FilmCartContent currentSeance={currentSeance} />
+                <FilmCartContent currentSeance={currentSeance} userIsAuth={user.isAuth} />
             </div>
         );
     }

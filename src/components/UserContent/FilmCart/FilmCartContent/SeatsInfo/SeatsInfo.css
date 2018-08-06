@@ -6,18 +6,23 @@
     flex-wrap: wrap;
 }
 
+.seance-content__info-title,
+.seance-content__info-list,
+.seance-content__info-not-auth-warn,
+.info-list__item {
+    width: 100%;
+}
+
 .seance-content__info-title {
     text-transform: uppercase;
     text-align: center;
     font-size: 1.1em;
-    width: 100%;
     border: 0 solid #565656;
     border-bottom-width: 2px;
     padding: 10px 0;
 }
 
 .seance-content__info-list {
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,7 +30,6 @@
 }
 
 .info-list__item {
-    width: 100%;
     margin: 10px 0;
     display: flex;
     align-items: center;
@@ -40,4 +44,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.seance-content__info-not-auth-warn {
+    margin: 20px 0;
+    padding: 5px;
+    text-transform: uppercase;
+    color: #565656;
+    border: 1px solid #C87A7A;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import "./SeatsInfo.css";
 
-const SeatsInfo = ({ types }) => {
+const SeatsInfo = ({ userIsAuth, types }) => {
     return (
         <div className="seance-content__info">
             <div className="seance-content__info-title">Types of seats</div>
@@ -28,6 +28,12 @@ const SeatsInfo = ({ types }) => {
                     })
                 }
             </div>
+
+            {
+                !userIsAuth 
+                ? <div className="seance-content__info-not-auth-warn">You need to authenticate for buy tickets!</div>
+                : null
+            }
         </div>
     );
 };

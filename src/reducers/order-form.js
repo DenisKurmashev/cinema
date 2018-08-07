@@ -7,7 +7,8 @@ const initialState = {
     selectedPlace: {
         x: null,
         y: null,
-    }
+    },
+    selectedAdditionals: []
 };
 
 const OrderFormReducer = (state = initialState, action) => {
@@ -23,6 +24,9 @@ const OrderFormReducer = (state = initialState, action) => {
 
         case types.ON_ADDITIONAL_FAILED:
             return { ...state, error: action.payload };
+
+        case types.ON_SELECTED_PLACE_CHANGED:
+            return { ...state, selectedPlace: { x: action.x, y: action.y } };
 
         default:
             return state;

@@ -1,22 +1,17 @@
 import React from "react";
 import { withFormik } from "formik";
 import { validateOrderForm, handleOrderForm } from "../util";
+import Additional from "./Additional/Additional";
 
 class InnerOrderForm extends React.PureComponent {
 
-    componentDidMount() {
-        this.props.orderActions.loadAdditional();
-    }
-
     render() {
-        const { values, errors, touched, handleChange, handleSubmit, isSubmitting }
+        const { order, orderActions, values, errors, touched, handleChange, handleSubmit, isSubmitting }
             = this.props;
-    
+            
         return (
             <form onSubmit={handleSubmit} className="default-form" noValidate>
-                <div className="additional">
-
-                </div>
+                <Additional order={order} orderActions={orderActions} />
             </form>
         );
     }
@@ -25,7 +20,7 @@ class InnerOrderForm extends React.PureComponent {
 
 const OrderForm = withFormik({
     validateOnBlur: false,
-    mapPropsToValues: props => ({ email: "", password: "", user: props.user, userActions: props.userActions }),
+    mapPropsToValues: props => ({ email: "", password: "" }),
 	validate: validateOrderForm,
 	handleSubmit: handleOrderForm,
 	onSubmit: (values, actions) => {

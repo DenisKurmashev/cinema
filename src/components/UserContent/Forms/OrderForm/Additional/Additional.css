@@ -1,0 +1,40 @@
+.additional,
+.additional-item,
+.additional-item__info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.additional {
+    width: 98%;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.additional-item {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.additional-item__checkbox {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+}
+
+.additional-item__info .additional-item__info-description {
+    font-size: 0.9em;
+}
+
+.additional-item__info-count {
+    margin: 0 10px;
+}
+
+.additional-count {
+    margin: 10px 0;
+    width: 90%;
+    text-align: right;
+    font-size: 0.8em;
+    color: #565656;
+}

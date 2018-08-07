@@ -12,6 +12,12 @@ export const onOrderFormClose = (payload) => ({
     payload,
 });
 
+export const onSelectedPlaceChanged = (x, y) => ({
+    type: types.ON_SELECTED_PLACE_CHANGED,
+    x,
+    y,
+});
+
 export const onAdditionalFetching = (payload) => ({
     type: types.ON_ADDITIONAL_FETCHING,
     payload,

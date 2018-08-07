@@ -12,6 +12,12 @@ import "./RoomSchema.css";
 class RoomSchema extends React.Component {
 
     openOrderModal = (event) => {
+        const target = event.target;
+
+        const columnIndex = parseInt(target.getAttribute("data-column"));
+        const rowIndex    = parseInt(target.getAttribute("data-row"));
+
+        this.props.orderActions.onSelectedPlaceChanged(rowIndex, columnIndex);
         this.props.orderActions.onOrderFormOpen({});
     }
 
@@ -37,6 +43,7 @@ class RoomSchema extends React.Component {
             <div className="room-schema">
 
                 <OrderModal 
+                    order={order}
                     userActions={userActions}
                     orderActions={orderActions}
                     close={orderActions.onOrderFormClose}
@@ -73,7 +80,7 @@ class RoomSchema extends React.Component {
                                         additionally += "selected-vip";
     
                                     return (
-                                        <div key={columnIndex} onClick={this.openOrderModal} className={"room-schema__row-item " + additionally}></div>
+                                        <div key={columnIndex} data-column={columnIndex} data-row={rowIndex} onClick={this.openOrderModal} className={"room-schema__row-item " + additionally}></div>
                                     );
                                 })
                             }

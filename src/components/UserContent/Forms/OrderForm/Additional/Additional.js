@@ -39,6 +39,21 @@ class Additional extends React.PureComponent {
         
     }
 
+    getAdditionalCount = () => {
+        const { order } = this.props;
+
+        const { additional, selectedAdditionals } = order;
+
+        let result = 0;
+
+        for (let i = 0; i < order.selectedAdditionals.length; i++) {
+            result += 
+                (additional.find(item => item._id === selectedAdditionals[i].id).price || 0) * selectedAdditionals[i].count;
+        }
+
+        return result;
+    }
+
     render() {
         const { order, orderActions } = this.props;
 
@@ -63,7 +78,7 @@ class Additional extends React.PureComponent {
                     ))
                     : <h2>Loading data ...</h2>
                 }
-                <div className="additional-count">Count: 0$</div>
+                <div className="additional-count">Additional count: {this.getAdditionalCount()}$</div>
             </div>
         );
     }

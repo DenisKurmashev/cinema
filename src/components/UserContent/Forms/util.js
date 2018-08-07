@@ -36,10 +36,6 @@ export const validate = (values, props) => {
     return errors;
 };
 
-export const validateOrderForm = (value, props) => {
-    console.log("Validate");
-};
-
 export const handleLogin = async (values, actions) => {
     await actions.props.userActions.login({ email: values.email, password: values.password });
     actions.setSubmitting(false);
@@ -48,8 +44,4 @@ export const handleLogin = async (values, actions) => {
 export const handleRegister = async (values, actions) => {
     await actions.props.userActions.register({ name: values.name, email: values.email, password: values.password });    
     actions.setSubmitting(false);
-};
-
-export const handleOrderForm = (values, actions) => {
-    console.log("handle");
 };

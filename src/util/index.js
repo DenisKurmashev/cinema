@@ -18,6 +18,7 @@ export const getApiObject = () => {
         _search: config.search,
         _sessionsById: config.sessionsById,
         _additional: config.additional,
+        _orders: config.orders,
 
         get login() {
             return this.host + this.api + this._profile + this._login;
@@ -39,6 +40,9 @@ export const getApiObject = () => {
         },
         get additional() {
             return this.host + this.api + this._additional;
+        },
+        get orders() {
+            return this.host + this.api + this._orders;
         }
     };
 };

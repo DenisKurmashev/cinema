@@ -110,17 +110,18 @@ const addRoomTypes = (_types, _session) => {
 }
 
 const parsePlaceString = (placeString) => {
-    // {placeString} format = "X-Y"
-    // where {X} - number of row
-    // and   {Y} - number of column
-    if (!/(\d+)-(\d+)/.test(placeString))
+    let placeCoordinates;
+
+    try {
+        placeCoordinates = JSON.parse(placeString);
+    } catch(ex) {
+        console.log(ex);
         return null;
-    
-    const placeCoordinates = placeString.split("-");
+    }
 
     const result = {
-        x: parseInt(placeCoordinates[0]),
-        y: parseInt(placeCoordinates[1]),
+        x: parseInt(placeCoordinates.x),
+        y: parseInt(placeCoordinates.y),
     };
 
     if (!result.x || !result.y)

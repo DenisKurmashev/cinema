@@ -47,3 +47,15 @@
         background-position-y: 100%;        
     }
 }
+
+@media(max-width: 1000px) {
+    .default-form {
+        width: 50%;
+    }
+}
+
+@media(max-width: 600px) {
+    .default-form {
+        width: 75%;
+    }
+}

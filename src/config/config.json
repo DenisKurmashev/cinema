@@ -8,5 +8,6 @@
     "sessions": "/sessions?pageId=",
     "sessionsById": "/sessions",
     "search": "/search",
-    "additional": "/additional"
+    "additional": "/additional",
+    "orders": "/orders"
 }

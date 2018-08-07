@@ -10,7 +10,7 @@ module.exports = {
         status: 404
     },
     wrongCredentials: {
-        message: 'Email or password are wrong',
+        message: 'POST data is wrong',
         code: 'wrong_credentials',
         status: 404
     },

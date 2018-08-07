@@ -1,4 +1,8 @@
 import React from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+
+import * as OrderActions from "../../../../../actions/order-form";
 
 import "./Additional.css";
 
@@ -18,11 +22,14 @@ class Additional extends React.PureComponent {
 
         const id = current.getAttribute("data-id");
         const isChecked = checkBox.checked;
-        const count = parseInt(countInput.value || 0);
+        const count = parseInt(countInput.value);
         
         for (let i = 0; i < order.selectedAdditionals.length; i++) {
-            if (order.selectedAdditionals[i].id === id && isChecked === false) 
+            if (order.selectedAdditionals[i].id === id && isChecked === false) {
                 orderActions.onSelectedAdditionalRemove(id);
+                countInput.value = 0;
+                return;
+            }
         }
 
         if (isChecked) { 
@@ -31,8 +38,7 @@ class Additional extends React.PureComponent {
                 countInput.value = 1;
                 orderActions.onSelectedAdditionalAdd(id, 1);
             }                
-        }
-        else {
+        } else if (count !== 0) {
             checkBox.checked = true;
             orderActions.onSelectedAdditionalAdd(id, count);
         }
@@ -54,8 +60,15 @@ class Additional extends React.PureComponent {
         return result;
     }
 
+    getTotalCount = (additionalCount) => {
+        return this.props.placePrice + additionalCount;
+    }
+
     render() {
         const { order, orderActions } = this.props;
+
+        const additionalCount = this.getAdditionalCount();
+        const totalCount      = this.getTotalCount(additionalCount);
 
         return (
             <div className="additional">
@@ -78,11 +91,24 @@ class Additional extends React.PureComponent {
                     ))
                     : <h2>Loading data ...</h2>
                 }
-                <div className="additional-count">Additional count: {this.getAdditionalCount()}$</div>
+                <div className="additional-count">Additional count: {additionalCount}$</div>
+                <div className="additional-count"><strong>Total count: {totalCount}$</strong></div>
             </div>
         );
     }
 
 }
 
-export default Additional;
+const mapStateToProps = state => ({
+    order: state.order,
+    placePrice: 
+        state.films.openedSeance.typesOfRoomSeats.find(
+            item => item.matrixNumber === state.films.openedSeance.cinema.roomSchema[state.order.selectedPlace.x][state.order.selectedPlace.y]
+        ).price
+});
+
+const mapDispatchToProps = dispatch => ({
+    orderActions: bindActionCreators(OrderActions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Additional);

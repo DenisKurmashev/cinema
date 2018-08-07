@@ -51,4 +51,24 @@ export const loadAdditional = () =>
             .then(response => dispatch(onAdditionalSuccess(response.data)))
             .catch(error => dispatch(onAdditionalFailed(error.message)));
     }
-        
+     
+export const addNewOrder = () => 
+    (dispatch, getState) => {
+        dispatch(onAdditionalFetching());
+
+        const state = getState();
+
+        const data = {
+            session: state.films.openedSeance._id,
+            place: JSON.stringify(state.order.selectedPlace),
+            additional: JSON.stringify(state.order.selectedAdditionals)
+        };
+
+        const headers = {
+            "Authorization": state.user.token
+        };
+
+        return axios.post(getApiObject().orders, data, { headers })
+            .then(response => dispatch(onAdditionalSuccess(response.data)))
+            .catch(error => dispatch(onAdditionalFailed(error.message)));
+    }

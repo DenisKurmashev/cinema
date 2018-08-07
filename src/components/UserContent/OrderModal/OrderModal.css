@@ -22,3 +22,9 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+
+@media(max-width: 1000px) {
+    .order-modal__login-or-register {
+        width: 75%;
+    }
+}

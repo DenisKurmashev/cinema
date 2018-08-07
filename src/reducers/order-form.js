@@ -28,6 +28,18 @@ const OrderFormReducer = (state = initialState, action) => {
         case types.ON_SELECTED_PLACE_CHANGED:
             return { ...state, selectedPlace: { x: action.x, y: action.y } };
 
+        case types.ON_SELECTED_ADDITIONAL_ADD:
+            return { 
+                ...state, 
+                selectedAdditionals: [ 
+                    ...state.selectedAdditionals.filter(item => item.id !== action.id), 
+                    { id: action.id, count: action.count } 
+                ] 
+            };
+
+        case types.ON_SELECTED_ADDITIONAL_REMOVE:
+            return { ...state, selectedAdditionals: state.selectedAdditionals.filter(item => item.id !== action.id) };
+
         default:
             return state;
     }

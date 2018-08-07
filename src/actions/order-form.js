@@ -18,6 +18,16 @@ export const onSelectedPlaceChanged = (x, y) => ({
     y,
 });
 
+export const onSelectedAdditionalAdd = (id, count) => ({
+    type: types.ON_SELECTED_ADDITIONAL_ADD,
+    id,
+    count,
+});
+export const onSelectedAdditionalRemove = (id) => ({
+    type: types.ON_SELECTED_ADDITIONAL_REMOVE,
+    id,
+});
+
 export const onAdditionalFetching = (payload) => ({
     type: types.ON_ADDITIONAL_FETCHING,
     payload,

@@ -23,7 +23,7 @@ export const login = (payload) => {
 
         return axios.post(getApiObject().login, payload)
             .then(response => dispatch(onLoginOrRegisterSuccess(response.data)))
-            .catch((err) => dispatch(onLoginOrRegisterFailed(err)));
+            .catch((err) => dispatch(onLoginOrRegisterFailed(err.message)));
 
     };
 };
@@ -34,7 +34,7 @@ export const register = (payload) => {
 
         return axios.post(getApiObject().register, payload)
             .then(response => dispatch(onLoginOrRegisterSuccess(response.data)))
-            .catch((err) => dispatch(onLoginOrRegisterFailed(err)));
+            .catch((err) => dispatch(onLoginOrRegisterFailed(err.message)));
 
     };
 };

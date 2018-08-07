@@ -89,7 +89,7 @@ class FilmList extends React.Component {
     }
 
     render() {
-        const { user, userActions, films, filmsActions } = this.props;
+        const { films, filmsActions } = this.props;
 
         return (
             <div className="film-container width-60">

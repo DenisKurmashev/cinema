@@ -57,7 +57,7 @@ export const onFilmsLoad = (pageId) => {
 
         return axios.get(getApiObject().sessions + pageId)
             .then(response => dispatch(onFilmsSuccess(response.data)))
-            .catch(error => dispatch(onFilmsFailed(error)));
+            .catch(error => dispatch(onFilmsFailed(error.message)));
 
     };
 };
@@ -68,7 +68,7 @@ export const onFilmLoad = (seanceId) => {
 
         return axios.get(`${getApiObject().sessionsById}/${seanceId}`)
             .then(response => dispatch(onFilmSuccess(response.data)))
-            .catch(error => dispatch(onFilmsFailed(error)));
+            .catch(error => dispatch(onFilmsFailed(error.message)));
 
     };
 };
@@ -87,7 +87,7 @@ export const onFilmsChange = (text, pageId) => {
 
         return axios.post(`${getApiObject().search}/${pageId}`, data)
             .then(response => dispatch(onFilmsSuccess(response.data)))
-            .catch(error => dispatch(onFilmsFailed(error)));
+            .catch(error => dispatch(onFilmsFailed(error.message)));
 
     };
 };

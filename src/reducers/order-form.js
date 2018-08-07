@@ -1,7 +1,12 @@
 import types from "../types/order-form";
 
 const initialState = {
-    isOpened: false
+    isOpened: false,
+    additional: [],
+    selectedPlace: {
+        x: null,
+        y: null,
+    }
 };
 
 const OrderFormReducer = (state = initialState, action) => {

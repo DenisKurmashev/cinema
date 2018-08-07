@@ -18,8 +18,14 @@ const ORDER = new Schema({
     },
     additional: [
         {
-            type: Schema.Types.ObjectId,
-            ref: "Additional",
+            additional: {
+                type: Schema.Types.ObjectId,
+                ref: "Additional",
+            },
+            count: {
+                type: Schema.Types.Number,
+                required: true,
+            }
         }
     ],
     created: {

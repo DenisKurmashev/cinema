@@ -50,6 +50,6 @@ export const handleRegister = async (values, actions) => {
     actions.setSubmitting(false);
 };
 
-export const handleOrderForm = async (values, actions) => {
+export const handleOrderForm = (values, actions) => {
     console.log("handle");
 };

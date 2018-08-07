@@ -4,7 +4,7 @@ import { logger } from "redux-logger";
 
 import rootReducer from "./rootReducer";
 import { onLoginOrRegisterSuccess } from "../actions/user";
-import { onSetInitialState, onFilmsPageChange } from "../actions/films";
+import { onSetInitialState, /*onFilmsPageChange*/ } from "../actions/films";
 import { readUserFromLocalStorage, parseGetParams } from "../util";
 
 let store = createStore(rootReducer, applyMiddleware(thunk, logger));

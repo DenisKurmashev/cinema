@@ -13,8 +13,7 @@ class FilmCart extends React.Component {
     }
 
     render() {
-        const { user, films, match } = this.props;
-        const seanceId = match.params.seanceId;
+        const { user, films } = this.props;
 
         const currentSeance =  films.openedSeance;
 

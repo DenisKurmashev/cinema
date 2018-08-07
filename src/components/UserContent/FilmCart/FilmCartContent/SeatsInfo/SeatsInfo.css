@@ -9,6 +9,7 @@
 .seance-content__info-title,
 .seance-content__info-list,
 .seance-content__info-not-auth-warn,
+.seance-content__info-auth-warn,
 .info-list__item {
     width: 100%;
 }
@@ -56,6 +57,7 @@
     text-align: center;
     display: flex;
     align-items: center;
+    justify-content: center;
     border-radius: 3px;
 }
 

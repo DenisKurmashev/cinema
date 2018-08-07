@@ -7,5 +7,6 @@
     "products": "/products",
     "sessions": "/sessions?pageId=",
     "sessionsById": "/sessions",
-    "search": "/search"
+    "search": "/search",
+    "additional": "/additional"
 }

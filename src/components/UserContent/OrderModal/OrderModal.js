@@ -32,7 +32,7 @@ class OrderModal extends React.PureComponent {
     }
 
     render() {
-        const { isAuth, isOpen, userActions } = this.props;
+        const { isAuth, isOpen, userActions, orderActions } = this.props;
 
         return (
             <Modal
@@ -43,7 +43,7 @@ class OrderModal extends React.PureComponent {
                 
                 {
                     isAuth 
-                    ? <OrderForm />
+                    ? <OrderForm orderActions={orderActions} />
                     : (
                         <div className="order-modal__login-or-register">
                             {

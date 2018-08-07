@@ -29,16 +29,19 @@ class RoomSchema extends React.Component {
     }
 
     render() {
+        const { user, order, userActions, orderActions } = this.props;
+
         const schema = this.props.currentSeance.cinema.roomSchema;
     
         return (
             <div className="room-schema">
 
                 <OrderModal 
-                    userActions={this.props.userActions}
-                    close={this.props.orderActions.onOrderFormClose}
-                    isOpen={this.props.order.isOpened} 
-                    isAuth={this.props.user.isAuth} />
+                    userActions={userActions}
+                    orderActions={orderActions}
+                    close={orderActions.onOrderFormClose}
+                    isOpen={order.isOpened} 
+                    isAuth={user.isAuth} />
 
                 <div className="room-schema__screen">Screen</div>
                 {

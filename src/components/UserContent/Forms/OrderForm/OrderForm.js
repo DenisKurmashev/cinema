@@ -4,13 +4,19 @@ import { validateOrderForm, handleOrderForm } from "../util";
 
 class InnerOrderForm extends React.PureComponent {
 
+    componentDidMount() {
+        this.props.orderActions.loadAdditional();
+    }
+
     render() {
         const { values, errors, touched, handleChange, handleSubmit, isSubmitting }
             = this.props;
     
         return (
             <form onSubmit={handleSubmit} className="default-form" noValidate>
-                <h1>Hello</h1>
+                <div className="additional">
+
+                </div>
             </form>
         );
     }

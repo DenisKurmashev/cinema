@@ -17,6 +17,7 @@ export const getApiObject = () => {
         _sessions: config.sessions,
         _search: config.search,
         _sessionsById: config.sessionsById,
+        _additional: config.additional,
 
         get login() {
             return this.host + this.api + this._profile + this._login;
@@ -36,6 +37,9 @@ export const getApiObject = () => {
         get sessionsById() {
             return this.host + this.api + this._sessionsById;
         },
+        get additional() {
+            return this.host + this.api + this._additional;
+        }
     };
 };
 

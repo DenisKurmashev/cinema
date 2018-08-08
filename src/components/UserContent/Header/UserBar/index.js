@@ -21,7 +21,10 @@ const UserBar = ({ user, userActions }) => {
     return (
         <div className="user-bar">
             <div className="user-bar-item">{welcomeText}</div>
-            <div onClick={userActions.onLogout} className="user-bar-item btn-underline">logout</div>
+            <div className="user-bar-item">
+                <Link className="btn-underline" to="/profile/history">History</Link>
+            </div>
+            <div onClick={userActions.onLogout} className="user-bar-item btn-underline">Logout</div>
         </div>
     );
 };

@@ -3,11 +3,12 @@ import { Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import LoginAndRegisterForm from "./Forms/login-register";
-import { PROFILE, ROOT, SEANCE } from "./path";
+import { PROFILE, HISTORY, ROOT, SEANCE } from "./path";
 import PageNotFound from "../PageNotFound";
 import Header from "./Header";
 import FilmList from "./FilmList";
 import FilmCart from "./FilmCart/FilmCart";
+import HistoryPage from "./HistoryPage";
 
 const InnerUserContent = ({ ...rest }) => (
     <Fragment>
@@ -46,10 +47,32 @@ const SeanceWrapper = ({ user, userActions, films, filmsActions, ...rest }) => (
     />} />
 );
 
+const HistoryPageWrapper = ({ user, userActions, films, filmsActions, ...rest }) => (
+    <Route {...rest} render={props => <HistoryPage 
+        {...props}
+        user={user} 
+        userActions={userActions}
+        films={films}
+		filmsActions={filmsActions}   
+    />} />
+);
+
 const UserContent = ({ user, userActions, films, filmsActions }) => {
     return (
         <Fragment>
             <Switch>
+                {
+                    user.isAuth 
+                    ? (
+                        <HistoryPageWrapper path={HISTORY}
+                            user={user} 
+                            userActions={userActions}
+                            films={films}
+                            filmsActions={filmsActions}
+                        />
+                    )
+                    : null
+                }
                 <LoginAndRegisterFormWrapper path={PROFILE} user={user} userActions={userActions} />
                 <InnerUserContentWrapper exact 
                     path={ROOT} 

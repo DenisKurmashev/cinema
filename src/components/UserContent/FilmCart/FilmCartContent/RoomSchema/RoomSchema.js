@@ -134,6 +134,7 @@ class RoomSchema extends React.Component {
 
         this.props.orderActions.onSelectedPlaceChanged(rowIndex, columnIndex);
         this.props.orderActions.onOrderFormOpen({});
+        this.props.orderActions.addToPendingArray();
     }
 
     isSelected = (x, y) => {

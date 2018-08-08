@@ -9,5 +9,6 @@
     "sessionsById": "/sessions",
     "search": "/search",
     "additional": "/additional",
-    "orders": "/orders"
+    "orders": "/orders",
+    "pending": "/pending"
 }

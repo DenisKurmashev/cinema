@@ -77,3 +77,24 @@ export const addNewOrder = () =>
             .then(response => response.status === 201 ? dispatch(onOrderSuccess()) : dispatch(onAdditionalFailed(response.data)))
             .catch(error => dispatch(onAdditionalFailed(error.message)));
     }
+
+export const addToPendingArray = () => 
+    (dispatch, getState) => {
+        const state = getState();
+
+        const data = {
+            x: state.order.selectedPlace.x,
+            y: state.order.selectedPlace.y,
+        };
+
+        const seanceId = state.films.openedSeance._id;
+
+        const headers = {
+            "Authorization": state.user.token
+        };
+
+        return axios.post(`${getApiObject().pending}/${seanceId}`, data, { headers })
+            .then(response => console.log("Add to pending places!"))
+            .catch(error => console.log("Error. Not add to pending places!"));
+
+    }

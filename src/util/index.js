@@ -19,6 +19,7 @@ export const getApiObject = () => {
         _sessionsById: config.sessionsById,
         _additional: config.additional,
         _orders: config.orders,
+        _pending: config.pending,
 
         get login() {
             return this.host + this.api + this._profile + this._login;
@@ -43,6 +44,9 @@ export const getApiObject = () => {
         },
         get orders() {
             return this.host + this.api + this._orders;
+        },
+        get pending() {
+            return this.host + this.api + this._sessionsById + this._pending;
         }
     };
 };

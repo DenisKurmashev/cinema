@@ -1,9 +1,12 @@
 const joi = require("joi");
 
 const Session = require("../models/session");
-const Type = require("../models/type");
-const errors = require("../helpers/errors");
-const util = require("../util/util");
+const Type    = require("../models/type");
+const errors  = require("../helpers/errors");
+const util    = require("../util/util");
+
+const { validatePendingPlaceData } 
+              = require("../services/services");
 
 exports.getAll = async ctx => {
     const skip = parseInt(ctx.query.pageId || 1);
@@ -85,6 +88,45 @@ exports.getById = async ctx => {
         ctx.body = util.optimizeSession(session); 
     }
 
+};
+
+exports.addToPendingPlace = async ctx => {
+    const userId = ctx.state.user._id;
+    const seanceId = ctx.params.seanceId;
+    const { x, y } = ctx.request.body;
+
+    const validation = await validatePendingPlaceData({ seanceId, x, y, });
+    if (!validation.status || validation.error) {
+        console.log(validation.error);
+        ctx.status = errors.wrongCredentials.status;
+        ctx.body = validation.error.message;
+        return;
+    }
+
+    // add to pending array 
+    // for 5 minutes
+    let removeAt = new Date(Date.now() + (60 * 5 * 1000));
+ 
+    const currentSeance = await Session.findById(seanceId);
+    if (!currentSeance) {
+        console.log(validation.error);
+        ctx.status = errors.wrongCredentials.status;
+        ctx.body = errors.wrongCredentials;
+        return;
+    }
+   
+    try {
+        currentSeance.pendingPlaces.push({ x, y, removeAt });
+        await currentSeance.save();
+
+    } catch(ex) {
+        console.log(ex);
+        ctx.status = errors.wrongCredentials.status;
+        ctx.body = ex;
+        return;
+    }
+
+    ctx.status = 200;
 };
 
 exports.search = async ctx => {

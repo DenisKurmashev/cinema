@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import FilmItemInfo from "./FilmItemInfo/FilmItemInfo";
+
+import FilmItem from "./FilmItem/FilmItem";
 import "./index.css";
 import FilmLoading from "./FilmLoading";
 import Pagination from "./Pagination/Pagination";
@@ -99,16 +99,7 @@ class FilmList extends React.Component {
                     ? <FilmLoading /> 
                     : films.currentFilms.length === 0 
                         ? <h2>Not found!</h2> 
-                        : films.currentFilms.map(item => (
-                            <div key={item._id} className="film-container-item">
-                                <div className="film-container-item__title">{item.film.name}</div>
-                                <div className="film-container-item__cover">
-                                    <img className="width-100" src={item.film.cover} alt={item.film.name}/>
-                                </div>
-                                <FilmItemInfo city={item.cinema.city} name={item.cinema.name} date={item.date} />
-                                <Link className="btn text-upper" to={`/seance/${item._id}`}>Buy ticket</Link>
-                            </div>
-                        ))
+                        : films.currentFilms.map(item => <FilmItem key={item._id} film={item} />)
                 }
 
                 {

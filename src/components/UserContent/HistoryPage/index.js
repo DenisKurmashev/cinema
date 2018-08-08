@@ -7,8 +7,7 @@ class HistoryPage extends PureComponent {
 
     render() {
         return (
-            <div>
-                <h2>History Page</h2>
+            <div className="history-page">
                 <Filter />
                 <HistoryList />
             </div>

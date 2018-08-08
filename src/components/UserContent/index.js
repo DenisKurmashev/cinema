@@ -64,12 +64,7 @@ const UserContent = ({ user, userActions, films, filmsActions }) => {
                 {
                     user.isAuth
                     ? (
-                        <HistoryPageWrapper path={HISTORY}
-                            user={user} 
-                            userActions={userActions}
-                            films={films}
-                            filmsActions={filmsActions}
-                        />
+                        <HistoryPageWrapper path={HISTORY} />
                     )
                     : null
                 }

@@ -7,7 +7,7 @@ class HistoryList extends PureComponent {
     render() {
         return (
             <div className="history-page-list">
-
+                
             </div>
         );
     }

@@ -7,6 +7,10 @@ class OrderForm extends React.PureComponent {
         this.props.filmsActions.onFilmLoad();
     }
 
+    componentWillMount() {
+        this.props.orderActions.addToPendingArray();
+    }
+
     render() {
         const { order, orderActions }
             = this.props;

@@ -62,7 +62,7 @@ const UserContent = ({ user, userActions, films, filmsActions }) => {
         <Fragment>
             <Switch>
                 {
-                    user.isAuth 
+                    user.isAuth
                     ? (
                         <HistoryPageWrapper path={HISTORY}
                             user={user} 

@@ -31,6 +31,15 @@ const newOrder = async ctx => {
         return;
     }
 
+    const validation = await validateNewOrder({ session, additional: JSON.parse(additional) });
+console.log(validation)
+    if (validation.error || !validation.status) {
+        console.log(validation.error);
+        ctx.status = errors.wrongCredentials.status;
+        ctx.body = validation.error.message;
+        return;
+    }
+
     const currentSession = await Session.findById(session);
     if (!currentSession) {
         ctx.status = errors.wrongCredentials.status;
@@ -54,21 +63,12 @@ const newOrder = async ctx => {
     currentSession.selectedPlaces.push(placeObject);
     currentSession.save();
 
-    const validation = await validateNewOrder({ session, additional, place: placeObjectId });
-
-    if (validation.error || !validation.status) {
-        console.log(validation.error);
-        ctx.status = errors.wrongCredentials.status;
-        ctx.body = validation.error;
-        return;
-    }
-
     const userId = ctx.state.user._id;
 
     let order;
    
     try {
-        order = new Order({ ...validation.data, customer: userId });
+        order = new Order({ ...validation.data, customer: userId, place: placeObjectId });
         await order.save();
 
     } catch(ex) {

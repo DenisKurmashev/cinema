@@ -118,13 +118,13 @@ const parsePlaceString = (placeString) => {
         console.log(ex);
         return null;
     }
-
+    
     const result = {
         x: parseInt(placeCoordinates.x),
         y: parseInt(placeCoordinates.y),
     };
 
-    if (!result.x || !result.y)
+    if (result.x === null || !result.y === null)
         return null;
     
     return result;

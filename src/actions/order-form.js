@@ -69,6 +69,6 @@ export const addNewOrder = () =>
         };
 
         return axios.post(getApiObject().orders, data, { headers })
-            .then(response => dispatch(onAdditionalSuccess(response.data)))
+            .then(response => console.log("Success"))
             .catch(error => dispatch(onAdditionalFailed(error.message)));
     }

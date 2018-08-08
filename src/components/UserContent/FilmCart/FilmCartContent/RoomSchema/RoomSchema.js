@@ -126,6 +126,12 @@ class RoomSchema extends React.Component {
         const columnIndex = parseInt(target.getAttribute("data-column"));
         const rowIndex    = parseInt(target.getAttribute("data-row"));
 
+        if (
+            target.classList.contains("selected") ||
+            target.classList.contains("selected-love-seats") ||
+            target.classList.contains("selected-vip") 
+        ) return;
+
         this.props.orderActions.onSelectedPlaceChanged(rowIndex, columnIndex);
         this.props.orderActions.onOrderFormOpen({});
     }
@@ -183,11 +189,11 @@ class RoomSchema extends React.Component {
                                     if (item === 3) additionally = "vip"
 
                                     if (item === 1 && this.isSelected(rowIndex, columnIndex)) 
-                                        additionally += "selected";
+                                        additionally += " selected";
                                     if (item === 2 && this.isSelected(rowIndex, columnIndex)) 
-                                        additionally += "selected-love-seats";
+                                        additionally += " selected-love-seats";
                                     if (item === 3 && this.isSelected(rowIndex, columnIndex)) 
-                                        additionally += "selected-vip";
+                                        additionally += " selected-vip";
     
                                     return (
                                         <div key={columnIndex} data-column={columnIndex} data-row={rowIndex} onClick={this.openOrderModal} className={"room-schema__row-item " + additionally}></div>

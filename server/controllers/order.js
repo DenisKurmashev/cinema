@@ -32,7 +32,7 @@ const newOrder = async ctx => {
     }
 
     const validation = await validateNewOrder({ session, additional: JSON.parse(additional) });
-console.log(validation)
+
     if (validation.error || !validation.status) {
         console.log(validation.error);
         ctx.status = errors.wrongCredentials.status;

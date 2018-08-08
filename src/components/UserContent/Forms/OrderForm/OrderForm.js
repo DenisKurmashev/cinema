@@ -3,7 +3,7 @@ import Additional from "./Additional/Additional";
 
 class OrderForm extends React.PureComponent {
 
-    componentWillUnmount() {console.log(this.props.filmActions)
+    componentWillUnmount() {
         this.props.filmsActions.onFilmLoad();
     }
 

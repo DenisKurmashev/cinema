@@ -214,7 +214,7 @@ class RoomSchema extends React.Component {
 const mapStateToProps = (state) => {
     return {
         user: state.user,
-        order: state.order,
+        order: state.orderForm,
     };
 };
 

@@ -65,8 +65,8 @@ export const addNewOrder = () =>
 
         const data = {
             session: state.films.openedSeance._id,
-            place: JSON.stringify(state.order.selectedPlace),
-            additional: JSON.stringify(state.order.selectedAdditionals)
+            place: JSON.stringify(state.orderForm.selectedPlace),
+            additional: JSON.stringify(state.orderForm.selectedAdditionals)
         };
 
         const headers = {
@@ -83,8 +83,8 @@ export const addToPendingArray = () =>
         const state = getState();
 
         const data = {
-            x: state.order.selectedPlace.x,
-            y: state.order.selectedPlace.y,
+            x: state.orderForm.selectedPlace.x,
+            y: state.orderForm.selectedPlace.y,
         };
 
         const seanceId = state.films.openedSeance._id;

@@ -8,14 +8,14 @@ export const onOrdersFetching = (payload) => ({
     payload,
 });
 
-export const onOrdersFailed = (payload) => ({
+export const onOrdersFailed = (error) => ({
     type: types.ON_ORDERS_FAILED,
-    payload,
+    error,
 });
 
-export const onOrdersSuccess = (payload) => ({
+export const onOrdersSuccess = (orders) => ({
     type: types.ON_ORDERS_SUCCESS,
-    payload,
+    orders,
 });
 
 export const fetchOrders = () => 
@@ -23,7 +23,7 @@ export const fetchOrders = () =>
         dispatch(onOrdersFetching());
 
         const headers = {
-            "Authorization": state.user.token
+            "Authorization": getState().user.token
         };
 
         return axios.get(getApiObject().orders, { headers })

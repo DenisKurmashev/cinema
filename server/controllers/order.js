@@ -12,6 +12,8 @@ const getAll = async ctx => {
     const orders = await Order
         .find({ customer: userId })
         .populate("session")
+        .populate({ path: "session", populate: { path: "cinema", select: "name city rooms" } })
+        .populate({ path: "session", populate: { path: "film", select: "name released cover description" } })
         .lean();
 
     ctx.status = 200;

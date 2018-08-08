@@ -2,7 +2,7 @@ import types from "../types/order";
 
 const initialState = {
     isFetching: false,
-    orders: [],
+    orderList: [],
     error: null,
 };
 
@@ -12,7 +12,7 @@ const OrderReducer = (state = initialState, action) => {
             return { ...state, isFetching: true };
 
         case types.ON_ORDERS_SUCCESS:
-            return { ...state, orders: action.orders, isFetching: false };
+            return { ...state, orderList: action.orders, isFetching: false };
 
         case types.ON_ORDERS_FAILED:
             return { ...state, error: action.error, isFetching: false };

@@ -100,10 +100,10 @@ class Additional extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
-    order: state.order,
+    order: state.orderForm,
     placePrice: 
         state.films.openedSeance.typesOfRoomSeats.find(
-            item => item.matrixNumber === state.films.openedSeance.cinema.roomSchema[state.order.selectedPlace.x][state.order.selectedPlace.y]
+            item => item.matrixNumber === state.films.openedSeance.cinema.roomSchema[state.orderForm.selectedPlace.x][state.orderForm.selectedPlace.y]
         ).price
 });
 

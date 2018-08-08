@@ -3,6 +3,11 @@ import axios from "axios";
 import types from "../types/order";
 import { getApiObject } from "../util";
 
+export const onChangeOrderSortFilter = (payload) => ({
+    type: types.ON_CHANGE_ORDER_SORT_FILTER,
+    payload,
+}); 
+
 export const onOrdersFetching = (payload) => ({
     type: types.ON_ORDERS_FETCHING,
     payload,

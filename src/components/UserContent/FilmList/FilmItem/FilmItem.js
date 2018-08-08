@@ -7,7 +7,8 @@ import OrderItemInfo from "./OrderItemInfo/OrderItemInfo";
 class FilmItem extends PureComponent {
 
     render() {
-        const { _id, date, film, cinema, orderInfo } = this.props.film;
+        const { _id, date, film, cinema } = this.props.film;
+        const orderInfo = this.props.orderInfo;
 
         return (
             <div className="film-container-item">

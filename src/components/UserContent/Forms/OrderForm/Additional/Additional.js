@@ -22,10 +22,10 @@ class Additional extends React.PureComponent {
 
         const id = current.getAttribute("data-id");
         const isChecked = checkBox.checked;
-        const count = parseInt(countInput.value);
+        const count = parseInt(countInput.value, 10);
         
         for (let i = 0; i < order.selectedAdditionals.length; i++) {
-            if (order.selectedAdditionals[i].id === id && isChecked === false) {
+            if (order.selectedAdditionals[i].additional === id && isChecked === false) {
                 orderActions.onSelectedAdditionalRemove(id);
                 countInput.value = 0;
                 return;
@@ -54,7 +54,7 @@ class Additional extends React.PureComponent {
 
         for (let i = 0; i < order.selectedAdditionals.length; i++) {
             result += 
-                (additional.find(item => item._id === selectedAdditionals[i].id).price || 0) * selectedAdditionals[i].count;
+                (additional.find(item => item._id === selectedAdditionals[i].additional).price || 0) * selectedAdditionals[i].count;
         }
 
         return result;
@@ -65,7 +65,7 @@ class Additional extends React.PureComponent {
     }
 
     render() {
-        const { order, orderActions } = this.props;
+        const { order } = this.props;
 
         const additionalCount = this.getAdditionalCount();
         const totalCount      = this.getTotalCount(additionalCount);

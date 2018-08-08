@@ -1,13 +1,43 @@
 import React, { PureComponent } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import Filter from "./Filter/Filter";
 import HistoryList from "./HistoryList/HistoryList";
 
 import * as OrderActions from "../../../actions/order"; 
 
+import "./index.css";
+
 class HistoryPage extends PureComponent {
+
+    static propTypes = {
+        order: PropTypes.shape({
+            isSortByFuture: PropTypes.oneOf([ "future", "past" ]),
+            isFetching: PropTypes.bool,
+            orderList: PropTypes.array,
+            error: PropTypes.string,
+        }),
+
+        orderActions: PropTypes.shape({
+            fetchOrders: PropTypes.func,
+            onChangeOrderSortFilter: PropTypes.func,
+        })
+    }
+    static defaultProps = {
+        order: {
+            isSortByFuture: "future",
+            isFetching: false,
+            orderList: [],
+            error: null,
+        },   
+
+        orderActions: {
+            fetchOrders: () => {},
+            onChangeOrderSortFilter: () => {}
+        }
+    }
 
     render() {
         const { order, orderActions }
@@ -15,7 +45,7 @@ class HistoryPage extends PureComponent {
 
         return (
             <div className="history-page">
-                <Filter />
+                <Filter isSortByFuture={order.isSortByFuture} changeSort={orderActions.onChangeOrderSortFilter} />
                 <HistoryList order={order} orderActions={orderActions} />
             </div>
         );

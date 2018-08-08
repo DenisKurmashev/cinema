@@ -123,8 +123,8 @@ class RoomSchema extends React.Component {
     openOrderModal = (event) => {
         const target = event.target;
 
-        const columnIndex = parseInt(target.getAttribute("data-column"));
-        const rowIndex    = parseInt(target.getAttribute("data-row"));
+        const columnIndex = parseInt(target.getAttribute("data-column"), 10);
+        const rowIndex    = parseInt(target.getAttribute("data-row"), 10);
 
         if (
             target.classList.contains("selected") ||

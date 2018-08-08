@@ -1,0 +1,16 @@
+.order-filter {
+    width: 100%;
+    background: #FAFAFA;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.order-filter-item {
+    margin: 0 10px;
+    display: flex;
+    padding: 0 10px;
+    justify-content: space-between;
+}

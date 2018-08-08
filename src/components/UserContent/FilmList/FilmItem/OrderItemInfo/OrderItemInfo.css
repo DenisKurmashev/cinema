@@ -1,0 +1,31 @@
+.film-container-item__order-info {
+    background: #6C9BC7;
+    color: #FFF;
+    margin: 10px 0;
+    padding: 5px 0;
+    border-radius: 3px;
+    width: 98%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.order-info__date,
+.order-info__place,
+.order-info__additional {
+    width: 90%;
+}
+
+.film-container-item__order-info
+.order-info__additional {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.order-info__additional div {
+    width: 100%;
+}

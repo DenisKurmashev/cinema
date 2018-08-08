@@ -2,6 +2,7 @@ import React from "react";
 
 import FilmCartHeader from "./FilmCartHeader/FilmCartHeader";
 import FilmCartContent from "./FilmCartContent/FilmCartContent";
+import FilmLoading from "../FilmList/FilmLoading/FilmLoading";
 
 import "./FilmCart.css";
 
@@ -18,7 +19,11 @@ class FilmCart extends React.Component {
         const currentSeance =  films.openedSeance;
 
         if (!currentSeance._id) 
-            return null;
+            return (
+                <div className="seance-loading">
+                    <FilmLoading />
+                </div>
+            );
 
         return (
             <div className="seance" >

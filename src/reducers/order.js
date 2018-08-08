@@ -1,6 +1,7 @@
 import types from "../types/order";
 
 const initialState = {
+    isSortByFuture: "future",
     isFetching: false,
     orderList: [],
     error: null,
@@ -8,6 +9,12 @@ const initialState = {
 
 const OrderReducer = (state = initialState, action) => {
     switch(action.type) {
+        case types.ON_CHANGE_ORDER_SORT_FILTER: 
+            return { 
+                ...state, 
+                isSortByFuture: state.isSortByFuture === "future" ? "past" : "future"
+            };
+
         case types.ON_ORDERS_FETCHING:
             return { ...state, isFetching: true };
 

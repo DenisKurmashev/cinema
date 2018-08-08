@@ -40,13 +40,13 @@ const OrderFormReducer = (state = initialState, action) => {
             return { 
                 ...state, 
                 selectedAdditionals: [ 
-                    ...state.selectedAdditionals.filter(item => item.id !== action.id), 
-                    { id: action.id, count: action.count } 
+                    ...state.selectedAdditionals.filter(item => item.additional !== action.id), 
+                    { additional: action.id, count: action.count } 
                 ] 
             };
 
         case types.ON_SELECTED_ADDITIONAL_REMOVE:
-            return { ...state, selectedAdditionals: state.selectedAdditionals.filter(item => item.id !== action.id) };
+            return { ...state, selectedAdditionals: state.selectedAdditionals.filter(item => item.additional !== action.id) };
 
         default:
             return state;

@@ -21,6 +21,7 @@ const ORDER = new Schema({
             additional: {
                 type: Schema.Types.ObjectId,
                 ref: "Additional",
+                required: true,
             },
             count: {
                 type: Schema.Types.Number,

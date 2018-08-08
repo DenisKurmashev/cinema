@@ -1,15 +1,124 @@
 import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import * as OrderActions from "../../../../../actions/order-form";
 import * as UserActions from "../../../../../actions/user";
+import * as FilmsActions from "../../../../../actions/films";
 
 import OrderModal from "../../../OrderModal/OrderModal";
 
 import "./RoomSchema.css";
 
 class RoomSchema extends React.Component {
+
+    static propTypes = {
+        user: PropTypes.shape({
+            isLoginOrRegisterFetching: PropTypes.bool,
+            isAuth: PropTypes.bool,
+            error: PropTypes.string,
+            info: PropTypes.shape({
+                name: PropTypes.string,
+                role: PropTypes.string,
+            }),
+        }),
+        order: PropTypes.shape({
+            additional: PropTypes.array,
+            error: PropTypes.string,
+            fetching: PropTypes.bool,
+            isOpened: PropTypes.bool,
+            isSuccess: PropTypes.bool,
+            selectedAdditionals: PropTypes.array,
+            selectedPlace: PropTypes.shape({
+                x: PropTypes.number,
+                y: PropTypes.number,
+            })
+        }),
+    
+        filmsActions: PropTypes.shape({
+            onFilmsFilterChange: PropTypes.func,
+            onFilmsPageChange: PropTypes.func,
+            onFilmsFetching: PropTypes.func,
+            onFilmsFailed: PropTypes.func,
+            onFilmsSuccess: PropTypes.func,
+            onFilmsLoad: PropTypes.func,
+            onFilmLoad: PropTypes.func,
+            onFilmsChange: PropTypes.func,
+        }),
+        userActions: PropTypes.shape({
+            onLoginOrRegisterFetch: PropTypes.func,
+            login: PropTypes.func,
+            register: PropTypes.func, 
+            onLogout: PropTypes.func,
+        }),
+        orderActions: PropTypes.shape({
+            onOrderFormOpen: PropTypes.func,
+            onOrderFormClose: PropTypes.func,
+            onSelectedPlaceChanged: PropTypes.func,
+            onSelectedAdditionalAdd: PropTypes.func,
+            onSelectedAdditionalRemove: PropTypes.func,
+            onAdditionalFetching: PropTypes.func,
+            onAdditionalSuccess: PropTypes.func,
+            onAdditionalFailed: PropTypes.func, 
+            onOrderSuccess: PropTypes.func,
+            loadAdditional: PropTypes.func,
+            addNewOrder: PropTypes.func,
+        }),
+    }
+    static defaultProps = {
+        user: {
+            isLoginOrRegisterFetching: false,
+            isAuth: false,
+            error: "",
+            info: {
+                name: "",
+                role: "",
+            },
+        },
+        order: {
+            additional: [],
+            error: "",
+            fetching: false,
+            isOpened: false,
+            isSuccess: false,
+            selectedAdditionals: [],
+            selectedPlace: {
+                x: null,
+                y: null,
+            }
+        },
+    
+        userActions: {
+            onLoginOrRegisterFetch: () => {},
+            login: () => {},
+            register: () => {}, 
+            onLogout: () => {},
+        },
+        filmsActions: {
+            onFilmsFilterChange: () => {},
+            onFilmsPageChange: () => {},
+            onFilmsFetching: () => {},
+            onFilmsFailed: () => {},
+            onFilmsSuccess: () => {},
+            onFilmsLoad: () => {},
+            onFilmsChange: () => {},
+            onFilmLoad: () => {},
+        },
+        orderActions: {
+            onOrderFormOpen: () => {},
+            onOrderFormClose: () => {},
+            onSelectedPlaceChanged: () => {},
+            onSelectedAdditionalAdd: () => {},
+            onSelectedAdditionalRemove: () => {},
+            onAdditionalFetching: () => {},
+            onAdditionalSuccess: () => {},
+            onAdditionalFailed: () => {}, 
+            onOrderSuccess: () => {},
+            loadAdditional: () => {},
+            addNewOrder: () => {},
+        },
+    }
 
     openOrderModal = (event) => {
         const target = event.target;
@@ -35,14 +144,15 @@ class RoomSchema extends React.Component {
     }
 
     render() {
-        const { user, order, userActions, orderActions } = this.props;
+        const { user, order, filmsActions, userActions, orderActions } = this.props;
 
         const schema = this.props.currentSeance.cinema.roomSchema;
-    
+  
         return (
             <div className="room-schema">
 
                 <OrderModal 
+                    filmsActions={filmsActions}
                     order={order}
                     userActions={userActions}
                     orderActions={orderActions}
@@ -103,6 +213,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        filmsActions: bindActionCreators(FilmsActions, dispatch),
         userActions: bindActionCreators(UserActions, dispatch),
         orderActions: bindActionCreators(OrderActions, dispatch)
     };

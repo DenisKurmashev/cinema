@@ -66,6 +66,9 @@ export const onFilmLoad = (seanceId) => {
     return (dispatch, getState) => {
         dispatch(onFilmsFetching());
 
+        if (!seanceId)
+            seanceId = getState().films.openedSeance._id
+
         return axios.get(`${getApiObject().sessionsById}/${seanceId}`)
             .then(response => dispatch(onFilmSuccess(response.data)))
             .catch(error => dispatch(onFilmsFailed(error.message)));

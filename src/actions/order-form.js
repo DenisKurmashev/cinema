@@ -43,6 +43,11 @@ export const onAdditionalFailed = (payload) => ({
     payload,
 });
 
+export const onOrderSuccess = (payload) => ({
+    type: types.ON_ORDER_SUCCESS,
+    payload,
+});
+
 export const loadAdditional = () => 
     (dispatch, getState) => {
         dispatch(onAdditionalFetching());
@@ -69,6 +74,6 @@ export const addNewOrder = () =>
         };
 
         return axios.post(getApiObject().orders, data, { headers })
-            .then(response => console.log("Success"))
+            .then(response => response.status === 201 ? dispatch(onOrderSuccess()) : dispatch(onAdditionalFailed(response.data)))
             .catch(error => dispatch(onAdditionalFailed(error.message)));
     }

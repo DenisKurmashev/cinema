@@ -1,11 +1,14 @@
 import React from "react";
-import { NavLink, Route } from "react-router-dom";
+import { NavLink, Route, Redirect } from "react-router-dom";
 import { withFormik } from "formik";
 import PropTypes from "prop-types";
 import { validate, handleRegister } from "../util";
-import { LOGIN, REGISTER } from "../../path";
+import { LOGIN, REGISTER, ROOT } from "../../path";
 
-const InnerRegisterForm = ({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => {
+const InnerRegisterForm = ({ user, values, errors, touched, handleChange, handleSubmit, isSubmitting }) => {
+    if (user.isAuth) 
+        return <Redirect to={ROOT} />
+
     return (
         <form onSubmit={handleSubmit} className="default-form" noValidate>
 			<div className="default-form__title">Sign up</div>

@@ -88,6 +88,18 @@ class FilmList extends React.Component {
         else onFilmsChange();
     }
 
+    shouldComponentUpdate(nextProps) {
+        const { filter, searchText, pageId } = this.props.films;
+
+        if (
+            filter !== nextProps.films.filter && 
+            searchText === nextProps.films.searchText && 
+            pageId === nextProps.films.pageId
+        ) return false;
+
+        return true;
+    }
+
     render() {
         const { films, filmsActions } = this.props;
 

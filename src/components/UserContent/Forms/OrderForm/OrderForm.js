@@ -25,6 +25,7 @@ class OrderForm extends React.PureComponent {
                         <React.Fragment>
                             <Additional />
                             <input disabled={order.fetching} onClick={orderActions.addNewOrder} type="button" className="btn text-upper" value="get ticket" />
+                            <input disabled={order.fetching} onClick={orderActions.onOrderFormClose} type="button" className="btn text-upper" value="close" />
                         </React.Fragment>
                     )
                 }

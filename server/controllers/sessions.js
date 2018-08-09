@@ -116,7 +116,46 @@ exports.addToPendingPlace = async ctx => {
     }
    
     try {
-        currentSeance.pendingPlaces.push({ x, y, removeAt });
+        currentSeance.pendingPlaces.push({ x, y, removeAt, author: userId });
+        await currentSeance.save();
+
+    } catch(ex) {
+        console.log(ex);
+        ctx.status = errors.wrongCredentials.status;
+        ctx.body = ex;
+        return;
+    }
+
+    ctx.status = 200;
+};
+
+exports.removeFromPending = async ctx => {
+    const userId = ctx.state.user._id;
+    const seanceId = ctx.params.seanceId;
+    const { x, y } = ctx.request.body;
+
+    const validation = await validatePendingPlaceData({ seanceId, x, y, });
+    if (!validation.status || validation.error) {
+        console.log(validation.error);
+        ctx.status = errors.wrongCredentials.status;
+        ctx.body = validation.error.message;
+        return;
+    }
+ 
+    const currentSeance = await Session.findById(seanceId);
+    if (!currentSeance) {
+        console.log(validation.error);
+        ctx.status = errors.wrongCredentials.status;
+        ctx.body = errors.wrongCredentials;
+        return;
+    }
+   
+    try {
+        currentSeance.pendingPlaces 
+            = currentSeance.pendingPlaces.filter(
+                item => item.x !== x && item.y !== y && item.author !== userId
+            );
+            
         await currentSeance.save();
 
     } catch(ex) {

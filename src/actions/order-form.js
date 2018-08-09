@@ -55,7 +55,7 @@ export const loadAdditional = () =>
         return axios.get(getApiObject().additional)
             .then(response => dispatch(onAdditionalSuccess(response.data)))
             .catch(error => dispatch(onAdditionalFailed(error.message)));
-    }
+    };
      
 export const addNewOrder = () => 
     (dispatch, getState) => {
@@ -76,7 +76,7 @@ export const addNewOrder = () =>
         return axios.post(getApiObject().orders, data, { headers })
             .then(response => response.status === 201 ? dispatch(onOrderSuccess()) : dispatch(onAdditionalFailed(response.data)))
             .catch(error => dispatch(onAdditionalFailed(error.message)));
-    }
+    };
 
 export const addToPendingArray = () => 
     (dispatch, getState) => {
@@ -97,4 +97,26 @@ export const addToPendingArray = () =>
             .then(response => console.log("Add to pending places!"))
             .catch(error => console.log("Error. Not add to pending places!"));
 
-    }
+    };
+
+export const removeFromPendingArray = () => 
+    (dispatch, getState) => {
+        const state = getState();
+
+        const data = {
+            x: state.orderForm.selectedPlace.x,
+            y: state.orderForm.selectedPlace.y,
+        };
+
+        const seanceId = state.films.openedSeance._id;
+
+        const headers = {
+            "Authorization": state.user.token
+        };
+
+        return axios.delete(`${getApiObject().pending}/${seanceId}`, { data, headers })
+            .then(response => console.log("Remove from pending places!"))
+            .catch(error => console.log("Error. Not remove from pending places!"));
+
+
+    };

@@ -137,10 +137,11 @@ class RoomSchema extends React.Component {
     }
 
     isSelected = (x, y) => {
+        const { user } = this.props;
         const { pendingPlaces, selectedPlaces } = this.props.currentSeance;
 
         for (let i = 0; i < pendingPlaces.length; i++)
-            if (pendingPlaces[i].x === x && pendingPlaces[i].y === y) 
+            if (pendingPlaces[i].x === x && pendingPlaces[i].y === y && pendingPlaces[i].author !== user.info.id) 
                 if ((new Date(pendingPlaces[i].removeAt)).getTime() > (new Date()).getTime())
                     return true;
 

@@ -4,7 +4,8 @@ import Additional from "./Additional/Additional";
 class OrderForm extends React.PureComponent {
 
     componentWillUnmount() {
-        this.props.filmsActions.onFilmLoad();
+        this.props.orderActions.removeFromPendingArray()
+            .then(this.props.filmsActions.onFilmLoad());
     }
 
     componentWillMount() {

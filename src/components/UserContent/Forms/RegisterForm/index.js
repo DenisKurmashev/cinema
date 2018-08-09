@@ -21,7 +21,7 @@ const InnerRegisterForm = ({ values, errors, touched, handleChange, handleSubmit
 
 			<button type="submit" className="btn" disabled={isSubmitting}>Sign up</button>
 			
-            <Route path={REGISTER} render={props => <NavLink {...props} className="btn-underline" to={LOGIN}>Already have account? Sign in.</NavLink>} />
+            <Route path={REGISTER} render={props => <NavLink className="btn-underline" to={LOGIN}>Already have account? Sign in.</NavLink>} />
         </form>	
     );
 }

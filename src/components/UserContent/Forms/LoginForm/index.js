@@ -18,7 +18,7 @@ const InnerLoginForm = ({ values, errors, touched, handleChange, handleSubmit, i
 
 			<button type="submit" className="btn" disabled={isSubmitting}>Sign in</button>
 			
-            <Route path={LOGIN} render={props => <NavLink {...props} className="btn-underline" to={REGISTER}>Not have account? Sign up.</NavLink>} />
+            <Route path={LOGIN} render={props => <NavLink className="btn-underline" to={REGISTER}>Not have account? Sign up.</NavLink>} />
         </form>
     );
 }

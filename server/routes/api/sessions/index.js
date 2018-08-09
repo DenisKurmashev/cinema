@@ -9,6 +9,7 @@ const router = new Router();
 router.get("/", controller.getAll); // ?pageId=1
 router.get("/:id", controller.getById);
 router.post("/pending/:seanceId", passport.authenticate(), controller.addToPendingPlace); 
+router.delete("/pending/:seanceId", passport.authenticate(), controller.removeFromPending); 
 router.post("/search/:pageId", controller.search);
 router.post("/new", passport.authenticate(), permission(), controller.new);
 

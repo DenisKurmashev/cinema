@@ -34,6 +34,7 @@ exports.login = async ctx => {
         }
 
         let userObject = {
+            id: user._id,
             name: user.name,
             email: user.email,
             created: user.created,
@@ -79,6 +80,7 @@ exports.register = async ctx => {
         }
 
         const userObject = {
+            id: user._id,
             name: user.name,
             email: user.email,
             created: user.created,

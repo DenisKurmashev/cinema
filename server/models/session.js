@@ -31,6 +31,7 @@ const SESSION = new Schema({
             x: Schema.Types.Number,
             y: Schema.Types.Number, 
             removeAt: Schema.Types.Date,
+            author: Schema.Types.ObjectId,
         }
     ]
 });

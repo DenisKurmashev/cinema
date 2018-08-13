@@ -6,10 +6,10 @@ import { Switch, Route } from "react-router-dom";
 import { ADMIN } from "../UserContent/path";
 import PageNotFound from "../PageNotFound";
 
-import * as FilmActions from "../../actions/films";
+import * as FilmActions from "./actions/films";
 
-import Header from "./Header/Header";
-import NewFilm from "./NewFilm/NewFilm";
+import Header from "./components/Header/Header";
+import NewFilm from "./components/NewFilm/NewFilm";
 
 class AdminContent extends PureComponent {
 

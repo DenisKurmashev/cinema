@@ -6,4 +6,6 @@ export const HISTORY  = `${PROFILE}/history`;
 
 export const ROOT = "/";
 
+export const ADMIN = "/admin";
+
 export const SEANCE = "/seance/:seanceId";

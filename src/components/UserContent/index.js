@@ -3,12 +3,13 @@ import { Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import LoginAndRegisterForm from "./Forms/login-register";
-import { PROFILE, HISTORY, ROOT, SEANCE } from "./path";
+import { PROFILE, HISTORY, ROOT, SEANCE, ADMIN } from "./path";
 import PageNotFound from "../PageNotFound";
 import Header from "./Header";
 import FilmList from "./FilmList";
 import FilmCart from "./FilmCart/FilmCart";
 import HistoryPage from "./HistoryPage";
+import AdminPage from "../AdminContent/index"; 
 
 const InnerUserContent = ({ ...rest }) => (
     <Fragment>
@@ -57,6 +58,16 @@ const HistoryPageWrapper = ({ user, userActions, films, filmsActions, ...rest })
     />} />
 );
 
+const AdminPageWrapper = ({ user, userActions, films, filmsActions, ...rest }) => (
+    <Route {...rest} render={props => <AdminPage 
+        {...props}
+        user={user} 
+        userActions={userActions}
+        films={films}
+		filmsActions={filmsActions}   
+    />} />
+);
+
 const UserContent = ({ user, userActions, films, filmsActions }) => {
     return (
         <Fragment>
@@ -82,6 +93,19 @@ const UserContent = ({ user, userActions, films, filmsActions }) => {
                     films={films}
 					filmsActions={filmsActions}
                 />
+
+                {
+                    user.isAuth && user.info.role === "admin" 
+                    ? (
+                        <Route path={ADMIN}
+                            user={user} 
+                            userActions={userActions}
+                            films={films}
+                            filmsActions={filmsActions}
+                        />
+                    ) : null
+                }
+                
                 <Route component={PageNotFound} />
             </Switch>
         </Fragment>

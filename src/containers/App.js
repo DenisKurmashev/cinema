@@ -12,16 +12,12 @@ import AdminContent from "../components/AdminContent";
 const App = ({ user, userActions, films, filmsActions}) => {
 	return (
 		<Fragment>
-			{
-				user.isAuth && user.info.role === "admin" ?
-					<AdminContent /> :
-					<UserContent 
-						user={user} 
-						userActions={userActions} 
-						films={films}
-						filmsActions={filmsActions}
-					/>
-			}
+			<UserContent 
+				user={user} 
+				userActions={userActions} 
+				films={films}
+				filmsActions={filmsActions}
+			/>
 		</Fragment>
 	);
 };

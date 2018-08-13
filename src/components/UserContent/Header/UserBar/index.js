@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+
+import { ADMIN } from "../../path";
+
 import "./index.css";
 
 const UserBar = ({ user, userActions }) => {
@@ -21,6 +24,14 @@ const UserBar = ({ user, userActions }) => {
     return (
         <div className="user-bar">
             <div className="user-bar-item">{welcomeText}</div>
+            {
+                user.isAuth && user.info.role === "admin" 
+                ? (
+                    <div className="user-bar-item">
+                        <Link className="btn-underline" to={ADMIN}>Admin</Link>
+                    </div>
+                ) : null
+            }
             <div className="user-bar-item">
                 <Link className="btn-underline" to="/profile/history">History</Link>
             </div>

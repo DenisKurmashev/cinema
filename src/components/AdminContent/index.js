@@ -1,8 +1,10 @@
 import React, { PureComponent } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { Switch, Route } from "react-router-dom";
 
 import { ADMIN } from "../UserContent/path";
+import PageNotFound from "../PageNotFound";
 
 import * as FilmActions from "../../actions/films";
 
@@ -14,7 +16,7 @@ class AdminContent extends PureComponent {
     HEADER_ITEMS = [
         {
             title: "add films",
-            path: ADMIN + "/new-film",
+            path: ADMIN + "/",
             component: NewFilm, 
             props: {
                 filmsActions: this.props.filmsActions
@@ -25,7 +27,16 @@ class AdminContent extends PureComponent {
     render() {
         return (
             <div>
-                <Header item={this.HEADER_ITEMS} />
+                <Header items={this.HEADER_ITEMS} />
+
+                <Switch>
+                    {
+                        this.HEADER_ITEMS.map((el, index) => (
+                            <Route key={index} path={el.path} render={(props) => <el.component {...el.props} />} />
+                        ))
+                    }
+                    <Route component={PageNotFound} />
+                </Switch>
             </div>
         );
     }

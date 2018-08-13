@@ -20,7 +20,12 @@ class OrderForm extends React.PureComponent {
             <form className="default-form" noValidate>
                 {
                     order.isSuccess
-                    ? <h2>Congratulation!</h2>
+                    ? (
+                        <div>
+                            <div><h2>Congratulation!</h2></div>
+                            <div><input disabled={order.fetching} onClick={orderActions.onOrderFormClose} type="button" className="btn text-upper" value="close" /></div>
+                        </div>
+                    )
                     : (
                         <React.Fragment>
                             <Additional />

@@ -58,14 +58,8 @@ const HistoryPageWrapper = ({ user, userActions, films, filmsActions, ...rest })
     />} />
 );
 
-const AdminPageWrapper = ({ user, userActions, films, filmsActions, ...rest }) => (
-    <Route {...rest} render={props => <AdminPage 
-        {...props}
-        user={user} 
-        userActions={userActions}
-        films={films}
-		filmsActions={filmsActions}   
-    />} />
+const AdminPageWrapper = (rest) => (
+    <Route {...rest} render={props => <AdminPage {...props} />} />
 );
 
 const UserContent = ({ user, userActions, films, filmsActions }) => {
@@ -97,12 +91,7 @@ const UserContent = ({ user, userActions, films, filmsActions }) => {
                 {
                     user.isAuth && user.info.role === "admin" 
                     ? (
-                        <Route path={ADMIN}
-                            user={user} 
-                            userActions={userActions}
-                            films={films}
-                            filmsActions={filmsActions}
-                        />
+                        <AdminPageWrapper path={ADMIN} />
                     ) : null
                 }
                 

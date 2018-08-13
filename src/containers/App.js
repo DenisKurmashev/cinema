@@ -7,7 +7,6 @@ import * as userActions from "../actions/user";
 import * as filmsActions from "../actions/films";
 
 import UserContent from "../components/UserContent";
-import AdminContent from "../components/AdminContent";
 
 const App = ({ user, userActions, films, filmsActions}) => {
 	return (

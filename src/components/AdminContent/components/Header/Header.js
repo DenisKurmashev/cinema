@@ -14,7 +14,7 @@ class Header extends PureComponent {
                 {
                     items.map((el, index) => (
                         <div key={index} className="admin-header-item">
-                            <Link className="btn-underline text-upper" to={`${ADMIN}/${el.path}`}>{el.title}</Link>
+                            <Link className="btn-underline text-upper" to={ADMIN + el.path}>{el.title}</Link>
                         </div>
                     ))
                 }

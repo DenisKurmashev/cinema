@@ -1,17 +1,17 @@
 import React, { PureComponent } from "react";
 import { withFormik } from "formik";
 
-import { validateFilmForm, handleSubmitFilmForm } from "../util";
+import { validateAdditionalForm, handleSubmitAdditionalForm } from "../util";
 
-import "./NewFilm.css";
+import "./NewAdditional.css";
 
-class InnerNewFilm extends PureComponent {
+class InnerAdditional extends PureComponent {
 
     render() {
-        const { films, values, errors, touched, handleChange, handleSubmit }
+        const { additional, values, errors, touched, handleChange, handleSubmit }
             = this.props;
 
-        const { response, error } = films;
+        const { response, error } = additional;
 
         return (
             <form onSubmit={handleSubmit} className="default-form" noValidate>
@@ -24,22 +24,19 @@ class InnerNewFilm extends PureComponent {
                             : null
                     }
                 </div>
-
-                <div className="default-form__title">Add new Film</div>
+                
+                <div className="default-form__title">Add new Additional</div>
 
                 <div className="default-form__error">{touched.name && errors.name}</div>
                 <input type="email" placeholder="Film name" name="name" onChange={handleChange} value={values.name} />
 
-                <div className="default-form__error">{touched.released && errors.released}</div>
-                <input type="date" placeholder="Date of released" name="released" onChange={handleChange} value={values.released} />
-
-                <div className="default-form__error">{touched.cover && errors.cover}</div>
-                <input type="text" placeholder="Reference for cover of film" name="cover" onChange={handleChange} value={values.cover} />
+                <div className="default-form__error">{touched.price && errors.price}</div>
+                <input type="number" placeholder="Price of additional service" min={1} name="price" onChange={handleChange} value={values.price} />
 
                 <div className="default-form__error">{touched.description && errors.description}</div>
                 <textarea type="text" placeholder="Description of film" name="description" onChange={handleChange} value={values.description} />
 
-                <button type="submit" className="btn" disabled={films.isFetching}>Add</button>
+                <button type="submit" className="btn" disabled={additional.isFetching}>Add</button>
                 
             </form>
         );
@@ -47,20 +44,19 @@ class InnerNewFilm extends PureComponent {
 
 }
 
-const NewFilm = withFormik({
+const Additional = withFormik({
     validateOnBlur: false,
 
     mapPropsToValues: props => ({ 
         name: "",
-        released: "",
-        cover: "", 
+        price: 1, 
         description: "", 
-        films: props.films, 
-        filmsActions: props.filmsActions 
+        additional: props.additional, 
+        additionalActions: props.additionalActions 
     }),
     
-	validate: validateFilmForm,
-	handleSubmit: handleSubmitFilmForm,
-})(InnerNewFilm);
+	validate: validateAdditionalForm,
+	handleSubmit: handleSubmitAdditionalForm,
+})(InnerAdditional);
 
-export default NewFilm;
+export default Additional;

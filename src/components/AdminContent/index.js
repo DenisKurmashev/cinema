@@ -1,4 +1,4 @@
-import React, { PureComponent, Component, Fragment } from "react";
+import React, { PureComponent, Fragment } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Switch, Route } from "react-router-dom";
@@ -7,9 +7,11 @@ import { ADMIN } from "../UserContent/path";
 import PageNotFound from "../PageNotFound";
 
 import * as FilmActions from "./actions/films";
+import * as AdditionalActions from "./actions/additional";
 
 import Header from "./components/Header/Header";
 import NewFilm from "./components/NewFilm/NewFilm";
+import NewAdditional from "./components/NewAdditional/NewAdditional";
 
 import { HEADER_ITEMS } from "./constants/constants";
 
@@ -18,7 +20,7 @@ import "./index.css";
 class AdminContent extends PureComponent {
     
     render() {
-        const { films, filmsActions } = this.props;
+        const { films, filmsActions, additional, additionalActions } = this.props;
 
         return (
             <Fragment>
@@ -26,7 +28,8 @@ class AdminContent extends PureComponent {
 
                 <div className="admin-content">
                     <Switch>
-                        <Route path={`${ADMIN}`} render={() => <NewFilm films={films} filmsActions={filmsActions} />} />
+                        <Route exact path={ADMIN} render={() => <NewFilm films={films} filmsActions={filmsActions} />} />
+                        <Route exact path={ADMIN + "/additional"} render={() => <NewAdditional additional={additional} additionalActions={additionalActions} />} />
                         <Route component={PageNotFound} />
                     </Switch>
                 </div>
@@ -39,12 +42,14 @@ class AdminContent extends PureComponent {
 const mapStateToProps = state => {
     return {
         films: state.admin.films,
+        additional: state.admin.additional,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         filmsActions: bindActionCreators(FilmActions, dispatch),
+        additionalActions: bindActionCreators(AdditionalActions, dispatch),
     };
 };
 

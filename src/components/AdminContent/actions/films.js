@@ -2,6 +2,8 @@ import axios from "axios";
 import types from "../types/films";
 import { getApiObject } from "../../../util";
 
+const api = getApiObject();
+
 export const onAddNewFilmFetching = () => ({
     type: types.ON_ADD_NEW_FILM_FETCHING,
 });
@@ -32,7 +34,7 @@ export const addNewFilm =
                 "Authorization": getState().user.token
             };
 
-            return axios.post(getApiObject().films, data, { headers })
+            return axios.post(api.films, data, { headers })
                 .then(response => dispatch(onAddNewFilmSuccess(response.data)))
                 .catch(error => dispatch(onAddNewFilmFailed(error.message)));
 

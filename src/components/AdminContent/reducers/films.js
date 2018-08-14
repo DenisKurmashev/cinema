@@ -9,7 +9,7 @@ const initialState = {
 const FilmReducer = (state = initialState, action) => {
     switch(action.type) {
         case types.ON_ADD_NEW_FILM_FETCHING: 
-            return { ...state, isFetching: true };
+            return { ...state, isFetching: true, error: null, response: null };
 
         case types.ON_ADD_NEW_FILM_SUCCESS:
             return { ...state, isFetching: false, response: action.response };

@@ -27,3 +27,25 @@ export const validateFilmForm = (values, props) => {
 export const handleSubmitFilmForm = (values, action) => {
     return action.props.filmsActions.addNewFilm(values);
 };
+
+export const validateAdditionalForm = (values, props) => {
+    let errors = {};
+
+    if (values.name.length < 3) {
+        errors.name = "Minimum length of film name 3 symbols!";
+    }
+    
+    if (!values.price) {
+        errors.price = "You are not select the price!";
+    }
+
+    if (values.description.length < 15) {
+        errors.description = "Minimum length of description should be 15 symbols!";
+    }
+
+    return errors;
+};
+
+export const handleSubmitAdditionalForm = (values, action) => {
+    return action.props.additionalActions.addAdditional(values);
+};

@@ -5,6 +5,7 @@ const ADDITIONAL = new Schema({
     name: {
         type: Schema.Types.String,
         required: true,
+        unique: true,
     },
     price: {
         type: Schema.Types.Number,

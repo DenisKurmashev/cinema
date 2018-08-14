@@ -17,6 +17,9 @@ const user = readUserFromLocalStorage();
 if (user) {
     store.dispatch(onLoginOrRegisterSuccess(user));
 }
+
+// if user role admin
+// add dynamic reducer for its page
 if (user.user.role === "admin") {
     store.asyncReducer.admin = AdminReducer;
     store.replaceReducer(createReducer(store.asyncReducer));

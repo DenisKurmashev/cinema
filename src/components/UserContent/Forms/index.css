@@ -48,9 +48,15 @@
     }
 }
 
-@media(max-width: 1000px) {
+@media(max-width: 1200px) {
     .default-form {
         width: 50%;
+    }
+}
+
+@media(max-width: 900px) {
+    .default-form {
+        width: 60%;
     }
 }
 

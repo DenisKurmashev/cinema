@@ -5,7 +5,7 @@ import { validateFilmForm, handleSubmitFilmForm } from "../util";
 
 import "./NewFilm.css";
 
-class InnerNewFilm extends React.Component {
+class InnerNewFilm extends PureComponent {
 
     render() {
         const { films, values, errors, touched, handleChange, handleSubmit }

@@ -11,23 +11,18 @@ import * as FilmActions from "./actions/films";
 import Header from "./components/Header/Header";
 import NewFilm from "./components/NewFilm/NewFilm";
 
+import { HEADER_ITEMS } from "./constants/constants";
+
 import "./index.css";
 
-class AdminContent extends Component {
-
-    HEADER_ITEMS = [
-        {
-            title: "add films",
-            path: ADMIN + "/",
-        },
-    ]
+class AdminContent extends PureComponent {
     
     render() {
         const { films, filmsActions } = this.props;
 
         return (
             <Fragment>
-                <Header items={this.HEADER_ITEMS} />
+                <Header items={HEADER_ITEMS} />
 
                 <div className="admin-content">
                     <Switch>

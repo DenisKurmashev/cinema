@@ -16,8 +16,8 @@ export const onAddNewFilmFailed = (error) => ({
     error,
 });
 
-export const onAddNewFilm = 
-    (name, released, cover, description) => 
+export const addNewFilm = 
+    ({ name, released, cover, description }) => 
         (dispatch, getState) => {
             dispatch(onAddNewFilmFetching());
 

@@ -5,13 +5,31 @@ import { validateFilmForm, handleSubmitFilmForm } from "../util";
 
 import "./NewFilm.css";
 
-class InnerNewFilm extends PureComponent {
+class InnerNewFilm extends React.Component {
 
     render() {
-        return (
-            <div>
+        const { films, values, errors, touched, handleChange, handleSubmit }
+            = this.props;
 
-            </div>
+        return (
+            <form onSubmit={handleSubmit} className="default-form" noValidate>
+                <div className="default-form__title">Add new Film</div>
+
+                <div className="default-form__error">{touched.email && errors.email}</div>
+                <input type="email" placeholder="Film name" name="name" onChange={handleChange} value={values.name} />
+
+                <div className="default-form__error">{touched.email && errors.email}</div>
+                <input type="date" placeholder="Date of released" name="released" onChange={handleChange} value={values.released} />
+
+                <div className="default-form__error">{touched.password && errors.password}</div>
+                <input type="text" placeholder="Reference for cover of film" name="cover" onChange={handleChange} value={values.cover} />
+
+                <div className="default-form__error">{touched.password && errors.password}</div>
+                <textarea type="text" placeholder="Description of film" name="description" onChange={handleChange} value={values.description} />
+
+                <button type="submit" className="btn" disabled={films.isFetching}>Add</button>
+                
+            </form>
         );
     }
 
@@ -31,9 +49,6 @@ const NewFilm = withFormik({
     
 	validate: validateFilmForm,
 	handleSubmit: handleSubmitFilmForm,
-	onSubmit: (values, actions) => {
-		actions.setSubmitting(true);
-	},
 })(InnerNewFilm);
 
 export default NewFilm;

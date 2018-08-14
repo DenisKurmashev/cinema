@@ -36,12 +36,13 @@ export const validate = (values, props) => {
     return errors;
 };
 
-export const handleLogin = async (values, actions) => {
-    await actions.props.userActions.login({ email: values.email, password: values.password });
-    actions.setSubmitting(false);
+export const handleLogin = (values, actions) => {
+    return actions.props.userActions.login({ email: values.email, password: values.password })
+        .then(() => actions.setSubmitting(false));
+    
 };
 
-export const handleRegister = async (values, actions) => {
-    await actions.props.userActions.register({ name: values.name, email: values.email, password: values.password });    
-    actions.setSubmitting(false);
+export const handleRegister = (values, actions) => {
+    return actions.props.userActions.register({ name: values.name, email: values.email, password: values.password })
+        .then(() => actions.setSubmitting(false));
 };

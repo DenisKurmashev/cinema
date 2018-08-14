@@ -15,14 +15,14 @@ store.asyncReducer = {};
 // try to read user data and JWT token from local storage
 const user = readUserFromLocalStorage();
 if (user) {
-    store.dispatch(onLoginOrRegisterSuccess(user));
-}
+    // if user role admin
+    // add dynamic reducer for its page
+    if (user.user.role === "admin") {
+        store.asyncReducer.admin = AdminReducer;
+        store.replaceReducer(createReducer(store.asyncReducer));
+    }
 
-// if user role admin
-// add dynamic reducer for its page
-if (user.user.role === "admin") {
-    store.asyncReducer.admin = AdminReducer;
-    store.replaceReducer(createReducer(store.asyncReducer));
+    store.dispatch(onLoginOrRegisterSuccess(user));
 }
 
 const params = parseGetParams();

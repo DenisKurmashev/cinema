@@ -15,16 +15,16 @@ class InnerNewFilm extends PureComponent {
             <form onSubmit={handleSubmit} className="default-form" noValidate>
                 <div className="default-form__title">Add new Film</div>
 
-                <div className="default-form__error">{touched.email && errors.email}</div>
+                <div className="default-form__error">{touched.name && errors.name}</div>
                 <input type="email" placeholder="Film name" name="name" onChange={handleChange} value={values.name} />
 
-                <div className="default-form__error">{touched.email && errors.email}</div>
+                <div className="default-form__error">{touched.released && errors.released}</div>
                 <input type="date" placeholder="Date of released" name="released" onChange={handleChange} value={values.released} />
 
-                <div className="default-form__error">{touched.password && errors.password}</div>
+                <div className="default-form__error">{touched.cover && errors.cover}</div>
                 <input type="text" placeholder="Reference for cover of film" name="cover" onChange={handleChange} value={values.cover} />
 
-                <div className="default-form__error">{touched.password && errors.password}</div>
+                <div className="default-form__error">{touched.description && errors.description}</div>
                 <textarea type="text" placeholder="Description of film" name="description" onChange={handleChange} value={values.description} />
 
                 <button type="submit" className="btn" disabled={films.isFetching}>Add</button>

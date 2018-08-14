@@ -26,7 +26,7 @@ class AdminContent extends PureComponent {
 
                 <div className="admin-content">
                     <Switch>
-                        <Route path={`${ADMIN}/`} render={() => <NewFilm films={films} filmsActions={filmsActions} />} />
+                        <Route path={`${ADMIN}`} render={() => <NewFilm films={films} filmsActions={filmsActions} />} />
                         <Route component={PageNotFound} />
                     </Switch>
                 </div>

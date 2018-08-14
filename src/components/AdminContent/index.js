@@ -24,7 +24,7 @@ class AdminContent extends PureComponent {
         }
     ]
     
-    render() {
+    render() {console.log(this.props)
         return (
             <div>
                 <Header items={this.HEADER_ITEMS} />
@@ -45,7 +45,7 @@ class AdminContent extends PureComponent {
 
 const mapStateToProps = state => {
     return {
-        
+        films: state.admin.films,
     };
 };
 

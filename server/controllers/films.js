@@ -5,12 +5,32 @@ const errors = require("../helpers/errors");
 
 // ONLY FOR ADMIN
 
-exports.getAll = async ctx => {
-    ctx.body = ctx.state.user;
-};
-
 exports.getWithPaginate = async ctx => {
-    ctx.body = ctx.params.id;
+    const pageId   = parseInt(ctx.query.pageId || 0, 10) - 1;
+    const pageSize = parseInt(ctx.query.pageSize || 10, 10);
+
+    let films      = [], 
+        filmsCount = 0;
+
+    try {
+        films = await Film
+            .find({})
+            .skip(pageId * pageSize)
+            .limit(pageSize)
+            .select("cover name")
+            .lean();
+
+        filmsCount = await Film.count();
+
+    } catch(ex) {
+        console.log(ex);
+        ctx.status = errors.wrongCredentials.status;
+        ctx.body = ex;
+        return;
+    }
+
+    ctx.status = 200;
+    ctx.body = { films, pageCount: Math.ceil(filmsCount / pageSize) };
 };
 
 exports.new = async ctx => {

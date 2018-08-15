@@ -6,6 +6,7 @@ const initialState = {
     response: null, 
 
     // for add new Seance form
+    pageSize: 10, // show at one page 10 items
     pageId: 0,
     pageCount: 0,
     loadedFilms: [],

@@ -59,15 +59,20 @@ export const addNewFilm =
 // get films with pagination
 // pageId - pagination page number
 export const getFilms = 
-    (pageId) => 
+    () => 
         (dispatch, getState) => {
             dispatch(onFilmsFetching());
+
+            const state = getState();
+            const { pageId, pageSize } = state
 
             const headers = {
                 "Authorization": getState().user.token
             };
 
-            return axios.get(api.films + `/${pageId}`, { headers })
+            const url  = api.films + `/?pageId=${pageId}&pageSize=${pageSize}`;
+
+            return axios.get(url, { headers })
                 .then(response => dispatch(onLoadFilmsSuccess(response.data)))
                 .catch(error => dispatch(onLoadFilmsFailed(error.message)));
 

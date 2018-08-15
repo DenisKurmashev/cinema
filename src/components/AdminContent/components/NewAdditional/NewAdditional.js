@@ -28,7 +28,7 @@ class InnerAdditional extends PureComponent {
                 <div className="default-form__title">Add new Additional</div>
 
                 <div className="default-form__error">{touched.name && errors.name}</div>
-                <input type="email" placeholder="Film name" name="name" onChange={handleChange} value={values.name} />
+                <input type="email" placeholder="Additional name" name="name" onChange={handleChange} value={values.name} />
 
                 <div className="default-form__error">{touched.price && errors.price}</div>
                 <input type="number" placeholder="Price of additional service" min={1} name="price" onChange={handleChange} value={values.price} />

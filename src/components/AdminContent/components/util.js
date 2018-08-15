@@ -49,3 +49,14 @@ export const validateAdditionalForm = (values, props) => {
 export const handleSubmitAdditionalForm = (values, action) => {
     return action.props.additionalActions.addAdditional(values);
 };
+
+export const validateSeanceForm = (values, props) => {
+    let errors = {};
+
+
+    return errors;
+};
+
+export const handleSubmitSeanceForm = (values, action) => {
+    
+};

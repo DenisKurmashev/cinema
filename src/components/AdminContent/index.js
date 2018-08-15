@@ -6,12 +6,14 @@ import { Switch, Route } from "react-router-dom";
 import { ADMIN } from "../UserContent/path";
 import PageNotFound from "../PageNotFound";
 
-import * as FilmActions from "./actions/films";
+import * as FilmActions       from "./actions/films";
 import * as AdditionalActions from "./actions/additional";
+import * as SeanceActions     from "./actions/seance";
 
-import Header from "./components/Header/Header";
-import NewFilm from "./components/NewFilm/NewFilm";
+import Header        from "./components/Header/Header";
+import NewFilm       from "./components/NewFilm/NewFilm";
 import NewAdditional from "./components/NewAdditional/NewAdditional";
+import NewSeance     from "./components/NewSeance/NewSeance";
 
 import { HEADER_ITEMS } from "./constants/constants";
 
@@ -20,7 +22,8 @@ import "./index.css";
 class AdminContent extends PureComponent {
     
     render() {
-        const { films, filmsActions, additional, additionalActions } = this.props;
+        const { films, filmsActions, additional, additionalActions, seance, seanceActions } 
+            = this.props;
 
         return (
             <Fragment>
@@ -30,6 +33,7 @@ class AdminContent extends PureComponent {
                     <Switch>
                         <Route exact path={ADMIN} render={() => <NewFilm films={films} filmsActions={filmsActions} />} />
                         <Route exact path={ADMIN + "/additional"} render={() => <NewAdditional additional={additional} additionalActions={additionalActions} />} />
+                        <Route exact path={ADMIN + "/seance"} render={() => <NewSeance seance={seance} seanceActions={seanceActions} />} />
                         <Route component={PageNotFound} />
                     </Switch>
                 </div>
@@ -41,15 +45,17 @@ class AdminContent extends PureComponent {
 
 const mapStateToProps = state => {
     return {
-        films: state.admin.films,
+        films:      state.admin.films,
         additional: state.admin.additional,
+        seance:     state.admin.seance,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        filmsActions: bindActionCreators(FilmActions, dispatch),
+        filmsActions:      bindActionCreators(FilmActions, dispatch),
         additionalActions: bindActionCreators(AdditionalActions, dispatch),
+        seanceActions:     bindActionCreators(SeanceActions, dispatch),
     };
 };
 

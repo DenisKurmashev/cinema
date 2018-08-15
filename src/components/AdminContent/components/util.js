@@ -51,12 +51,28 @@ export const handleSubmitAdditionalForm = (values, action) => {
 };
 
 export const validateSeanceForm = (values, props) => {
+    const selectedCinema = props.cinema.selectedCinema;
+    const selectedFilm   = props.films.selectedFilm;
+
     let errors = {};
 
+    if (!selectedCinema) {
+        errors.cinema = "You not selected cinema from list!";
+    }
+
+    if (!selectedFilm) {
+        errors.film = "You not selected film from list!";
+    }
+
+    if (!values.date) {
+        errors.date = "You not selected seance date!";
+    } else if ((new Date(values.date)) < Date.now()) {
+        errors.date = "You selected the date below now!";
+    }
 
     return errors;
 };
 
 export const handleSubmitSeanceForm = (values, action) => {
-    console.log(values);
+    return action.props.seanceActions.addNewSeance(values);
 };

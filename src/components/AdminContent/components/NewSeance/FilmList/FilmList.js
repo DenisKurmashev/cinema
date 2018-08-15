@@ -3,27 +3,27 @@ import ReactPaginate from "react-paginate";
 
 import FilmLoading from "../../../../UserContent/FilmList/FilmLoading";
 
-import "./CinemasList.css";
+import "./FilmList.css";
 
-class CinemasList extends PureComponent {
+class FilmList extends PureComponent {
 
     state = {
         isListVisible: true,
     }
 
     componentDidMount() {
-        this.props.cinemaActions.loadCinema();
+        this.props.filmsActions.loadFilms();
     }
 
     handlePageChange = (data) => {
         const pageId = data.selected;
-        const { onPageIdChange, loadCinema } = this.props.cinemaActions;
+        const { onPageIdChange, loadFilms } = this.props.filmsActions;
 
         onPageIdChange(pageId);
-        loadCinema();
+        loadFilms();
     }
 
-    handleCinemaItemClick = (event) => {
+    handleFilmsItemClick = (event) => {
         const attrName = "data-index";
         const target = event.target;
 
@@ -33,66 +33,64 @@ class CinemasList extends PureComponent {
         const selectedId     
             = target.getAttribute(attrName) || target.parentNode.getAttribute(attrName);
 
-        const { cinema, cinemaActions } = this.props;
-        
+        const { films, filmsActions } = this.props;
+
         // little optimize, for disable rerender if item already selected
-        if (cinema.selectedCinema)
-            if (selectedId ===cinema.selectedCinema._id)
+        if (films.selectedFilm)
+            if (selectedId === films.selectedFilm._id)
                 return;
 
-        cinemaActions.onSelectedCinemaChange(selectedId);
+        filmsActions.onSelectedFilmChange(selectedId);
         this.setState({ isListVisible: false });
     }
 
-    getSelectedCinema = () => {
-        const { selectedCinema } = this.props.cinema;
+    getSelectedFilms = () => {
+        const { selectedFilm } = this.props.films;
 
-        if (!selectedCinema)
+        if (!selectedFilm)
             return null;
 
         return (
             <div onClick={() => this.setState({ isListVisible: !this.state.isListVisible })} className="cinema-content-selected-item">
-                <div>{selectedCinema.name}</div>
-                <div>{selectedCinema.city}</div>
+                <div>{selectedFilm.name}</div>
             </div>
         );
     }
 
     render() {
-        const { cinema } = this.props;
+        const { films } = this.props;
 
         return (
             <div className="cinema-content">
-                { this.getSelectedCinema() }
+                { this.getSelectedFilms() }
                 
                 {
                     !this.state.isListVisible
                     ? null
-                    : cinema.isFetching
+                    : films.isFetching
                         ? <FilmLoading />
                         : (
                             <Fragment>
-                                <div className="cinema-content-list" onClick={this.handleCinemaItemClick} >
+                                <div className="cinema-content-list" onClick={this.handleFilmsItemClick} >
                                     {
-                                        cinema.loadedCinemas.map((el, index) => (
+                                        films.loadedFilms.map((el, index) => (
                                             <div data-index={el._id} key={index} className={"list-item" + (index % 2 === 0 ? " gray" : "")}>
                                                 <div>{el.name}</div>
-                                                <div>{el.city}</div>
                                             </div>
                                         ))
                                     }
                                 </div>
                                 
                                 {
-                                    cinema.pageCount <= 1
+                                    films.pageCount <= 1
                                     ? null
                                     : (
                                         <ReactPaginate previousLabel="previous"
-                                            forcePage={cinema.pageId}
+                                            forcePage={films.pageId}
                                             nextLabel="next"
                                             breakLabel="..."
                                             breakClassName="break-me"
-                                            pageCount={cinema.pageCount}
+                                            pageCount={films.pageCount}
                                             marginPagesDisplayed={2}
                                             pageRangeDisplayed={5}
                                             onPageChange={this.handlePageChange}
@@ -111,4 +109,4 @@ class CinemasList extends PureComponent {
 
 }
 
-export default CinemasList;
+export default FilmList;

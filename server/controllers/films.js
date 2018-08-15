@@ -6,7 +6,7 @@ const errors = require("../helpers/errors");
 // ONLY FOR ADMIN
 
 exports.getWithPaginate = async ctx => {
-    const pageId   = parseInt(ctx.query.pageId || 0, 10) - 1;
+    const pageId   = parseInt(ctx.query.pageId || 0, 10);
     const pageSize = parseInt(ctx.query.pageSize || 10, 10);
 
     let films      = [], 

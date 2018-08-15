@@ -8,10 +8,6 @@ export const onSelectedCinemaChange = (id) => ({
     type: types.ON_SELECTED_CINEMA_CHANGE,
     id,
 });
-export const onSelectedFilmChange = (id) => ({
-    type: types.ON_SELECTED_FILM_CHANGE,
-    id,
-});
 
 export const onCinemaFetching = () => ({
     type: types.ON_CINEMA_FETCHING,

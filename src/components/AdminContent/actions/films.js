@@ -4,6 +4,11 @@ import { getApiObject } from "../../../util";
 
 const api = getApiObject();
 
+export const onSelectedFilmChange = (id) => ({
+    type: types.ON_SELECTED_FILM_CHANGE,
+    id,
+});
+
 export const onFilmsFetching = () => ({
     type: types.ON_FILMS_FETCHING,
 });
@@ -58,7 +63,7 @@ export const addNewFilm =
 
 // get films with pagination
 // pageId - pagination page number
-export const getFilms = 
+export const loadFilms = 
     () => 
         (dispatch, getState) => {
             dispatch(onFilmsFetching());

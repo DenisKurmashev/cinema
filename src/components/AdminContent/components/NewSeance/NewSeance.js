@@ -4,6 +4,7 @@ import { withFormik } from "formik";
 import { validateSeanceForm, handleSubmitSeanceForm } from "../util";
 
 import CinemasList from "./CinemasList/CinemasList";
+import FilmList    from "./FilmList/FilmList";
 
 import "./NewSeance.css";
 
@@ -30,7 +31,24 @@ class InnerSeance extends PureComponent {
                 <div className="default-form__title">Add new Seance</div>
                 
                 <div className="default-form-subtitle">1. select cinema from list below</div>
+                <div className="default-form__error">{errors.cinema}</div>
                 <CinemasList cinema={cinema} cinemaActions={cinemaActions}  />
+
+                <div className="default-form-subtitle">2. select film from list below</div>
+                <div className="default-form__error">{errors.film}</div>
+                <FilmList films={films} filmsActions={filmsActions} />
+
+                <div className="default-form-subtitle">3. select the date for seance</div>
+                <div className="default-form__error">{touched.date && errors.date}</div>
+                <input type="datetime-local" placeholder="Date for seance" name="date" onChange={handleChange} value={values.date} />
+
+                <div className="default-form-subtitle">4. select the number of room</div>
+                <div className="default-form__error">{touched.roomNumber && errors.roomNumber}</div>
+                <input type="number" placeholder="Date for seance" 
+                    min={0} name="roomNumber" onChange={handleChange} 
+                    value={values.roomNumber} 
+                    max={cinema.selectedCinema ? (cinema.selectedCinema.rooms.length - 1) : 9} 
+                />
 
                 <button type="submit" className="btn" disabled={seance.isFetching}>Add</button>
                 

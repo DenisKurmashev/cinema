@@ -7,18 +7,20 @@ const initialState = {
 
     // for add new Seance form
     pageSize: 10, // show at one page 10 items
-    pageId: 1,
+    pageId: 0,
     pageCount: 0,
     loadedCinemas: [],
     loadCinemasError: null,
     selectedCinema: null,
-    selectedFilm: null,
 };
 
 const CinemaReducer = (state = initialState, action) => {
     switch(action.type) {
         case types.ON_SELECTED_CINEMA_CHANGE: 
-            return { ...state, selectedCinema: action.id };
+            return { 
+                ...state, 
+                selectedCinema: state.loadedCinemas.find(el => el._id === action.id) 
+            };
 
         case types.ON_SELECTED_FILM_CHANGE:
             return { ...state, selectedFilm: action.id };
@@ -32,7 +34,7 @@ const CinemaReducer = (state = initialState, action) => {
         case types.ON_LOAD_CINEMA_FAILED:
             return { ...state, isFetching: false, loadCinemasError: action.error };
 
-        case types.ON_PAGE_ID_CHANGE:
+        case types.ON_CINEMA_PAGE_CHANGE:
             return { ...state, pageId: action.pageId };
 
         default:

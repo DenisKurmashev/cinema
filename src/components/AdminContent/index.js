@@ -1,7 +1,8 @@
 import React, { PureComponent, Fragment } from "react";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { Switch, Route } from "react-router-dom";
+import { bindActionCreators }             from "redux";
+import { connect }                        from "react-redux";
+import { Switch, Route }                  from "react-router-dom";
+import PropTypes                          from "prop-types";
 
 import { ADMIN } from "../UserContent/path";
 import PageNotFound from "../PageNotFound";
@@ -21,6 +22,36 @@ import { HEADER_ITEMS } from "./constants/constants";
 import "./index.css";
 
 class AdminContent extends PureComponent {
+
+    static propTypes = {
+        films: PropTypes.shape({
+            isFetching: PropTypes.bool,
+            error: PropTypes.string,
+            response: PropTypes.string,
+            pageSize: PropTypes.number, 
+            pageId: PropTypes.number,
+            pageCount: PropTypes.number,
+            loadedFilms: PropTypes.array,
+            loadFilmsError: PropTypes.string,
+            selectedFilm: PropTypes.shape({
+                _id: PropTypes.string,
+                name: PropTypes.string,
+            }),
+        }),
+    }
+    static defaultProps = {
+        films: {
+            isFetching: false,
+            error: null,
+            response: null, 
+            pageSize: 10,
+            pageId: 0,
+            pageCount: 0,
+            loadedFilms: [],
+            loadFilmsError: null,
+            selectedFilm: null,
+        },
+    }
     
     render() {
         const { films, filmsActions, additional, additionalActions, seance, seanceActions, cinema, cinemaActions } 

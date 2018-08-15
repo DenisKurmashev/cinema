@@ -240,40 +240,35 @@ exports.new = async ctx => {
     const { cinema, film, date, roomNumber } 
         =  ctx.request.body;
 
-    if (!cinema || !film || !date || !roomNumber) {
+    const validateSchema = joi.object().keys({
+        cinema: joi.string().min(24),
+        film: joi.string().min(24),
+        date: joi.date(),
+        roomNumber: joi.number(),
+    });
+
+    try {
+        await joi.validate(ctx.request.body, validateSchema);
+    } catch(ex) {
+        console.log(ex);
         ctx.status = errors.wrongCredentials.status;
-        ctx.body = errors.wrongCredentials;
-    } else {
-        const validateSchema = joi.object().keys({
-            cinema: joi.string().min(24),
-            film: joi.string().min(24),
-            date: joi.date(),
-            roomNumber: joi.number(),
-        });
-
-        try {
-            await joi.validate(ctx.request.body, validateSchema);
-        } catch(ex) {
-            console.log(ex);
-            ctx.status = errors.wrongCredentials.status;
-            ctx.body = ex.details;
-            return;
-        }
-
-        let session;
-
-        try {
-            session = new Session(ctx.request.body);
-            await session.save();
-        } catch(ex) {
-            console.log(ex);
-            ctx.status = errors.wrongCredentials.status;
-            ctx.body = ex;
-            return;
-        }
-
-        ctx.status = 201;
-        ctx.body = "OK";
-
+        ctx.body = ex.details;
+        return;
     }
+
+    let session;
+
+    try {
+        session = new Session(ctx.request.body);
+        await session.save();
+    } catch(ex) {
+        console.log(ex);
+        ctx.status = errors.wrongCredentials.status;
+        ctx.body = ex;
+        return;
+    }
+
+    ctx.status = 201;
+    ctx.body = "OK";
+
 };

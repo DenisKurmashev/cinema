@@ -3,6 +3,7 @@ input[type="number"],
 input[type="password"], 
 input[type="date"], 
 input[type="email"],
+input[type="datetime-local"],
 textarea {
     padding: 12px 8px;
     outline: none;
@@ -25,6 +26,7 @@ input[type="number"]:focus,
 input[type="password"]:focus, 
 input[type="date"]:focus, 
 input[type="email"]:focus,
+input[type="datetime-local"]:focus,
 textarea:focus {
     border-color: #6C9BC7;
 }

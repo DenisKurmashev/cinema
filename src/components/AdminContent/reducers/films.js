@@ -11,10 +11,17 @@ const initialState = {
     pageCount: 0,
     loadedFilms: [],
     loadFilmsError: null,
+    selectedFilm: null,
 };
 
 const FilmReducer = (state = initialState, action) => {
     switch(action.type) {
+        case types.ON_SELECTED_FILM_CHANGE: 
+            return { 
+                ...state, 
+                selectedFilm: state.loadedFilms.find(el => el._id === action.id)
+            };
+
         case types.ON_FILMS_FETCHING: 
             return { ...state, isFetching: true, error: null, response: null };
 

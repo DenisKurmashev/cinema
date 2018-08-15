@@ -9,7 +9,7 @@ exports.getAll = async ctx => {
     ctx.body = ctx.state.user;
 };
 
-exports.getById = async ctx => {
+exports.getWithPaginate = async ctx => {
     ctx.body = ctx.params.id;
 };
 

@@ -58,5 +58,5 @@ export const validateSeanceForm = (values, props) => {
 };
 
 export const handleSubmitSeanceForm = (values, action) => {
-    
+    console.log(values);
 };

@@ -29,7 +29,8 @@ class InnerSeance extends PureComponent {
                 
                 <div className="default-form__title">Add new Seance</div>
                 
-                <CinemasList cinema={cinema} cinemaActions={cinemaActions} />
+                <div className="default-form-subtitle">1. select cinema from list below</div>
+                <CinemasList cinema={cinema} cinemaActions={cinemaActions}  />
 
                 <button type="submit" className="btn" disabled={seance.isFetching}>Add</button>
                 
@@ -43,8 +44,6 @@ const Seance = withFormik({
     validateOnBlur: false,
 
     mapPropsToValues: props => ({ 
-        cinema: "",
-        film: "", 
         date: "", 
         roomNumber: 0,
 

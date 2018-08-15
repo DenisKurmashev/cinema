@@ -11,5 +11,6 @@
     "additional": "/additional",
     "orders": "/orders",
     "pending": "/pending",
-    "films": "/films"
+    "films": "/films",
+    "cinema": "/cinema"
 }

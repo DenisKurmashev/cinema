@@ -64,7 +64,7 @@ export const getFilms =
             dispatch(onFilmsFetching());
 
             const state = getState();
-            const { pageId, pageSize } = state
+            const { pageId, pageSize } = state.admin.films;
 
             const headers = {
                 "Authorization": getState().user.token

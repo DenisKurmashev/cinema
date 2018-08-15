@@ -1,18 +1,18 @@
 const Cinema = require("../models/cinema");
 
 const item1 = {
-    name: "Best cinema",
+    name: "BIG Minsk House",
     city: "Minsk",
 };
 
 const item2 = {
-    name: "Night Minsk",
-    city: "Minsk",
+    name: "BIG Gomel House",
+    city: "Gomel",
 };
 
 const item3 = {
-    name: "Nice Gomel",
-    city: "Gomel",
+    name: "BIG Vitebsk House",
+    city: "Vitebsk",
 };
 
 (new Cinema(item1)).save();

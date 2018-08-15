@@ -4,14 +4,24 @@ import { getApiObject } from "../../../util";
 
 const api = getApiObject();
 
+export const onSelectedCinemaChange = (id) => ({
+    type: types.ON_SELECTED_CINEMA_CHANGE,
+    id,
+});
+export const onSelectedFilmChange = (id) => ({
+    type: types.ON_SELECTED_FILM_CHANGE,
+    id,
+});
+
 export const onCinemaFetching = () => ({
-    type: types.ON_CinemaS_FETCHING,
+    type: types.ON_CINEMA_FETCHING,
 });
-export const onGetCinemaSuccess = (response) => ({
+export const onLoadCinemaSuccess = ({ cinemas, pageCount }) => ({
     type: types.ON_LOAD_CINEMA_SUCCESS,
-    response,
+    cinemas,
+    pageCount,
 });
-export const onGetCinemaFailed = (error) => ({
+export const onLoadCinemaFailed = (error) => ({
     type: types.ON_LOAD_CINEMA_FAILED,
     error,
 });
@@ -22,4 +32,24 @@ export const onPageIdChange = (pageId) => ({
     pageId,
 });
 
+
+export const loadCinema = 
+    () => 
+        (dispatch, getState) => {
+            dispatch(onCinemaFetching());
+
+            const state = getState();
+            const { pageId, pageSize } = state.admin.cinema;
+
+            const headers = {
+                "Authorization": getState().user.token
+            };
+
+            const url = api.cinema + `/?pageId=${pageId}&pageSize=${pageSize}`;
+
+            return axios.get(url, { headers })
+                .then(response => dispatch(onLoadCinemaSuccess(response.data)))
+                .catch(error => dispatch(onLoadCinemaFailed(error.message)));
+
+        };
 

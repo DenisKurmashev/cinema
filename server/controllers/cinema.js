@@ -4,7 +4,7 @@ const Cinema = require("../models/cinema");
 const errors = require("../helpers/errors");
 
 exports.getWithPaginate = async ctx => {
-    const pageId   = parseInt(ctx.query.pageId || 0, 10) - 1;
+    const pageId   = parseInt(ctx.query.pageId || 1, 10) - 1;
     const pageSize = parseInt(ctx.query.pageSize || 10, 10);
 
     let cinemas      = [], 

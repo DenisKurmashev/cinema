@@ -15,7 +15,7 @@ exports.getWithPaginate = async ctx => {
             .find({})
             .skip(pageId * pageSize)
             .limit(pageSize)
-            .select("cover name")
+            .select("city name")
             .lean();
 
             cinemasCount = await Cinema.count();

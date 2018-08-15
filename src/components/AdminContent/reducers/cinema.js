@@ -13,7 +13,7 @@ const initialState = {
     loadCinemasError: null,
 };
 
-const FilmReducer = (state = initialState, action) => {
+const CinemaReducer = (state = initialState, action) => {
     switch(action.type) {
         case types.ON_CINEMA_FETCHING: 
             return { ...state, isFetching: true, error: null, response: null };
@@ -32,4 +32,4 @@ const FilmReducer = (state = initialState, action) => {
     }
 };
 
-export default FilmReducer;
+export default CinemaReducer;

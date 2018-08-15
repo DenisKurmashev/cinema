@@ -9,6 +9,7 @@ import PageNotFound from "../PageNotFound";
 import * as FilmActions       from "./actions/films";
 import * as AdditionalActions from "./actions/additional";
 import * as SeanceActions     from "./actions/seance";
+import * as CinemaActions     from "./actions/cinema";
 
 import Header        from "./components/Header/Header";
 import NewFilm       from "./components/NewFilm/NewFilm";
@@ -22,7 +23,7 @@ import "./index.css";
 class AdminContent extends PureComponent {
     
     render() {
-        const { films, filmsActions, additional, additionalActions, seance, seanceActions } 
+        const { films, filmsActions, additional, additionalActions, seance, seanceActions, cinema, cinemaActions } 
             = this.props;
 
         return (
@@ -33,7 +34,15 @@ class AdminContent extends PureComponent {
                     <Switch>
                         <Route exact path={ADMIN} render={() => <NewFilm films={films} filmsActions={filmsActions} />} />
                         <Route exact path={ADMIN + "/additional"} render={() => <NewAdditional additional={additional} additionalActions={additionalActions} />} />
-                        <Route exact path={ADMIN + "/seance"} render={() => <NewSeance seance={seance} seanceActions={seanceActions} />} />
+
+                        <Route exact path={ADMIN + "/seance"} render={() => 
+                            <NewSeance films={films}    filmsActions={filmsActions}
+                                additional={additional} additionalActions={additionalActions}
+                                seance={seance}         seanceActions={seanceActions} 
+                                cinema={cinema}         cinemaActions={cinemaActions}
+                            />
+                        } />
+
                         <Route component={PageNotFound} />
                     </Switch>
                 </div>
@@ -48,6 +57,7 @@ const mapStateToProps = state => {
         films:      state.admin.films,
         additional: state.admin.additional,
         seance:     state.admin.seance,
+        cinema:     state.admin.cinema,
     };
 };
 
@@ -56,6 +66,7 @@ const mapDispatchToProps = dispatch => {
         filmsActions:      bindActionCreators(FilmActions, dispatch),
         additionalActions: bindActionCreators(AdditionalActions, dispatch),
         seanceActions:     bindActionCreators(SeanceActions, dispatch),
+        cinemaActions:     bindActionCreators(CinemaActions, dispatch),
     };
 };
 

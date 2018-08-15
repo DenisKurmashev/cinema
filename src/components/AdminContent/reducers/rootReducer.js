@@ -1,11 +1,13 @@
 import { combineReducers } from "redux";
 
-import FilmReducer from "./films";
+import FilmReducer       from "./films";
 import AdditionalReducer from "./additional";
-import SeanceReducer from "./seance";
+import SeanceReducer     from "./seance";
+import CinemaReducer     from "./cinema";
 
 export default combineReducers({
-    films: FilmReducer, 
+    films:      FilmReducer, 
     additional: AdditionalReducer,
-    seance: SeanceReducer,
+    seance:     SeanceReducer,
+    cinema:     CinemaReducer,
  });

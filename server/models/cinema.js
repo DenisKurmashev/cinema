@@ -1,3 +1,4 @@
+const { DEFAULT_ROOM_SCHEMAS } = require("../constants/constants");
 const mongoose = require("../context");
 const Schema = mongoose.Schema;
 
@@ -17,32 +18,7 @@ const CINEMA = new Schema({
                 placeSchema: [[]],
             }
         ],
-        default: [
-            // TO-DO: write default rooms schemas
-            {
-                placeSchema: [
-                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
-                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
-                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
-                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
-                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
-                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
-                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
-                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
-                    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
-                    [ 2, 2, 0, 2, 2, 0, 0, 3, 3, 3 ],
-                ]
-            },
-            {
-                placeSchema: [
-                    [ 1, 1, 1, 1, 1, 1, 1 ],
-                    [ 1, 1, 1, 1, 1, 1, 1 ],
-                    [ 1, 1, 1, 1, 1, 1, 1 ],
-                    [ 1, 1, 1, 1, 1, 1, 1 ],
-                    [ 0, 2, 2, 0, 2, 2, 0 ],
-                ]
-            }
-        ],      
+        default: DEFAULT_ROOM_SCHEMAS,      
     },
 });
 

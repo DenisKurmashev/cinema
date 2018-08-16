@@ -2,6 +2,7 @@ const joi = require("joi");
 
 const Cinema = require("../models/cinema");
 const errors = require("../helpers/errors");
+const { DEFAULT_ROOM_SCHEMAS } = require("../constants/constants");
 
 exports.getWithPaginate = async ctx => {
     const pageId   = parseInt(ctx.query.pageId || 0, 10);
@@ -32,6 +33,10 @@ exports.getWithPaginate = async ctx => {
 };
 
 exports.getById = async ctx => {};
+
+exports.getAllSchemas = async ctx => {console.log("asdasd")
+    ctx.body = DEFAULT_ROOM_SCHEMAS || [];
+};
 
 exports.new = async ctx => {
     const { name, city } = ctx.request.body;

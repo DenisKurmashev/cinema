@@ -16,6 +16,7 @@ import Header        from "./components/Header/Header";
 import NewFilm       from "./components/NewFilm/NewFilm";
 import NewAdditional from "./components/NewAdditional/NewAdditional";
 import NewSeance     from "./components/NewSeance/NewSeance";
+import NewCinema     from "./components/NewCinema/NewCinema";
 
 import { HEADER_ITEMS } from "./constants/constants";
 
@@ -71,8 +72,10 @@ class AdminContent extends PureComponent {
                                 additional={additional} additionalActions={additionalActions}
                                 seance={seance}         seanceActions={seanceActions} 
                                 cinema={cinema}         cinemaActions={cinemaActions}
-                            />
-                        } />
+                            />} 
+                        />
+
+                        <Route exact path={ADMIN + "/cinema"} render={() => <NewCinema cinema={cinema} cinemaActions={cinemaActions} />} />
 
                         <Route component={PageNotFound} />
                     </Switch>

@@ -23,10 +23,10 @@ export const validateFilmForm = (values, props) => {
 
     return errors;
 };
-
 export const handleSubmitFilmForm = (values, action) => {
     return action.props.filmsActions.addNewFilm(values);
 };
+
 
 export const validateAdditionalForm = (values, props) => {
     let errors = {};
@@ -45,10 +45,10 @@ export const validateAdditionalForm = (values, props) => {
 
     return errors;
 };
-
 export const handleSubmitAdditionalForm = (values, action) => {
     return action.props.additionalActions.addAdditional(values);
 };
+
 
 export const validateSeanceForm = (values, props) => {
     const selectedCinema = props.cinema.selectedCinema;
@@ -72,7 +72,17 @@ export const validateSeanceForm = (values, props) => {
 
     return errors;
 };
-
 export const handleSubmitSeanceForm = (values, action) => {
     return action.props.seanceActions.addNewSeance(values);
+};
+
+
+export const validateCinemaForm = (values, props) => {
+    let errors = {};
+    
+
+    return errors;
+};
+export const handleSubmitCinemaForm = (values, action) => {
+    console.log(values);
 };

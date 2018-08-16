@@ -27,7 +27,11 @@ class InnerNewCinema extends PureComponent {
 
                 <div className="default-form__title">Add new Cinema</div>
                 
+                <div className="default-form__error">{touched.name && errors.name}</div>
+                <input type="text" placeholder="Name of cinema" name="name" onChange={handleChange} value={values.name} />
 
+                <div className="default-form__error">{touched.city && errors.city}</div>
+                <input type="text" placeholder="City" name="city" onChange={handleChange} value={values.city} />
 
                 <button type="submit" className="btn" disabled={cinema.isFetching}>Add</button>
                 
@@ -42,9 +46,7 @@ const NewCinema = withFormik({
 
     mapPropsToValues: props => ({ 
         name: "",
-        released: "",
-        cover: "", 
-        description: "", 
+        city: "",
 
         cinema: props.cinema, 
         cinemaActions: props.cinemaActions 

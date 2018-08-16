@@ -22,6 +22,15 @@ export const onLoadCinemaFailed = (error) => ({
     error,
 });
 
+export const onAddNewCinemaSuccess = (response) => ({
+    type: types.ON_ADD_CINEMA_SUCCESS,
+    response,
+});
+export const onAddNewCinemaFailed = (error) => ({
+    type: types.ON_ADD_CINEMA_FAILED,
+    error,
+});
+
 
 export const onPageIdChange = (pageId) => ({
     type: types.ON_CINEMA_PAGE_CHANGE,
@@ -49,3 +58,22 @@ export const loadCinema =
 
         };
 
+export const addNewCinema = 
+    ({ name, city }) => 
+        (dispatch, getState) => {
+            dispatch(onCinemaFetching());
+
+            const data = {
+                name,
+                city,
+            };
+
+            const headers = {
+                "Authorization": getState().user.token
+            };
+
+            return axios.post(api.cinema, data, { headers })
+                .then(response => dispatch(onAddNewCinemaSuccess(response.data)))
+                .catch(error => dispatch(onAddNewCinemaFailed(error.message)));
+
+        };

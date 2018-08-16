@@ -21,7 +21,7 @@ const validateNewCinema = async (data) => {
     
     const validateSchema = joi.object().keys({
         name: joi.string().min(3).required(),
-        city: joi.string().min(5).required(),
+        city: joi.string().min(3).required(),
         rooms: joi.array().items(joi.object().keys({
             placeSchema: joi.array().items(
                 joi.array().items(

@@ -80,9 +80,20 @@ export const handleSubmitSeanceForm = (values, action) => {
 export const validateCinemaForm = (values, props) => {
     let errors = {};
     
+    if (!values.name) {
+        errors.name = "Name field should be fill!";
+    } else if (values.name.length < 3) {
+        errors.name = "Name of the cinema minimum should contain of 3 symbols!";
+    }
+
+    if (!values.city) {
+        errors.city = "City field should be fill!";
+    } else if (values.city.length < 3) {
+        errors.city = "Name of the city minimum should contain of 3 symbols!";
+    }
 
     return errors;
 };
 export const handleSubmitCinemaForm = (values, action) => {
-    console.log(values);
+    return action.props.cinemaActions.addNewCinema(values);
 };

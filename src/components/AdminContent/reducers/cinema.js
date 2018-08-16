@@ -34,6 +34,12 @@ const CinemaReducer = (state = initialState, action) => {
         case types.ON_LOAD_CINEMA_FAILED:
             return { ...state, isFetching: false, loadCinemasError: action.error };
 
+        case types.ON_ADD_CINEMA_SUCCESS:
+            return { ...state, isFetching: false, response: action.response };
+
+        case types.ON_ADD_CINEMA_FAILED:
+            return { ...state, isFetching: false, error: action.error };
+
         case types.ON_CINEMA_PAGE_CHANGE:
             return { ...state, pageId: action.pageId };
 

@@ -9,6 +9,7 @@ export const onSelectedCinemaChange = (id) => ({
     id,
 });
 
+
 export const onCinemaFetching = () => ({
     type: types.ON_CINEMA_FETCHING,
 });
@@ -21,6 +22,17 @@ export const onLoadCinemaFailed = (error) => ({
     type: types.ON_LOAD_CINEMA_FAILED,
     error,
 });
+
+
+export const onLoadTypesSuccess = (seatsTypes) => ({
+    type: types.ON_LOAD_TYPES_SUCCESS,
+    seatsTypes,
+});
+export const onLoadTypesFailed = (error) => ({
+    type: types.ON_LOAD_TYPES_FAILED,
+    error,
+});
+
 
 export const onAddNewCinemaSuccess = (response) => ({
     type: types.ON_ADD_CINEMA_SUCCESS,
@@ -63,16 +75,23 @@ export const addNewCinema =
         (dispatch, getState) => {
             dispatch(onCinemaFetching());
 
+            const state = getState();
+            let rooms = null;
+
+            if (state.admin.cinema.roomsSchemas) {
+                rooms = JSON.stringify(state.admin.cinema.roomsSchemas);
+            }   
+
             const data = {
                 name,
                 city,
             };
 
             const headers = {
-                "Authorization": getState().user.token
+                "Authorization": state.user.token
             };
 
-            return axios.post(api.cinema, data, { headers })
+            return axios.post(api.cinema, { ...data, rooms }, { headers })
                 .then(response => dispatch(onAddNewCinemaSuccess(response.data)))
                 .catch(error => dispatch(onAddNewCinemaFailed(error.message)));
 

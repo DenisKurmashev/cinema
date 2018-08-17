@@ -6,7 +6,7 @@ const validateNewCinema = async (data) => {
 
     if (data.rooms) {
         try {
-            validateObject = JSON.parse(data.rooms);
+            validateObject.rooms = JSON.parse(data.rooms);
         } catch(ex) {
             console.log(ex);
             delete validateObject.rooms;

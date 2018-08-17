@@ -12,6 +12,14 @@ const initialState = {
     loadedCinemas: [],
     loadCinemasError: null,
     selectedCinema: null,
+
+    // for making schema of room
+    roomsSchemas: [],
+    seatsTypes: [],
+    loadSeatsError: null,
+    currentRoomSchema: {
+        placeSchema: []
+    },
 };
 
 const CinemaReducer = (state = initialState, action) => {
@@ -42,6 +50,12 @@ const CinemaReducer = (state = initialState, action) => {
 
         case types.ON_CINEMA_PAGE_CHANGE:
             return { ...state, pageId: action.pageId };
+
+        case types.ON_LOAD_TYPES_SUCCESS:
+            return { ...state, isFetching: false, seatsTypes: action.seatsTypes };
+
+        case types.ON_LOAD_TYPES_FAILED:
+            return { ...state, isFetching: false, loadSeatsError: action.error };
 
         default:
             return state;

@@ -3,6 +3,8 @@ import { withFormik } from "formik";
 
 import { validateCinemaForm, handleSubmitCinemaForm } from "../util";
 
+import RoomSchema from "./RoomSchema/RoomSchema";
+
 import "./NewCinema.css";
 
 class InnerNewCinema extends PureComponent {
@@ -32,6 +34,8 @@ class InnerNewCinema extends PureComponent {
 
                 <div className="default-form__error">{touched.city && errors.city}</div>
                 <input type="text" placeholder="City" name="city" onChange={handleChange} value={values.city} />
+
+                <RoomSchema />
 
                 <button type="submit" className="btn" disabled={cinema.isFetching}>Add</button>
                 

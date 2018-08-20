@@ -4,7 +4,7 @@ const errors   = require("../helpers/errors");
 const util     = require("../util/util");
 
 const { validateNewOrder } 
-    = require("../services/services");
+    = require("../services/order");
 
 const getAll = async ctx => {
     const userId = ctx.state.user._id;

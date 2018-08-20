@@ -1,6 +1,6 @@
 const Additional = require("../models/additional");
 const errors = require("../helpers/errors");
-const { validateNewAdditional } = require("../services/services");
+const { validateNewAdditional } = require("../services/additional");
 
 const getAll = async ctx => {
     const additional = await Additional

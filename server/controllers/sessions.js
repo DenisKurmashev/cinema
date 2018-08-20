@@ -6,7 +6,7 @@ const errors  = require("../helpers/errors");
 const util    = require("../util/util");
 
 const { validatePendingPlaceData } 
-              = require("../services/services");
+              = require("../services/session");
 
 exports.getAll = async ctx => {
     const skip = parseInt(ctx.query.pageId || 1);

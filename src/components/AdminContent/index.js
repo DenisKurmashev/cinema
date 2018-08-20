@@ -87,6 +87,10 @@ class AdminContent extends PureComponent {
 };
 
 const mapStateToProps = state => {
+    if (!state.admin) {
+        window.location.reload();
+    }
+
     return {
         films:      state.admin.films,
         additional: state.admin.additional,

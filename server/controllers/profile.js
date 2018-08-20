@@ -20,8 +20,7 @@ const login = async ctx => {
 
     const user = await User
         .findOne({ email })
-        .select("name email role created password")
-        .lean();
+        .select("name email role created password");
 
     if (!user || !(await user.verify(password))) {
         ctx.status = errors.wrongCredentials.status;

@@ -2,10 +2,11 @@ const joi = require("joi");
 
 const Film = require("../models/film");
 const errors = require("../helpers/errors");
+const { validateNewFilm } = require("../services/film");
 
 // ONLY FOR ADMIN
 
-exports.getWithPaginate = async ctx => {
+const getWithPaginate = async ctx => {
     const pageId   = parseInt(ctx.query.pageId || 0, 10);
     const pageSize = parseInt(ctx.query.pageSize || 10, 10);
 
@@ -33,35 +34,21 @@ exports.getWithPaginate = async ctx => {
     ctx.body = { films, pageCount: Math.ceil(filmsCount / pageSize) };
 };
 
-exports.new = async ctx => {
-    const { name, released, cover, description } = ctx.request.body;
+const newFilm = async ctx => {
+    const { status, error, data } = await validateNewFilm(ctx.request.body);
 
-    if (!name || !released || !cover || !description) {
+    if (!status) {console.log(error)
         ctx.status = errors.wrongCredentials.status;
-        ctx.body = errors.wrongCredentials;
+        ctx.body = error.details;
         return;
-    }
-
-    const validateSchema = joi.object().keys({
-        name: joi.string().min(3),
-        released: joi.date(),
-        cover: joi.string().min(6),
-        description: joi.string().min(25),
-    });
-
-    try {
-        await joi.validate({ name, released, cover, description }, validateSchema);
-    } catch(ex) {
-        console.log(ex);
-        ctx.status = errors.wrongCredentials.status;
-        return ctx.body = ex.details;
     }
 
     let film;
 
     try {
-        film = new Film(ctx.request.body);
+        film = new Film(data);
         await film.save();
+
     } catch(ex) {
         console.log(ex);
         ctx.status = errors.wrongCredentials.status;
@@ -72,4 +59,9 @@ exports.new = async ctx => {
     ctx.status = 201;
     ctx.body = "OK";
 
+};
+
+module.exports = {
+    getWithPaginate,
+    newFilm
 };

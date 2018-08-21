@@ -57,6 +57,9 @@ const CinemaReducer = (state = initialState, action) => {
         case types.ON_LOAD_TYPES_FAILED:
             return { ...state, isFetching: false, loadSeatsError: action.error };
 
+        case types.ON_CURRENT_ROOM_SCHEMA_CHANGE:
+            return { ...state, currentRoomSchema: { placeSchema: action.schema } };
+
         default:
             return state;
     }

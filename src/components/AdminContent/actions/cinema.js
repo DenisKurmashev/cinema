@@ -50,6 +50,12 @@ export const onPageIdChange = (pageId) => ({
 });
 
 
+export const onCurrentRoomSchemaChange = (schema) => ({
+    type: types.ON_CURRENT_ROOM_SCHEMA_CHANGE,
+    schema,
+});
+
+
 export const loadCinema = 
     () => 
         (dispatch, getState) => {

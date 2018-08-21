@@ -60,6 +60,14 @@ const CinemaReducer = (state = initialState, action) => {
         case types.ON_CURRENT_ROOM_SCHEMA_CHANGE:
             return { ...state, currentRoomSchema: { placeSchema: action.schema } };
 
+        case types.ON_CURRENT_ROOM_SCHEMA_UPDATE:
+            const newSchema = Array.from(state.currentRoomSchema.placeSchema);
+            const { x, y, value } = action;
+
+            newSchema[x][y] = value;
+
+            return { ...state, currentRoomSchema: { placeSchema: newSchema } };
+
         default:
             return state;
     }

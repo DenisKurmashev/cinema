@@ -54,6 +54,12 @@ export const onCurrentRoomSchemaChange = (schema) => ({
     type: types.ON_CURRENT_ROOM_SCHEMA_CHANGE,
     schema,
 });
+export const onCurrentRoomSchemaUpdate = (x, y, value) => ({
+    type: types.ON_CURRENT_ROOM_SCHEMA_UPDATE,
+    x,
+    y,
+    value,
+});
 
 
 export const loadCinema = 

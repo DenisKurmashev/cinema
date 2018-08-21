@@ -10,10 +10,11 @@ import "./RoomSchema.css";
 
 class RoomSchema extends PureComponent {
 
+    MAX_TYPE_OF_SEAT_VALUE = 3
+
     state = {
         rowCount:     0,
         columnCount:  0,
-        isMatrixOpen: false,
     }
 
     roomSizeChange = (event) => {
@@ -43,17 +44,20 @@ class RoomSchema extends PureComponent {
         }
 
         this.props.cinemaActions.onCurrentRoomSchemaChange(matrix);
-        this.setState({ isMatrixOpen: true });
     }
 
     render() {
-        const { schema } = this.props;
+        const { schema, cinemaActions } = this.props;
 
         return (
             <div className="add-room-schema">
                 {
-                    this.state.isMatrixOpen
-                    ? <ChangeMatrix matrix={schema.placeSchema} />
+                    schema.placeSchema.length > 0
+                    ? <ChangeMatrix 
+                        maxValue={this.MAX_TYPE_OF_SEAT_VALUE} 
+                        updateMatrix={cinemaActions.onCurrentRoomSchemaUpdate} 
+                        matrix={schema.placeSchema} 
+                        />
                     : null
                 }
                 {

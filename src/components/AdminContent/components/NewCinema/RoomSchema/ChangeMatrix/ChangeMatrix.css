@@ -1,0 +1,30 @@
+.add-room-schema__matrix {
+    width: 98%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: auto;
+    margin: 20px 0;
+    background: #E7E7E7;
+    border-radius: 3px;
+    padding: 10px 5px;
+}
+
+.add-room-schema__matrix
+.matrix-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+}
+
+.matrix-row
+.matrix-row__item {
+    max-width: 40px;
+}
+
+.matrix-row
+.matrix-row__item input {
+    max-width: 96%;
+}

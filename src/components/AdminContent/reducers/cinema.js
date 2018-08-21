@@ -68,6 +68,9 @@ const CinemaReducer = (state = initialState, action) => {
 
             return { ...state, currentRoomSchema: { placeSchema: newSchema } };
 
+        case types.ON_RESET_SELECTED_CINEMA:
+            return { ...state, selectedCinema: null };
+
         default:
             return state;
     }

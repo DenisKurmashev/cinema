@@ -15,6 +15,13 @@ class CinemasList extends PureComponent {
         this.props.cinemaActions.loadCinema();
     }
 
+    static getDerivedStateFromProps(nextProps, prevState) {
+        const { cinema } = nextProps;
+        return {
+            isListVisible: cinema.selectedCinema ? false : true
+        };
+    }
+
     handlePageChange = (data) => {
         const pageId = data.selected;
         const { onPageIdChange, loadCinema } = this.props.cinemaActions;

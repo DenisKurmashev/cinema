@@ -4,6 +4,11 @@ import { getApiObject } from "../../../util";
 
 const api = getApiObject();
 
+export const onResetSelectedCinema = () => ({
+    type: types.ON_RESET_SELECTED_CINEMA,
+});
+
+
 export const onSelectedCinemaChange = (id) => ({
     type: types.ON_SELECTED_CINEMA_CHANGE,
     id,
@@ -91,7 +96,12 @@ export const addNewCinema =
             let rooms = null;
 
             if (state.admin.cinema.currentRoomSchema.placeSchema.length > 0) {
-                rooms = JSON.stringify([ state.admin.cinema.currentRoomSchema ]);
+                try {
+                    rooms = JSON.stringify([ state.admin.cinema.currentRoomSchema ]);
+                } catch(ex) {
+                    console.log(ex);
+                    rooms = null;
+                }
             }   
 
             const data = {
@@ -99,11 +109,14 @@ export const addNewCinema =
                 city,
             };
 
+            if (rooms) 
+                data.rooms = rooms;
+
             const headers = {
                 "Authorization": state.user.token
             };
 
-            return axios.post(api.cinema, { ...data, rooms }, { headers })
+            return axios.post(api.cinema, data, { headers })
                 .then(response => dispatch(onAddNewCinemaSuccess(response.data)))
                 .catch(error => dispatch(onAddNewCinemaFailed(error.message)));
 

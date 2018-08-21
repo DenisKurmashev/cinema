@@ -15,6 +15,13 @@ class FilmList extends PureComponent {
         this.props.filmsActions.loadFilms();
     }
 
+    static getDerivedStateFromProps(nextProps, prevState) {
+        const { films } = nextProps;
+        return {
+            isListVisible: films.selectedFilm ? false : true
+        };
+    }
+
     handlePageChange = (data) => {
         const pageId = data.selected;
         const { onPageIdChange, loadFilms } = this.props.filmsActions;

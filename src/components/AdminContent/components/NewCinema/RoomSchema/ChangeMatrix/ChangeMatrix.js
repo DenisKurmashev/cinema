@@ -20,8 +20,8 @@ class ChangeMatrix extends PureComponent {
             return;
 
         const value = parseInt(target.value, 10);
-        const y     = parseInt(target.getAttribute("data-column"));
-        const x     = parseInt(target.getAttribute("data-row"));
+        const y     = parseInt(target.getAttribute("data-column"), 10);
+        const x     = parseInt(target.getAttribute("data-row"), 10);
 
         if (!this.validateChangedValue(x, y, value))
             return;

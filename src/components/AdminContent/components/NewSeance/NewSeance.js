@@ -10,9 +10,22 @@ import "./NewSeance.css";
 
 class InnerSeance extends PureComponent {
 
+    handleDateChangeWrapper = (event) => {
+        const { handleChange } = this.props;
+        const target = event.target;
+
+        const value = parseInt(target.value, 10);
+        const max   = parseInt(target.max, 10);
+
+        if (!value || value > max) 
+            target.value = 0;
+
+        handleChange(event);
+    }
+
     render() {
         const { values, errors, touched, handleChange, handleSubmit } = this.props;
-        const { seance, films, additional, cinema, additionalActions, filmsActions, seanceActions, cinemaActions } = this.props;
+        const { seance, films, cinema, filmsActions, cinemaActions } = this.props;
 
         const { response, error } = seance;
 
@@ -45,7 +58,7 @@ class InnerSeance extends PureComponent {
                 <div className="default-form-subtitle">4. select the number of room</div>
                 <div className="default-form__error">{touched.roomNumber && errors.roomNumber}</div>
                 <input type="number" placeholder="Date for seance" 
-                    min={0} name="roomNumber" onChange={handleChange} 
+                    min={0} name="roomNumber" onChange={this.handleDateChangeWrapper} 
                     value={values.roomNumber} 
                     max={cinema.selectedCinema ? (cinema.selectedCinema.rooms.length - 1) : 9} 
                 />

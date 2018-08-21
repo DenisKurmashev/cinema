@@ -4,6 +4,10 @@ import { getApiObject } from "../../../util";
 
 const api = getApiObject();
 
+export const onResetSelectedFilm = () => ({
+    type: types.ON_RESET_SELECTED_FILM,
+});
+
 export const onSelectedFilmChange = (id) => ({
     type: types.ON_SELECTED_FILM_CHANGE,
     id,

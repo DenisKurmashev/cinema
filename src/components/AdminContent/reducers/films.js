@@ -40,6 +40,9 @@ const FilmReducer = (state = initialState, action) => {
         case types.ON_PAGE_ID_CHANGE:
             return { ...state, pageId: action.pageId };
 
+        case types.ON_RESET_SELECTED_FILM:
+            return { ...state, selectedFilm: null };
+
         default:
             return state;
     }

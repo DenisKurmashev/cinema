@@ -24,7 +24,8 @@ export const validateFilmForm = (values, props) => {
     return errors;
 };
 export const handleSubmitFilmForm = (values, action) => {
-    return action.props.filmsActions.addNewFilm(values);
+    action.props.filmsActions.addNewFilm(values);
+    action.resetForm();
 };
 
 
@@ -46,7 +47,8 @@ export const validateAdditionalForm = (values, props) => {
     return errors;
 };
 export const handleSubmitAdditionalForm = (values, action) => {
-    return action.props.additionalActions.addAdditional(values);
+    action.props.additionalActions.addAdditional(values);
+    action.resetForm();
 };
 
 
@@ -73,7 +75,13 @@ export const validateSeanceForm = (values, props) => {
     return errors;
 };
 export const handleSubmitSeanceForm = (values, action) => {
-    return action.props.seanceActions.addNewSeance(values);
+    const { seanceActions, filmsActions, cinemaActions } = action.props;
+
+    seanceActions.addNewSeance(values);
+    filmsActions.onResetSelectedFilm();
+    cinemaActions.onResetSelectedCinema();
+    
+    action.resetForm();
 };
 
 
@@ -95,5 +103,7 @@ export const validateCinemaForm = (values, props) => {
     return errors;
 };
 export const handleSubmitCinemaForm = (values, action) => {
-    return action.props.cinemaActions.addNewCinema(values);
+    action.props.cinemaActions.addNewCinema(values);
+    action.props.cinemaActions.onCurrentRoomSchemaChange([]);
+    action.resetForm();
 };

@@ -46,12 +46,35 @@ App.propTypes = {
 			role: PropTypes.string,
 		}),
 	}),
+	films: PropTypes.shape({
+		isFetching: PropTypes.bool,
+		error: PropTypes.string,
+		response: PropTypes.string,
+		pageSize: PropTypes.number, 
+		pageId: PropTypes.number,
+		pageCount: PropTypes.number,
+		loadedFilms: PropTypes.array,
+		loadFilmsError: PropTypes.string,
+		selectedFilm: PropTypes.shape({
+			_id: PropTypes.string,
+			name: PropTypes.string,
+		}),
+	}),
 
 	userActions: PropTypes.shape({
 		onLoginOrRegisterFetch: PropTypes.func,
 		login: PropTypes.func,
 		register: PropTypes.func, 
 		onLogout: PropTypes.func,
+	}),
+	filmsActions: PropTypes.shape({
+		onFilmsFilterChange: PropTypes.func,
+		onFilmsPageChange: PropTypes.func,
+		onFilmsFetching: PropTypes.func,
+		onFilmsFailed: PropTypes.func,
+		onFilmsSuccess: PropTypes.func,
+		onFilmsLoad: PropTypes.func,
+		onFilmsChange: PropTypes.func,
 	}),
 };
 App.defaultProps = {
@@ -64,12 +87,30 @@ App.defaultProps = {
 			role: "",
 		},
 	},
+	films: {
+		filter: "city",
+		pageId: 0,
+		error: "",
+		isFetching: false,
+		currentFilms: [],
+		allFilms: [],
+	},
+
 
 	userActions: {
 		onLoginOrRegisterFetch: () => {},
 		login: () => {},
 		register: () => {}, 
 		onLogout: () => {},
+	},
+	filmsActions: {
+		onFilmsFilterChange: () => {},
+		onFilmsPageChange: () => {},
+		onFilmsFetching: () => {},
+		onFilmsFailed: () => {},
+		onFilmsSuccess: () => {},
+		onFilmsLoad: () => {},
+		onFilmsChange: () => {},
 	},
 };
 

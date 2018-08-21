@@ -187,8 +187,8 @@ class RoomSchema extends React.Component {
     
                                     if (item === 0) additionally = "none";
                                     if (item === 1) additionally = "";
-                                    if (item === 2) additionally = "love-seats"
-                                    if (item === 3) additionally = "vip"
+                                    if (item === 2 && row[columnIndex + 1] === 2) additionally = "love-seats"
+                                    if (item === 3 && row[columnIndex + 1] === 3 && row[columnIndex + 2] === 3) additionally = "vip"
 
                                     if (item === 1 && this.isSelected(rowIndex, columnIndex)) 
                                         additionally += " selected";

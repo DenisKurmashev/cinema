@@ -90,8 +90,8 @@ export const addNewCinema =
             const state = getState();
             let rooms = null;
 
-            if (state.admin.cinema.roomsSchemas) {
-                rooms = JSON.stringify(state.admin.cinema.roomsSchemas);
+            if (state.admin.cinema.currentRoomSchema.placeSchema.length > 0) {
+                rooms = JSON.stringify([ state.admin.cinema.currentRoomSchema ]);
             }   
 
             const data = {

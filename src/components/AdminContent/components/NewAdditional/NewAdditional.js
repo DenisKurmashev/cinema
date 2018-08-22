@@ -7,6 +7,10 @@ import "./NewAdditional.css";
 
 class InnerAdditional extends PureComponent {
 
+    componentWillUnmount() {
+        this.props.additionalActions.onAdditionalSuccess(null);
+    }
+
     render() {
         const { additional, values, errors, touched, handleChange, handleSubmit }
             = this.props;

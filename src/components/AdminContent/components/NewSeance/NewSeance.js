@@ -10,6 +10,10 @@ import "./NewSeance.css";
 
 class InnerSeance extends PureComponent {
 
+    componentWillUnmount() {
+        this.props.seanceActions.onSeanceSuccess(null);
+    }
+
     handleDateChangeWrapper = (event) => {
         const { handleChange } = this.props;
         const target = event.target;

@@ -7,6 +7,10 @@ import "./NewFilm.css";
 
 class InnerNewFilm extends PureComponent {
 
+    componentWillUnmount() {
+        this.props.filmsActions.onAddNewFilmSuccess(null);
+    }
+
     render() {
         const { films, values, errors, touched, handleChange, handleSubmit }
             = this.props;

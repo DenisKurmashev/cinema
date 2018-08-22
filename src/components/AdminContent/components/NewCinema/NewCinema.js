@@ -9,6 +9,10 @@ import "./NewCinema.css";
 
 class InnerNewCinema extends PureComponent {
 
+    componentWillUnmount() {
+        this.props.cinemaActions.onAddNewCinemaSuccess(null);
+    }
+
     render() {
         const { cinema, values, errors, touched, handleChange, handleSubmit }
             = this.props;

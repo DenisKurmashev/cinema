@@ -43,7 +43,7 @@ const FilmsReducer = (state = initialState, action) => {
             };
 
         case types.ON_FILM_SUCCESS:
-            return { ...state, openedSeance: action.seance };
+            return { ...state, openedSeance: action.seance, searchText: "", pageId: 0, filter: FILTER_TYPES[0].value };
 
         default:
             return state;

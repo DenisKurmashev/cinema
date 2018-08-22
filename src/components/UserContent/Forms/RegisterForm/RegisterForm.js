@@ -22,7 +22,7 @@ const InnerRegisterForm = ({ user, values, errors, touched, handleChange, handle
 			<div className="default-form__error">{touched.password && errors.password}</div>
 			<input type="password" placeholder="Password" name="password" onChange={handleChange} value={values.password} />
 
-			<button type="submit" className="btn" disabled={isSubmitting}>Sign up</button>
+			<button type="submit" className="btn" disabled={user.isLoginOrRegisterFetching}>Sign up</button>
 			
             <Route path={REGISTER} render={props => <NavLink className="btn-underline" to={LOGIN}>Already have account? Sign in.</NavLink>} />
         </form>	

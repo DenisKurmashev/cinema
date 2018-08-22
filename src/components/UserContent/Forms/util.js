@@ -37,12 +37,10 @@ export const validate = (values, props) => {
 };
 
 export const handleLogin = (values, actions) => {
-    return actions.props.userActions.login({ email: values.email, password: values.password })
-        .then(() => actions.setSubmitting(false));
+    return actions.props.userActions.login({ email: values.email, password: values.password });
     
 };
 
 export const handleRegister = (values, actions) => {
-    return actions.props.userActions.register({ name: values.name, email: values.email, password: values.password })
-        .then(() => actions.setSubmitting(false));
+    return actions.props.userActions.register({ name: values.name, email: values.email, password: values.password });
 };

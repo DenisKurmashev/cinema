@@ -13,15 +13,8 @@ class ChangeMatrix extends PureComponent {
         return true;
     }
 
-    onChangeMatrixValue = (event) => {
-        const target = event.target;
-        
-        if (target.type !== "number")
-            return;
-
-        const value = parseInt(target.value, 10);
-        const y     = parseInt(target.getAttribute("data-column"), 10);
-        const x     = parseInt(target.getAttribute("data-row"), 10);
+    onChangeMatrixValue = (x, y, event) => {
+        const value = parseInt(event.target.value, 10);
 
         if (!this.validateChangedValue(x, y, value))
             return;
@@ -62,7 +55,7 @@ class ChangeMatrix extends PureComponent {
         const { matrix } = this.props;
 
         return (
-            <div onChange={this.onChangeMatrixValue} className="add-room-schema__matrix">
+            <div className="add-room-schema__matrix">
                 {
                     matrix.map((row, rowIndex) => {
                         return (
@@ -70,7 +63,7 @@ class ChangeMatrix extends PureComponent {
                                 {
                                     row.map((item, columnIndex) => (
                                         <div key={columnIndex} className="matrix-row__item" >
-                                            <input data-column={columnIndex} data-row={rowIndex} type="number" value={item} />
+                                            <input onChange={(event) => this.onChangeMatrixValue(rowIndex, columnIndex, event)} type="number" value={item} />
                                         </div>
                                     ))
                                 }

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import { DebounceInput } from "react-debounce-input";
 import { FILTER_TYPES } from "../../../../constants/constants";
 import "./index.css";
 
-class SearchBar extends React.Component {
+class SearchBar extends PureComponent {
 
     handleTextInputChange = event => {
         const { onSearchTextChange, onFilmsLoad, onFilmsChange, onFilmsPageChange } = this.props.filmsActions;
@@ -26,10 +26,14 @@ class SearchBar extends React.Component {
         else onFilmsChange(searchText);
     }
 
+    formOnSubmit = (event) => {
+        event.preventDefault();
+    }
+
     render() {
         return (
             <div className="search-bar">
-                <form className="search-bar-form" noValidate>
+                <form className="search-bar-form" noValidate onSubmit={this.formOnSubmit}>
                     <div className="search-bar-form__input">
                         <DebounceInput debounceTimeout={300} value={this.props.films.searchText} type="text" autoComplete="off" onChange={this.handleTextInputChange} autoFocus name="searchText" placeholder="Enter the search query" />
                     </div>

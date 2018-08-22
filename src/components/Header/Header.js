@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
@@ -6,7 +6,15 @@ import { ADMIN, ROOT } from "../UserContent/path";
 
 import "./Header.css";
 
-class Header extends PureComponent {
+class Header extends Component {
+
+    shouldComponentUpdate(nextProps) {
+        const { user } = this.props;
+        if (user.isAuth === nextProps.user.isAuth) {
+            return false;
+        }
+        return true;
+    }
 
     getCommonLinks = () => {
         return (

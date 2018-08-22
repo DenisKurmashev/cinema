@@ -1,6 +1,6 @@
 {
   "db": {
-    "host": "mongodb://localhost:27017/cinema",
+    "host": "mongodb://localhost:27017/dop",
     "options": {
       "user": "",
       "pass": "",

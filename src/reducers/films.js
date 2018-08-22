@@ -37,7 +37,7 @@ const FilmsReducer = (state = initialState, action) => {
             return { 
                 ...state, 
                 allFilms: [ ...state.allFilms, ...(action.payload || []) ], 
-                currentFilms: action.payload.data,
+                currentFilms: action.payload.data || [],
                 pageCount: Math.ceil(action.payload.count / PAGE_ITEMS_COUNT),
                 isFetching: false 
             };

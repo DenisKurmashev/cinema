@@ -37,7 +37,7 @@ const getWithPaginate = async ctx => {
 const newFilm = async ctx => {
     const { status, error, data } = await validateNewFilm(ctx.request.body);
 
-    if (!status) {console.log(error)
+    if (!status) {
         ctx.status = errors.wrongCredentials.status;
         ctx.body = error.details;
         return;

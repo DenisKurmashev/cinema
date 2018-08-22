@@ -5,18 +5,20 @@ const Type    = require("../models/type");
 const errors  = require("../helpers/errors");
 const util    = require("../util/util");
 
-const { validatePendingPlaceData } 
-              = require("../services/session");
+const { 
+    validateSkipValue, 
+    validateMongoId, 
+    validateNewSeanceData, 
+    validatePendingPlaceData,
+    validateSearchData,
+} = require("../services/session");
 
-exports.getAll = async ctx => {
-    const skip = parseInt(ctx.query.pageId || 1);
-    
-    try {
-        await joi.validate(skip, joi.number());
-    } catch(ex) {
-        console.log(ex);
+const getAll = async ctx => {
+    const { status, error, skip} = await validateSkipValue(parseInt(ctx.query.pageId || 1));
+
+    if (!status) {
         ctx.status = errors.wrongCredentials.status;
-        ctx.body = ex.details;
+        ctx.body = error.details;
         return;
     }
 
@@ -47,15 +49,12 @@ exports.getAll = async ctx => {
     ctx.body = { data: util.optimizeSessions(sessions), count };
 };
 
-exports.getById = async ctx => {
-    const id = ctx.params.id;
+const getById = async ctx => {
+    const { status, error, id} = await validateMongoId(ctx.params.id);
 
-    try {
-        await joi.validate(id, joi.string().min(24));
-    } catch(ex) {
-        console.log(ex);
+    if (!status) {
         ctx.status = errors.wrongCredentials.status;
-        ctx.body = ex.details;
+        ctx.body = error.details;
         return;
     }
 
@@ -90,16 +89,15 @@ exports.getById = async ctx => {
 
 };
 
-exports.addToPendingPlace = async ctx => {
+const addToPendingPlace = async ctx => {
     const userId = ctx.state.user._id;
     const seanceId = ctx.params.seanceId;
     const { x, y } = ctx.request.body;
 
-    const validation = await validatePendingPlaceData({ seanceId, x, y, });
-    if (!validation.status || validation.error) {
-        console.log(validation.error);
+    const { status, error, data } = await validatePendingPlaceData({ seanceId, x, y, });
+    if (!status) {
         ctx.status = errors.wrongCredentials.status;
-        ctx.body = validation.error.message;
+        ctx.body = error.details;
         return;
     }
 
@@ -109,7 +107,6 @@ exports.addToPendingPlace = async ctx => {
  
     const currentSeance = await Session.findById(seanceId);
     if (!currentSeance) {
-        console.log(validation.error);
         ctx.status = errors.wrongCredentials.status;
         ctx.body = errors.wrongCredentials;
         return;
@@ -129,16 +126,15 @@ exports.addToPendingPlace = async ctx => {
     ctx.status = 200;
 };
 
-exports.removeFromPending = async ctx => {
+const removeFromPending = async ctx => {
     const userId = ctx.state.user._id;
     const seanceId = ctx.params.seanceId;
     const { x, y } = ctx.request.body;
 
-    const validation = await validatePendingPlaceData({ seanceId, x, y, });
-    if (!validation.status || validation.error) {
-        console.log(validation.error);
+    const { status, error, data } = await validatePendingPlaceData({ seanceId, x, y, });
+    if (!status) {
         ctx.status = errors.wrongCredentials.status;
-        ctx.body = validation.error.message;
+        ctx.body = error.details;
         return;
     }
  
@@ -168,98 +164,73 @@ exports.removeFromPending = async ctx => {
     ctx.status = 200;
 };
 
-exports.search = async ctx => {
+const search = async ctx => {
     const skip = parseInt(ctx.params.pageId);
+    const { status, error, data } = await validateSearchData({ ...ctx.request.body, skip }) 
+    const { filter, text } = data;
 
-    if (!ctx.request.body.filter || !ctx.request.body.text) {
+    if (!status) {
         ctx.status = errors.wrongCredentials.status;
-        ctx.body = errors.wrongCredentials;
-    } else {
-        const { filter, text } = ctx.request.body;
-
-        const validateSchema = joi.object().keys({
-            filter: joi.string().min(4).valid("city", "cinema", "film_name", "date", "one_place_exist"),
-            text: filter !== "date" ? joi.string() : joi.date(),
-            skip: joi.number(),
-        });
-
-        try {
-            await joi.validate({ ...ctx.request.body, skip }, validateSchema);
-        } catch(ex) {
-            console.log(ex);
-            ctx.status = errors.wrongCredentials.status;
-            ctx.body = ex.details;
-            return;
-        }
-
-        let result;
-        let _result;
-        let count = 0;
-
-        try {
-            _result = await Session
-                .find({})
-                .populate("cinema", "name city rooms")
-                .populate("film", "name released cover description")
-                .select("cinema film date roomNumber selectedPlaces pendingPlaces")
-                .lean();
-        } catch(ex) {
-            console.log(ex);
-            ctx.status = errors.wrongCredentials.status;
-            ctx.body = ex;
-            return;
-        }
-
-        if (filter === "city") {
-            result = _result.filter(item => item.cinema.city.toLowerCase().includes(text.toLowerCase()));  
-            count = result.length;              
-        } else if (filter === "cinema") {
-            result = _result.filter(item => item.cinema.name.toLowerCase().includes(text.toLowerCase()));  
-            count = result.length;      
-        } else if (filter === "film_name") {
-            result = _result.filter(item => item.film.name.toLowerCase().includes(text.toLowerCase()));  
-            count = result.length;      
-        } else if (filter === "date") {
-            // TO-DO: optimize data search
-            result = _result.filter(item => Date.parse(item.date) === Date.parse(text));  
-            count = result.length;      
-        } else if (filter === "one_place_exist") {
-            result = _result.filter(item => item.film.name.toLowerCase().includes(text.toLowerCase()));
-            result = util.isMoreThanOnePlaceExist(result); 
-            count = result.length;      
-        }
-
-        ctx.body = 200;
-        ctx.body = { data: util.optimizeSessions(result.slice((skip - 1) * 9, ((skip - 1) * 9) + 9)), count };
-
-    }
-};
-
-// Access only for admin
-exports.new = async ctx => {
-    const { cinema, film, date, roomNumber } 
-        =  ctx.request.body;
-
-    const validateSchema = joi.object().keys({
-        cinema: joi.string().min(24),
-        film: joi.string().min(24),
-        date: joi.date(),
-        roomNumber: joi.number(),
-    });
-
-    try {
-        await joi.validate(ctx.request.body, validateSchema);
-    } catch(ex) {
-        console.log(ex);
-        ctx.status = errors.wrongCredentials.status;
-        ctx.body = ex.details;
+        ctx.body = error.details;
         return;
     }
 
+    let result;
+    let _result;
+    let count = 0;
+
+    try {
+        _result = await Session
+            .find({})
+            .populate("cinema", "name city rooms")
+            .populate("film", "name released cover description")
+            .select("cinema film date roomNumber selectedPlaces pendingPlaces")
+            .lean();
+    } catch(ex) {
+        console.log(ex);
+        ctx.status = errors.wrongCredentials.status;
+        ctx.body = ex;
+        return;
+    }
+
+    if (filter === "city") {
+        result = _result.filter(item => item.cinema.city.toLowerCase().includes(text.toLowerCase()));  
+        count = result.length;              
+    } else if (filter === "cinema") {
+        result = _result.filter(item => item.cinema.name.toLowerCase().includes(text.toLowerCase()));  
+        count = result.length;      
+    } else if (filter === "film_name") {
+        result = _result.filter(item => item.film.name.toLowerCase().includes(text.toLowerCase()));  
+        count = result.length;      
+    } else if (filter === "date") {
+        // TO-DO: optimize data search
+        result = _result.filter(item => Date.parse(item.date) === Date.parse(text));  
+        count = result.length;      
+    } else if (filter === "one_place_exist") {
+        result = _result.filter(item => item.film.name.toLowerCase().includes(text.toLowerCase()));
+        result = util.isMoreThanOnePlaceExist(result); 
+        count = result.length;      
+    }
+
+    ctx.body = 200;
+    ctx.body = { data: util.optimizeSessions(result.slice((skip - 1) * 9, ((skip - 1) * 9) + 9)), count };
+    
+};
+
+// Access only for admin
+const newSeance = async ctx => {
+    const { status, error, data } = await validateNewSeanceData(ctx.request.body)
+
+    if (!status) {
+        ctx.status = errors.wrongCredentials.status;
+        ctx.body = error.details;
+        return;
+    }
+    
     let session;
 
     try {
-        session = new Session(ctx.request.body);
+        session = new Session(data);
         await session.save();
     } catch(ex) {
         console.log(ex);
@@ -271,4 +242,13 @@ exports.new = async ctx => {
     ctx.status = 201;
     ctx.body = "OK";
 
+};
+
+module.exports = {
+    getAll, 
+    getById,
+    addToPendingPlace,
+    removeFromPending,
+    search,
+    newSeance,
 };

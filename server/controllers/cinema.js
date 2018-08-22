@@ -5,7 +5,7 @@ const errors                   = require("../helpers/errors");
 const { DEFAULT_ROOM_SCHEMAS } = require("../constants/constants");
 const { validateNewCinema }    = require("../services/cinema");
 
-exports.getWithPaginate = async ctx => {
+const getWithPaginate = async ctx => {
     const pageId   = parseInt(ctx.query.pageId || 0, 10);
     const pageSize = parseInt(ctx.query.pageSize || 10, 10);
 
@@ -33,13 +33,13 @@ exports.getWithPaginate = async ctx => {
     ctx.body = { cinemas, pageCount: Math.ceil(cinemasCount / pageSize) };
 };
 
-exports.getById = async ctx => {};
+const getById = async ctx => {};
 
-exports.getAllSchemas = async ctx => {
+const getAllSchemas = async ctx => {
     ctx.body = DEFAULT_ROOM_SCHEMAS || [];
 };
 
-exports.new = async ctx => {
+const newCinema = async ctx => {
     const { error, status, data } = await validateNewCinema(ctx.request.body);
 
     if (!status) {
@@ -61,4 +61,11 @@ exports.new = async ctx => {
     ctx.status = 201;
     ctx.body = "OK";
 
+};
+
+module.exports = {
+    getWithPaginate,
+    getById,
+    getAllSchemas, 
+    newCinema,
 };

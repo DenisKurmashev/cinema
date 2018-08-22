@@ -11,6 +11,6 @@ router.get("/:id", controller.getById);
 router.post("/pending/:seanceId", passport.authenticate(), controller.addToPendingPlace); 
 router.delete("/pending/:seanceId", passport.authenticate(), controller.removeFromPending); 
 router.post("/search/:pageId", controller.search);
-router.post("/", passport.authenticate(), permission(), controller.new);
+router.post("/", passport.authenticate(), permission(), controller.newSeance);
 
 module.exports = router.routes();

@@ -1,0 +1,14 @@
+.default-form__congratulation {
+    margin: 10px 0;
+}
+
+.default-form__congratulation h2 {
+    text-transform: uppercase;
+}
+
+.default-form__congratulation  
+.close-btn-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,8 +1,10 @@
 import React, { PureComponent } from "react";
-import { Link } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 
 import FilmItemInfo from "./FilmItemInfo/FilmItemInfo";
 import OrderItemInfo from "./OrderItemInfo/OrderItemInfo";
+
+import { HISTORY } from "../../path";
 
 class FilmItem extends PureComponent {
 
@@ -22,7 +24,14 @@ class FilmItem extends PureComponent {
                     <img className="width-100" src={film.cover} alt={film.name}/>
                 </div>
                 <FilmItemInfo city={cinema.city} name={cinema.name} date={date} />
-                <Link className="btn text-upper" to={`/seance/${_id}`}>Buy ticket</Link>
+
+                <Link className="btn text-upper" to={`/seance/${_id}`}>
+                    <Switch>
+                        <Route path={HISTORY} render={() => "View info"} />
+                        <Route render={() => "Buy ticket"} />
+                    </Switch>
+                </Link>
+
             </div>
         );
     }

@@ -1,4 +1,5 @@
 .film-container {
+    width: 60%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -50,4 +51,16 @@
     max-height: 200px;
     overflow: hidden;
     border-radius: 5px;
+}
+
+@media(max-width: 1000px) {
+    .film-container {
+        width: 80%;
+    }
+}
+
+@media(max-width: 700px) {
+    .film-container {
+        width: 90%;
+    }
 }

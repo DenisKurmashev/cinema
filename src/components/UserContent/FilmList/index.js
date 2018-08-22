@@ -104,7 +104,7 @@ class FilmList extends React.Component {
         const { films, filmsActions } = this.props;
 
         return (
-            <div className="film-container width-60">
+            <div className="film-container">
        
                 {
                     films.isFetching

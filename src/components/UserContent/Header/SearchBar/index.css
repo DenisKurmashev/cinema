@@ -8,7 +8,7 @@
 }
 
 .search-bar-form {
-    width: 60%;
+    width: 80%;
     background: #FAFAFA;
     display: flex;
     justify-content: center;
@@ -38,4 +38,23 @@
     margin: 0 15px;
 }
 
+@media(max-width: 1000px) {
+    .search-bar {
+        width: 85%;
+    }
+    .search-bar-form {
+        width: 90%;
+    }
+}
 
+@media(max-width: 700px) {
+    .search-bar {
+        width: 90%;
+    }
+    .search-bar-form {
+        width: 100%;
+    }
+    .search-bar-form__options {
+        flex-wrap: wrap;
+    }
+}

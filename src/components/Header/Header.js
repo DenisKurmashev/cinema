@@ -63,7 +63,9 @@ class Header extends Component {
                 <div className="user-bar-item">
                     <Link className="btn-underline" to="/profile/history">History</Link>
                 </div>
-                <div onClick={onLogout} className="user-bar-item btn-underline">Logout</div>
+                <div onClick={onLogout} className="user-bar-item">
+                    <div className="btn-underline">Logout</div> 
+                </div>
             </div>
         );
     }

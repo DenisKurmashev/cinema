@@ -16,19 +16,17 @@ class SearchBar extends PureComponent {
         onFilmsPageChange(0);
         onSearchTextChange(value);
         
-        if (!value) onFilmsLoad(1)
+        if (!(value.length > 1)) onFilmsLoad(1)
         else onFilmsChange(value);
     }
 
     handleRadioInputChange = event => {
         const { onSearchTextChange, onFilmsLoad, onFilmsChange, onFilmsFilterChange } = this.props.filmsActions;
-        const { searchText } = this.props.films;
-
+        
         onFilmsFilterChange(event.target.value);
         onSearchTextChange("");
 
-        if (!searchText) onFilmsLoad(1)
-        else onFilmsChange(searchText);
+        onFilmsLoad(1);
 
         if (event.target.getAttribute("id") === "date") {
             this.setState({ typeOfInput: "datetime-local" });

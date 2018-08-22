@@ -8,7 +8,7 @@ import HistoryList from "./HistoryList/HistoryList";
 
 import * as OrderActions from "../../../actions/order"; 
 
-import "./index.css";
+import "./HistoryPage.css";
 
 class HistoryPage extends PureComponent {
 

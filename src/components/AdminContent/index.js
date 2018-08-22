@@ -5,7 +5,7 @@ import { Switch, Route }                  from "react-router-dom";
 import PropTypes                          from "prop-types";
 
 import { ADMIN } from "../UserContent/path";
-import PageNotFound from "../PageNotFound";
+import PageNotFound from "../PageNotFound/PageNotFound";
 
 import * as FilmActions       from "./actions/films";
 import * as AdditionalActions from "./actions/additional";

@@ -2,8 +2,8 @@ import React from "react";
 import Modal from "react-modal";
 
 import OrderForm from "../Forms/OrderForm/OrderForm";
-import LoginForm from "../Forms/LoginForm";
-import RegisterForm from "../Forms/RegisterForm";
+import LoginForm from "../Forms/LoginForm/LoginForm";
+import RegisterForm from "../Forms/RegisterForm/RegisterForm";
 
 import "./OrderModal.css";
 

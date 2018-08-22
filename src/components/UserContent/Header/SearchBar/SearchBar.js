@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { DebounceInput } from "react-debounce-input";
 import { FILTER_TYPES } from "../../../../constants/constants";
-import "./index.css";
+import "./SearchBar.css";
 
 class SearchBar extends PureComponent {
 

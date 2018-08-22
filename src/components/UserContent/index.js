@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 
 import LoginAndRegisterForm from "./Forms/login-register";
 import { PROFILE, HISTORY, ROOT, SEANCE, ADMIN } from "./path";
-import PageNotFound from "../PageNotFound";
-import UserContentHeader from "./Header";
-import FilmList from "./FilmList";
+import PageNotFound from "../PageNotFound/PageNotFound";
+import UserContentHeader from "./Header/UserContentHeader";
+import FilmList from "./FilmList/FilmList";
 import FilmCart from "./FilmCart/FilmCart";
-import HistoryPage from "./HistoryPage";
+import HistoryPage from "./HistoryPage/HistoryPage";
 import AdminPage from "../AdminContent/index"; 
 import GlobalHeader from "../Header/Header";
 

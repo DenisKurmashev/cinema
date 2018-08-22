@@ -2,9 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import FilmItem from "./FilmItem/FilmItem";
-import "./index.css";
 import FilmLoading from "./FilmLoading";
 import Pagination from "./Pagination/Pagination";
+
+import "./FilmList.css";
 
 class FilmList extends React.Component {
 

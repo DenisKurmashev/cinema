@@ -2,12 +2,12 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import LoginForm from "./LoginForm";
-import RegisterForm from "./RegisterForm";
+import LoginForm from "./LoginForm/LoginForm";
+import RegisterForm from "./RegisterForm/RegisterForm";
 import { LOGIN, REGISTER } from "../path";
-import PageNotFound from "../../PageNotFound";
+import PageNotFound from "../../PageNotFound/PageNotFound";
 
-import "./index.css";
+import "./login-register.css";
 
 // wrappers 
 const LoginFormWrapper = ({ user, userActions, ...rest }) => (

@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./index.css";
-import "../../../styles/button.css";
+import "./UserContentHeader.css";
 
-import SearchBar from "./SearchBar";
+import SearchBar from "./SearchBar/SearchBar";
 
-const Header = ({ user, userActions, films, filmsActions }) => (
+const UserContentHeader = ({ films, filmsActions }) => (
     <header>
         <div className="header-mask">
             <SearchBar films={films} filmsActions={filmsActions} />
@@ -13,7 +12,7 @@ const Header = ({ user, userActions, films, filmsActions }) => (
     </header>
 );
 
-Header.propTypes = {
+UserContentHeader.propTypes = {
     films: PropTypes.shape({
 		isFetching: PropTypes.bool,
 		error: PropTypes.string,
@@ -38,7 +37,7 @@ Header.propTypes = {
 		onFilmsChange: PropTypes.func,
 	}),
 };
-Header.defaultProps = {
+UserContentHeader.defaultProps = {
     films: {
 		filter: "city",
 		pageId: 0,
@@ -59,4 +58,4 @@ Header.defaultProps = {
 };
 
 
-export default Header;
+export default UserContentHeader;

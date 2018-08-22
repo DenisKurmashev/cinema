@@ -204,7 +204,7 @@ const search = async ctx => {
         count = result.length;      
     } else if (filter === "date") {
         // TO-DO: optimize data search
-        result = _result.filter(item => Date.parse(item.date) === Date.parse(text));  
+        result = _result.filter(item => Date.parse(item.date) > Date.parse(text));  
         count = result.length;      
     } else if (filter === "one_place_exist") {
         result = _result.filter(item => item.film.name.toLowerCase().includes(text.toLowerCase()));

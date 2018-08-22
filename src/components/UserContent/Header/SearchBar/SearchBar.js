@@ -5,6 +5,10 @@ import "./SearchBar.css";
 
 class SearchBar extends PureComponent {
 
+    state = {
+        typeOfInput: "text",
+    }
+
     handleTextInputChange = event => {
         const { onSearchTextChange, onFilmsLoad, onFilmsChange, onFilmsPageChange } = this.props.filmsActions;
         const value = event.target.value;
@@ -24,6 +28,13 @@ class SearchBar extends PureComponent {
 
         if (!searchText) onFilmsLoad(1)
         else onFilmsChange(searchText);
+
+        if (event.target.getAttribute("id") === "date") {
+            this.setState({ typeOfInput: "datetime-local" });
+        } else {
+            this.setState({ typeOfInput: "text" });
+        }
+
     }
 
     formOnSubmit = (event) => {
@@ -35,7 +46,16 @@ class SearchBar extends PureComponent {
             <div className="search-bar">
                 <form className="search-bar-form" noValidate onSubmit={this.formOnSubmit}>
                     <div className="search-bar-form__input">
-                        <DebounceInput debounceTimeout={300} value={this.props.films.searchText} type="text" autoComplete="off" onChange={this.handleTextInputChange} autoFocus name="searchText" placeholder="Enter the search query" />
+                        <DebounceInput 
+                            debounceTimeout={300} 
+                            value={this.props.films.searchText} 
+                            type={this.state.typeOfInput} 
+                            autoComplete="off" 
+                            onChange={this.handleTextInputChange} 
+                            autoFocus 
+                            name="searchText" 
+                            placeholder="Enter the search query" 
+                        />
                     </div>
                     <div className="search-bar-form__options">
                         {FILTER_TYPES.map(item => (

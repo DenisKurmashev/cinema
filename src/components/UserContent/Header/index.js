@@ -4,53 +4,58 @@ import "./index.css";
 import "../../../styles/button.css";
 
 import SearchBar from "./SearchBar";
-import UserBar from "./UserBar";
 
 const Header = ({ user, userActions, films, filmsActions }) => (
     <header>
         <div className="header-mask">
-            <UserBar user={user} userActions={userActions} />
-            <SearchBar 
-                 films={films} filmsActions={filmsActions} />
+            <SearchBar films={films} filmsActions={filmsActions} />
         </div>
     </header>
 );
 
 Header.propTypes = {
-    user: PropTypes.shape({
-        isLoginOrRegisterFetching: PropTypes.bool,
-        isAuth: PropTypes.bool,
-        error: PropTypes.string,
-        info: PropTypes.shape({
-            name: PropTypes.string,
-            role: PropTypes.string,
-        }),
+    films: PropTypes.shape({
+		isFetching: PropTypes.bool,
+		error: PropTypes.string,
+		response: PropTypes.string,
+		pageSize: PropTypes.number, 
+		pageId: PropTypes.number,
+		pageCount: PropTypes.number,
+		loadedFilms: PropTypes.array,
+		loadFilmsError: PropTypes.string,
+		selectedFilm: PropTypes.shape({
+			_id: PropTypes.string,
+			name: PropTypes.string,
+		}),
     }),
-
-    userActions: PropTypes.shape({
-        onLoginOrRegisterFetch: PropTypes.func,
-        login: PropTypes.func,
-        register: PropTypes.func, 
-        onLogout: PropTypes.func,
-    }),
+    filmsActions: PropTypes.shape({
+		onFilmsFilterChange: PropTypes.func,
+		onFilmsPageChange: PropTypes.func,
+		onFilmsFetching: PropTypes.func,
+		onFilmsFailed: PropTypes.func,
+		onFilmsSuccess: PropTypes.func,
+		onFilmsLoad: PropTypes.func,
+		onFilmsChange: PropTypes.func,
+	}),
 };
 Header.defaultProps = {
-    user: {
-        isLoginOrRegisterFetching: false,
-        isAuth: false,
-        error: "",
-        info: {
-            name: "",
-            role: "",
-        },
+    films: {
+		filter: "city",
+		pageId: 0,
+		error: "",
+		isFetching: false,
+		currentFilms: [],
+		allFilms: [],
     },
-
-    userActions: {
-        onLoginOrRegisterFetch: () => {},
-        login: () => {},
-        register: () => {}, 
-        onLogout: () => {},
-    },
+    filmsActions: {
+		onFilmsFilterChange: () => {},
+		onFilmsPageChange: () => {},
+		onFilmsFetching: () => {},
+		onFilmsFailed: () => {},
+		onFilmsSuccess: () => {},
+		onFilmsLoad: () => {},
+		onFilmsChange: () => {},
+	},
 };
 
 

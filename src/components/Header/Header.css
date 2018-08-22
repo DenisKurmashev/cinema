@@ -1,0 +1,34 @@
+.user-bar {
+    position: fixed;
+    width: 100%;
+    z-index: 9;
+    padding: 10px 0;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(108,155,199, .7);
+}
+
+.user-bar-item {
+    margin: 0 30px;
+    min-width: 30px;
+}
+
+.user-bar .welcome-text {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: red;
+    font-weight: 900;
+    font-family: 'Slabo 27px', serif;
+}
+
+.user-bar .btn-underline {
+    color: #F0F0F0;
+}
+
+.user-bar .btn-underline:hover {
+    color: #FFF;
+}

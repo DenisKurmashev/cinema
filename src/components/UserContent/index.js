@@ -5,15 +5,16 @@ import PropTypes from "prop-types";
 import LoginAndRegisterForm from "./Forms/login-register";
 import { PROFILE, HISTORY, ROOT, SEANCE, ADMIN } from "./path";
 import PageNotFound from "../PageNotFound";
-import Header from "./Header";
+import UserContentHeader from "./Header";
 import FilmList from "./FilmList";
 import FilmCart from "./FilmCart/FilmCart";
 import HistoryPage from "./HistoryPage";
 import AdminPage from "../AdminContent/index"; 
+import GlobalHeader from "../Header/Header";
 
 const InnerUserContent = ({ ...rest }) => (
     <Fragment>
-        <Header {...rest} />
+        <UserContentHeader {...rest} />
         <FilmList {...rest} />    
     </Fragment>
 );
@@ -65,12 +66,11 @@ const AdminPageWrapper = (rest) => (
 const UserContent = ({ user, userActions, films, filmsActions }) => {
     return (
         <Fragment>
+            <GlobalHeader user={user} onLogout={userActions.onLogout} />
             <Switch>
                 {
                     user.isAuth
-                    ? (
-                        <HistoryPageWrapper path={HISTORY} />
-                    )
+                    ? <HistoryPageWrapper path={HISTORY} />
                     : null
                 }
                 <LoginAndRegisterFormWrapper path={PROFILE} user={user} userActions={userActions} />
@@ -90,9 +90,8 @@ const UserContent = ({ user, userActions, films, filmsActions }) => {
 
                 {
                     user.isAuth && user.info.role === "admin" 
-                    ? (
-                        <AdminPageWrapper path={ADMIN} />
-                    ) : null
+                    ? <AdminPageWrapper path={ADMIN} />
+                    : null
                 }
                 
                 <Route component={PageNotFound} />

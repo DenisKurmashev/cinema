@@ -1,11 +1,6 @@
 :root {
-    /* COLORS */
     --main-bg-color: #F5F5F5;
     --sub-bg-color: #FAFAFA;
     --main-btn-color: #6C9BC7;
     --main-sub-color: #565656;
-
-    /* INDENTS */
-    --indent-from-header: 50px auto;
-
 }

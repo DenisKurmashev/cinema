@@ -59,6 +59,7 @@ class OrderModal extends React.PureComponent {
                                     : "Already have account? Sign in."
                                 }
                             </div>
+                            <input disabled={order.fetching} onClick={orderActions.onOrderFormClose} type="button" className="btn text-upper" value="close" />
                         </div>
                     )
                 }

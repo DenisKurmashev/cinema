@@ -21,10 +21,11 @@ class SearchBar extends PureComponent {
     }
 
     handleRadioInputChange = event => {
-        const { onFilmsLoad, onFilmsChange, onFilmsFilterChange } = this.props.filmsActions;
+        const { onSearchTextChange, onFilmsLoad, onFilmsChange, onFilmsFilterChange } = this.props.filmsActions;
         const { searchText } = this.props.films;
 
         onFilmsFilterChange(event.target.value);
+        onSearchTextChange("");
 
         if (!searchText) onFilmsLoad(1)
         else onFilmsChange(searchText);

@@ -44,7 +44,7 @@
     display: flex;
     align-items: center;
     justify-content: left;
-    color: #565656;
+    color: var(--main-sub-color);
 }
 
 .seance-header__content-info div {

@@ -1,6 +1,6 @@
 .seance {
     width: 70%;
-    margin: 50px auto;
+    margin: var(--indent-from-header);
 }
 
 .seance-loading {

@@ -1,7 +1,7 @@
 .order-filter {
-    margin: 50px 0;
+    margin: var(--indent-from-header);
     width: 100%;
-    background: #FAFAFA;
+    background: var(--sub-bg-color);;
     border-radius: 3px;
     display: flex;
     justify-content: center;

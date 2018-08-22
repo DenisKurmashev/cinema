@@ -8,7 +8,7 @@
 
 .film-container-item {
     margin: 15px;
-    background: #FAFAFA;
+    background: var(--sub-bg-color);
     border-radius: 5px;
     padding: 3px 0;
     width: 350px;
@@ -38,7 +38,7 @@
 }
 
 .film-container-item__info div {
-    color: #565656;
+    color: var(--main-sub-color);
     font-size: .8em;
     text-align: center;
 }

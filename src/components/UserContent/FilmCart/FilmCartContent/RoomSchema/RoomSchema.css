@@ -12,10 +12,10 @@
     border-radius: 40%;
     padding: 5px 0;
     text-align: center;
-    border: 0 solid #565656;
+    border: 0 solid var(--main-sub-color);
     border-top-width: 10px;
     margin-bottom: 30px;
-    color: #565656;
+    color: var(--main-sub-color);
 }
 
 .room-schema__row {
@@ -29,7 +29,7 @@
 
 .room-schema__row .row-index {
     font-size: 0.9em;
-    color: #565656;
+    color: var(--main-sub-color);
     margin: 0 15px;
 }
 
@@ -39,8 +39,8 @@
     margin: 3px;
     padding: 13px 3px;
     border-radius: 10% 10% 25% 25%;
-    border: 1px solid #565656;
-    color: #565656;
+    border: 1px solid var(--main-sub-color);
+    color: var(--main-sub-color);
     overflow: hidden;
     box-shadow: 0 0 5px rgba(23,23,23,0.5);
 }

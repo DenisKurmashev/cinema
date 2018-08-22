@@ -1,5 +1,5 @@
 .film-container-item__order-info {
-    background: #6C9BC7;
+    background: var(--main-btn-color);
     color: #FFF;
     margin: 10px 0;
     padding: 5px 0;

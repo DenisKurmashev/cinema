@@ -28,5 +28,5 @@ input[type="date"]:focus,
 input[type="email"]:focus,
 input[type="datetime-local"]:focus,
 textarea:focus {
-    border-color: #6C9BC7;
+    border-color: var(--main-btn-color);
 }

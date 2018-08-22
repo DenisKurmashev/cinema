@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #FAFAFA;
+    background: var(--sub-bg-color);;
     padding: 5px 10px;
     border-radius: 3px;
     box-shadow: 0 0 5px rgba(23,23,23,0.5);
@@ -18,8 +18,8 @@
 }
 
 .pagination .active {
-    background: #6C9BC7;
-    color: #FAFAFA;
+    background: var(--main-btn-color);
+    color: var(--sub-bg-color);;
     border-radius: 3px; 
 }
 

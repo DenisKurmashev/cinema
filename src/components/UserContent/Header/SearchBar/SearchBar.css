@@ -9,7 +9,7 @@
 
 .search-bar-form {
     width: 80%;
-    background: #FAFAFA;
+    background: var(--sub-bg-color);;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

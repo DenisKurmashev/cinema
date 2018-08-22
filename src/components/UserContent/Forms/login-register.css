@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
     background-position-y: 0%;
-    background: linear-gradient(#6C9BC7, #B88D8D);
+    background: linear-gradient(var(--main-btn-color), #B88D8D);
     animation: GradientBackground 3s infinite linear forwards;
     transition: 3s;
     /* background: linear-gradient(rgba(104,150,193, .9), rgba(184,141,141, .9)) */
@@ -32,7 +32,7 @@
     padding: 10px 5px;
     text-transform: uppercase;
     margin-top: 25px;
-    border-left: 8px solid #565656;
+    border-left: 8px solid var(--main-sub-color);
 }
 
 .default-form
@@ -57,7 +57,7 @@
 .default-form__title {
     width: 90%;
     font-size: 45px;
-    color: #565656;
+    color: var(--main-sub-color);
     font-family: 'Slabo 27px', serif;
     text-align: center;
     margin-bottom: 20px;

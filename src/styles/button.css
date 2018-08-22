@@ -1,5 +1,5 @@
 .btn {
-    background: #6C9BC7;
+    background: var(--main-btn-color);
     border: 1px solid #6794BE;
     padding: 8px 20px;
     outline: none;
@@ -29,7 +29,7 @@
     background: none;
     border-width: 0;
     outline: none;
-    color: #565656;
+    color: var(--main-sub-color);
     min-width: 70%;
     text-align: center;
     text-decoration: underline;

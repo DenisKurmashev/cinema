@@ -34,7 +34,7 @@ const newOrder = async ctx => {
         return;
     }
 
-    const validation = await validateNewOrder({ session, additional: JSON.parse(additional) });
+    const validation = await validateNewOrder({ session, additional });
 
     if (!validation.status) {
         console.log(validation.error);

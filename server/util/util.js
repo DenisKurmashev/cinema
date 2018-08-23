@@ -1,4 +1,15 @@
-const deepCopy = (original) => JSON.parse(JSON.stringify(original));
+const deepCopy = (original) => { 
+    let result = null;
+
+    try {
+        result = JSON.parse(JSON.stringify(original));
+    } catch(ex) {
+        console.log(ex);
+        result = null;
+    }
+
+    return result;
+}
 
 const optimizeSession = (session) => {
     const roomNumber = session.roomNumber;

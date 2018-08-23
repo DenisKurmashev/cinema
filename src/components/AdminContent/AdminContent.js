@@ -68,10 +68,15 @@ class AdminContent extends PureComponent {
                         <Route exact path={ADMIN + "/additional"} render={() => <NewAdditional additional={additional} additionalActions={additionalActions} />} />
 
                         <Route exact path={ADMIN + "/seance"} render={() => 
-                            <NewSeance films={films}    filmsActions={filmsActions}
-                                additional={additional} additionalActions={additionalActions}
-                                seance={seance}         seanceActions={seanceActions} 
-                                cinema={cinema}         cinemaActions={cinemaActions}
+                            <NewSeance 
+                                films={films}
+                                filmsActions={filmsActions}
+                                additional={additional}
+                                additionalActions={additionalActions}
+                                seance={seance}
+                                seanceActions={seanceActions}
+                                cinema={cinema}
+                                cinemaActions={cinemaActions}
                             />} 
                         />
 

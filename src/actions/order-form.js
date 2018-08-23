@@ -63,11 +63,21 @@ export const addNewOrder = () =>
 
         const state = getState();
 
-        const data = {
+        let data = {
             session: state.films.openedSeance._id,
-            place: JSON.stringify(state.orderForm.selectedPlace),
-            additional: JSON.stringify(state.orderForm.selectedAdditionals)
+            place: null,
+            additional: null,
         };
+
+        try {
+            data.place = JSON.stringify(state.orderForm.selectedPlace);
+            data.additional = JSON.stringify(state.orderForm.selectedAdditionals);
+
+        } catch(error) {
+            console.log("Can't stringify {addNewOrder} action.", error);
+            dispatch(onAdditionalFailed(error));
+            return;
+        }
 
         const headers = {
             "Authorization": state.user.token

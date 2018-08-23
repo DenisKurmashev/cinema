@@ -3,6 +3,8 @@ import axios from "axios";
 import types from "../types/order";
 import { getApiObject } from "../util";
 
+const api = getApiObject();
+
 export const onChangeOrderSortFilter = (payload) => ({
     type: types.ON_CHANGE_ORDER_SORT_FILTER,
     payload,
@@ -31,7 +33,7 @@ export const fetchOrders = () =>
             "Authorization": getState().user.token
         };
 
-        return axios.get(getApiObject().orders, { headers })
+        return axios.get(api.orders, { headers })
             .then(response => dispatch(onOrdersSuccess(response.data)))
             .catch(error => onOrdersFailed(error.message));
 

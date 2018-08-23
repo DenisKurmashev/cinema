@@ -2,6 +2,8 @@ import axios from "axios";
 import types from "../types/order-form";
 import { getApiObject } from "../util";
 
+const api = getApiObject();
+
 export const onOrderFormOpen = (payload) => ({
     type: types.ON_OPEN,
     payload,
@@ -52,7 +54,7 @@ export const loadAdditional = () =>
     (dispatch, getState) => {
         dispatch(onAdditionalFetching());
 
-        return axios.get(getApiObject().additional)
+        return axios.get(api.additional)
             .then(response => dispatch(onAdditionalSuccess(response.data)))
             .catch(error => dispatch(onAdditionalFailed(error.message)));
     };
@@ -83,7 +85,7 @@ export const addNewOrder = () =>
             "Authorization": state.user.token
         };
 
-        return axios.post(getApiObject().orders, data, { headers })
+        return axios.post(api.orders, data, { headers })
             .then(response => response.status === 201 ? dispatch(onOrderSuccess()) : dispatch(onAdditionalFailed(response.data)))
             .catch(error => dispatch(onAdditionalFailed(error.message)));
     };
@@ -103,7 +105,7 @@ export const addToPendingArray = () =>
             "Authorization": state.user.token
         };
 
-        return axios.post(`${getApiObject().pending}/${seanceId}`, data, { headers })
+        return axios.post(`${api.pending}/${seanceId}`, data, { headers })
             .then(response => console.log("Add to pending places!"))
             .catch(error => console.log("Error. Not add to pending places!"));
 
@@ -124,7 +126,7 @@ export const removeFromPendingArray = () =>
             "Authorization": state.user.token
         };
 
-        return axios.delete(`${getApiObject().pending}/${seanceId}`, { data, headers })
+        return axios.delete(`${api.pending}/${seanceId}`, { data, headers })
             .then(response => console.log("Remove from pending places!"))
             .catch(error => console.log("Error. Not remove from pending places!"));
 

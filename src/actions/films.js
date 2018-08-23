@@ -2,6 +2,8 @@ import types from "../types/films";
 import axios from "axios";
 import { getApiObject, setGetParam } from "../util";
 
+const api = getApiObject();
+
 export const onSetInitialState = (payload) => ({
     type: types.ON_SET_INITIAL_STATE,
     payload
@@ -55,7 +57,7 @@ export const onFilmsLoad = (pageId) => {
         if (!pageId)
             pageId = getState().films.pageId + 1;
 
-        return axios.get(getApiObject().sessions + pageId)
+        return axios.get(api.sessions + pageId)
             .then(response => dispatch(onFilmsSuccess(response.data)))
             .catch(error => dispatch(onFilmsFailed(error.message)));
 
@@ -69,7 +71,7 @@ export const onFilmLoad = (seanceId) => {
         if (!seanceId)
             seanceId = getState().films.openedSeance._id
 
-        return axios.get(`${getApiObject().sessionsById}/${seanceId}`)
+        return axios.get(`${api.sessionsById}/${seanceId}`)
             .then(response => dispatch(onFilmSuccess(response.data)))
             .catch(error => dispatch(onFilmsFailed(error.message)));
 
@@ -88,7 +90,7 @@ export const onFilmsChange = (text, pageId) => {
             filter: getState().films.filter
         };
 
-        return axios.post(`${getApiObject().search}/${pageId}`, data)
+        return axios.post(`${api.search}/${pageId}`, data)
             .then(response => dispatch(onFilmsSuccess(response.data)))
             .catch(error => dispatch(onFilmsFailed(error.message)));
 

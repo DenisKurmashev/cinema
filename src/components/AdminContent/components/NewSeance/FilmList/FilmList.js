@@ -19,6 +19,13 @@ class FilmList extends PureComponent {
         this.props.filmsActions.onSelectedFilmChange(null);
     }
 
+    componentDidUpdate() {
+        const { selectedFilm } = this.props.films;
+        if (!selectedFilm) {
+            this.setState({ isListVisible: true });
+        }
+    }
+
     handlePageChange = (data) => {
         const pageId = data.selected;
         const { onPageIdChange, loadFilms } = this.props.filmsActions;

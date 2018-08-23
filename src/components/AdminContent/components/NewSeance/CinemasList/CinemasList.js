@@ -19,6 +19,13 @@ class CinemasList extends PureComponent {
         this.props.cinemaActions.onSelectedCinemaChange(null);
     }
 
+    componentDidUpdate() {
+        const { selectedCinema } = this.props.cinema;
+        if (!selectedCinema) {
+            this.setState({ isListVisible: true });
+        }
+    }
+
     handlePageChange = (data) => {
         const pageId = data.selected;
         const { onPageIdChange, loadCinema } = this.props.cinemaActions;

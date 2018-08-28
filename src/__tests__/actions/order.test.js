@@ -1,5 +1,4 @@
 import configStore from "redux-mock-store";
-
 import * as OrderActions from "../../actions/order";
 
 const mockStore = configStore();

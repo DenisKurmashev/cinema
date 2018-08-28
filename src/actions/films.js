@@ -11,6 +11,7 @@ export const onSetInitialState = (payload) => ({
 
 export const onFilmsFilterChange = (payload) =>{
     setGetParam("filter", payload);
+    
     return {
         type: types.ON_FILMS_FILTER_CHANGE,
         payload,

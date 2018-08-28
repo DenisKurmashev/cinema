@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { withRouter } from 'react-router-dom'
 
 import * as userActions from "../actions/user";
 import * as filmsActions from "../actions/films";
@@ -46,6 +47,7 @@ App.propTypes = {
 			role: PropTypes.string,
 		}),
 	}),
+	// show the models
 	films: PropTypes.shape({
 		isFetching: PropTypes.bool,
 		error: PropTypes.string,
@@ -87,6 +89,7 @@ App.defaultProps = {
 			role: "",
 		},
 	},
+	// Note: show the models
 	films: {
 		filter: "city",
 		pageId: 0,
@@ -115,4 +118,8 @@ App.defaultProps = {
 };
 
 // bug described here: https://github.com/ReactTraining/react-router/issues/4671
-export default connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(App);
+// Note: what you should do here(because connect prevents some updates on LCF "shouldComponentUpdate" to optimize rendering)
+// is to wrap connect with react-router HOC "withRouter" like withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+// export default connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(App);
+// Do not TRUST first lin from the SO, always check multiple solutions
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

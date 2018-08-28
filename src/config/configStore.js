@@ -17,6 +17,8 @@ const user = readUserFromLocalStorage();
 if (user) {
     // if user role admin
     // add dynamic reducer for its page
+    // Note: user.user - it's ok but "smells" a little bit, first - think about you model structure, then code data objects
+    // Note: admin in constants
     if (user.user.role === "admin") {
         store.asyncReducer.admin = AdminReducer;
         store.replaceReducer(createReducer(store.asyncReducer));

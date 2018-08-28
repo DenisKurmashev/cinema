@@ -15,6 +15,7 @@ describe("Check all actions creators", () => {
     test("Dispatch the current action and payload", () => {
         const expectedAction = [
             {
+                // Note: you should use constants
                 type: "ON_CHANGE_ORDER_SORT_FILTER",
                 payload: "",
             },

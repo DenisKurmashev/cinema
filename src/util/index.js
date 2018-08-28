@@ -4,6 +4,7 @@ export const getConfig = () => {
     return config || {};
 };
 
+// Note: useless aliases, getters is OK, bot often they used in OOP style fot JS(classes)
 export const getApiObject = () => {
     const config = getConfig();
 
@@ -22,7 +23,7 @@ export const getApiObject = () => {
         _pending: config.pending,
         _films: config.films,
         _cinema: config.cinema,
-
+        // should be refactored to more simple look(this.host + this.api, etc.)
         get login() {
             return this.host + this.api + this._profile + this._login;
         },
@@ -79,6 +80,7 @@ export const readUserFromLocalStorage = () => {
     return obj;
 };
 
+// Note: why async? HTML5 storages are sync by spec,  so no reason for that
 export const writeUserToLocalStorageAsync = async obj => {
     if (!obj.token || !obj.user) 
         return false;
@@ -96,6 +98,7 @@ export const writeUserToLocalStorageAsync = async obj => {
     return true;
 };
 
+// Note: try catch
 export const removeUserFromLocalStorageAsync = async () => {
     if (localStorage.getItem("user")) 
         localStorage.removeItem("user");

@@ -1,3 +1,4 @@
+/* Note: if you goes with colors variables, all colors whould be placed in vars, not only "the chosen ones" */
 .btn {
     background: var(--main-btn-color);
     border: 1px solid #6794BE;

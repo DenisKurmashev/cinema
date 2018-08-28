@@ -1,3 +1,5 @@
+// Note: This case does not have deep merge reducers, but in future you will faced with more deep objects:
+// react about refactoring reducers: https://redux.js.org/recipes/structuringreducers/refactoringreducersexample
 import types from "../types/films";
 import { FILTER_TYPES, PAGE_ITEMS_COUNT } from "../constants/constants";
 

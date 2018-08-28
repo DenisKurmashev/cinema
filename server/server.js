@@ -1,3 +1,4 @@
+const path = require('path');
 const Koa = require("koa");
 const serve = require("koa-static");
 const koaException = require("koa-exception");
@@ -14,10 +15,13 @@ module.exports = () => {
     // routes
     const routes = require("./routes");
 
+    const p = path.resolve(`${__dirname}/../public`)
+
     // Mounting
     app.use(koaException());
     app.use(cors());
-    app.use(serve(`${__dirname}/../public`));
+
+    app.use(serve(p));
     app.use(bodyParser());
     app.use(morgan("dev"))
 

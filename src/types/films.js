@@ -1,3 +1,4 @@
+// Note: https://www.npmjs.com/search?q=keymirror
 export default {
     ON_SET_INITIAL_STATE: "ON_SET_INITIAL_STATE",
     ON_FILMS_FILTER_CHANGE: "ON_FILMS_FILTER_CHANGE",

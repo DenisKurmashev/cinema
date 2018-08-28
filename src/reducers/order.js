@@ -12,6 +12,7 @@ const OrderReducer = (state = initialState, action) => {
         case types.ON_CHANGE_ORDER_SORT_FILTER: 
             return { 
                 ...state, 
+                // Note: future/past should be placed in constants
                 isSortByFuture: state.isSortByFuture === "future" ? "past" : "future"
             };
 

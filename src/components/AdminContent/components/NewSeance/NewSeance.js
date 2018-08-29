@@ -36,6 +36,7 @@ class InnerSeance extends PureComponent {
         return (
             <form onSubmit={handleSubmit} className="default-form" noValidate>
                 <div className={"default-form-result-content " + (response ? "success" : error ? "failed" : "")} >
+                    {/* Same, see above */}
                     { 
                         response
                         ? response
@@ -46,7 +47,7 @@ class InnerSeance extends PureComponent {
                 </div>
                 
                 <div className="default-form__title">Add new Seance</div>
-                
+                {/* Note: you should create a common component for form title/subtitle and form error, which receives props and use this components elsewhere */}
                 <div className="default-form-subtitle">1. select cinema from list below</div>
                 <div className="default-form__error">{errors.cinema}</div>
                 <CinemasList cinema={cinema} cinemaActions={cinemaActions}  />

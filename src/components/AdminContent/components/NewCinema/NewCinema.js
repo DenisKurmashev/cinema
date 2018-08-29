@@ -25,6 +25,9 @@ class InnerNewCinema extends PureComponent {
         return (
             <form onSubmit={handleSubmit} className="default-form" noValidate>
                 <div className={"default-form-result-content " + (response ? "success" : error ? "failed" : "")} >
+                    {/* If you have multiple ternary for checking response sucess - you prob doing something wrong. What you should do is:
+                    Check error first, if error exists then you don't care about response, you show the error and you no need to check error ?
+                    error: null - no sense, otherwise show the response */}
                     { 
                         response
                         ? response

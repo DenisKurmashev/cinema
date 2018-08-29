@@ -77,6 +77,9 @@ class RoomSchema extends PureComponent {
                                 schema.placeSchema.map((row, rowIndex) => (
                                     <div key={rowIndex} className="room-schema__row">
                                         <div className="row-index">{rowIndex}</div>
+                                        {/* hard to understand what happens here, Should be placed into separate components, even they will not
+                                        be sharable in future. You should always defined you "magic numbers" as constants, imagine you will return to this code a 2 months later and try to understand what 1,2,3 means
+                                        in real world, 1 = defaultSeat, 2 = loveSeat, 3 = VIPSeat ot another mapping depends on needs */}
                                         {
                                             row.map((item, columnIndex) => {
                                                 if (item === 2 && row[columnIndex - 1] === 2) 
@@ -93,7 +96,7 @@ class RoomSchema extends PureComponent {
                                                 if (item === 1) additionally = "";
                                                 if (item === 2 && row[columnIndex + 1] === 2) additionally = "love-seats"
                                                 if (item === 3 && row[columnIndex + 1] === 3 && row[columnIndex + 2] === 3) additionally = "vip"
-                
+                                                {/* No need for data attributes */}
                                                 return (
                                                     <div key={columnIndex} data-column={columnIndex} data-row={rowIndex} className={"room-schema__row-item " + additionally}></div>
                                                 );

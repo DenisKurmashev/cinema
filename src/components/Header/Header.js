@@ -90,6 +90,7 @@ class Header extends Component {
             <div className="user-bar">
                 <div className="user-bar-item welcome-text">{welcomeText}</div>
                 {this.getCommonLinks()}
+                {/* You should predefined all user roles in constants('admin', 'user', 'super-admin', etc.) */}
                 {
                     user.isAuth && user.info.role === "admin" 
                     ? (

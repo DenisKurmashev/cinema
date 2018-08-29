@@ -16,7 +16,7 @@
     border: 1px solid var(--main-sub-color);
     padding: 10px;
 }
-
+/* if you don't need selector - remove it */
 .cinema-content .cinema-content-selected-item {
     
 }
@@ -34,6 +34,7 @@
     border-radius: 3px;
 }
 
+/* This is a bad code, CSS parsing engine from right-to-left, so this is a bad practice to select a common selector without class(1-if you refactor this to others tags - you should change CSS, if you refactor the structure - you will face with the same problem. Always define class, the only cases for this which is possible is structural dependent tags, e.g.: ul>li>a, dl>dt, table>tr>td, etc. */
 .cinema-content .cinema-content-selected-item div,
 .cinema-content-list .list-item div {
     flex: 1;

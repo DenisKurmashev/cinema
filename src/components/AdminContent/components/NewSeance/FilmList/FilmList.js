@@ -38,6 +38,8 @@ class FilmList extends PureComponent {
         const attrName = "data-index";
         const target = event.target;
 
+        // WTF? you can pass all needed info via argument to event handler, to need to defined data-ttributes and read info from them every time
+        // you click
         if (!target.hasAttribute(attrName) && !target.parentNode.hasAttribute(attrName)) 
             return;
 

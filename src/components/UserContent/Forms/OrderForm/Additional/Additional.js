@@ -17,6 +17,7 @@ class Additional extends React.PureComponent {
         const { order, orderActions } = this.props;
 
         const current = event.currentTarget;
+        // what the heck is this?! What you should do is to bind a React state value to input and read the value from state, not from DOM el itself(in rare cases instead of native DOM manipulation you should use React refs: https://reactjs.org/docs/refs-and-the-dom.html
         const checkBox = current.getElementsByClassName("additional-item__checkbox")[0];
         const countInput = current.getElementsByClassName("info-count__input")[0];
 
@@ -102,6 +103,7 @@ class Additional extends React.PureComponent {
 const mapStateToProps = state => ({
     order: state.orderForm,
     placePrice: 
+    // Note: reselect if a good case for this: https://github.com/reduxjs/reselect
         state.films.openedSeance.typesOfRoomSeats.find(
             item => item.matrixNumber === state.films.openedSeance.cinema.roomSchema[state.orderForm.selectedPlace.x][state.orderForm.selectedPlace.y]
         ).price

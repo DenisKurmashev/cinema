@@ -6,10 +6,13 @@ import "./OrderForm.css";
 class OrderForm extends React.PureComponent {
 
     componentWillUnmount() {
+        // This is very bad practice to call async HTTP request in unmount LFC, here the component will be destoyed but still the requests will be fired
         this.props.orderActions.removeFromPendingArray()
             .then(this.props.filmsActions.onFilmLoad());
     }
 
+    // Note: componentWillMount is deprecated LFC, in React16.3 + you should not use it
+    // https://reactjs.org/docs/react-component.html#unsafe_componentwillmount
     componentWillMount() {
         this.props.orderActions.addToPendingArray();
     }

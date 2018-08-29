@@ -20,6 +20,7 @@ class InnerNewFilm extends PureComponent {
         return (
             <form onSubmit={handleSubmit} className="default-form" noValidate>
                 <div className={"default-form-result-content " + (response ? "success" : error ? "failed" : "")} >
+                    {/* Same, see above */}
                     { 
                         response
                         ? response

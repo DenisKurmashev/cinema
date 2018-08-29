@@ -140,6 +140,9 @@ class RoomSchema extends React.Component {
         const { user } = this.props;
         const { pendingPlaces, selectedPlaces } = this.props.currentSeance;
 
+        // React about delarative vs imperative
+        // https://codeburst.io/declarative-vs-imperative-programming-a8a7c93d9ad2
+        // This is too imperative style, which is hard to understand
         for (let i = 0; i < pendingPlaces.length; i++)
             if (pendingPlaces[i].x === x && pendingPlaces[i].y === y && pendingPlaces[i].author !== user.info.id) 
                 if ((new Date(pendingPlaces[i].removeAt)).getTime() > (new Date()).getTime())
@@ -173,6 +176,7 @@ class RoomSchema extends React.Component {
                     schema.map((row, rowIndex) => (
                         <div key={rowIndex} className="room-schema__row">
                             <div className="row-index">{rowIndex}</div>
+                            {/* Same above, try to abstract this logic in method/partial */}
                             {
                                 row.map((item, columnIndex) => {
                                     if (item === 2 && row[columnIndex - 1] === 2) 

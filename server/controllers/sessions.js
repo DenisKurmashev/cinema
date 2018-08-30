@@ -29,6 +29,7 @@ const getAll = async ctx => {
         sessions = await Session
             .find({})
             .where("date").gte(Date.now())
+            // Who knows what 9 is? Only you, please place in const
             .skip((skip - 1) * 9)
             .limit(9)
             .populate("cinema", "name city rooms")

@@ -6,6 +6,8 @@ const { validateNewFilm } = require("../services/film");
 
 // ONLY FOR ADMIN
 
+// Note: try to add new film and see the films list 
+// Note: Find some films and click last pagination item
 const getWithPaginate = async ctx => {
     const pageId   = parseInt(ctx.query.pageId || 0, 10);
     const pageSize = parseInt(ctx.query.pageSize || 10, 10);

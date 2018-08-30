@@ -115,4 +115,8 @@ App.defaultProps = {
 };
 
 // bug described here: https://github.com/ReactTraining/react-router/issues/4671
+// Note: The architecture right now is that root component connected itself to redux vindings and pass needed props to childs components
+//, but in general many connected components > 1-2-3 global connected components
+// https://redux.js.org/faq/reactredux#should-i-only-connect-my-top-component-or-can-i-connect-multiple-components-in-my-tree
+// https://github.com/reduxjs/redux/issues/419#issuecomment-129188175
 export default connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(App);

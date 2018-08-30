@@ -27,7 +27,7 @@ class SearchBar extends PureComponent {
         onSearchTextChange("");
 
         onFilmsLoad(1);
-
+        // Do not use attributes until you really need them
         if (event.target.getAttribute("id") === "date") {
             this.setState({ typeOfInput: "datetime-local" });
         } else {

@@ -14,6 +14,7 @@ class HistoryPage extends PureComponent {
 
     static propTypes = {
         order: PropTypes.shape({
+            // Note: move to const
             isSortByFuture: PropTypes.oneOf([ "future", "past" ]),
             isFetching: PropTypes.bool,
             orderList: PropTypes.array,
@@ -27,6 +28,7 @@ class HistoryPage extends PureComponent {
     }
     static defaultProps = {
         order: {
+            // Note: move to const
             isSortByFuture: "future",
             isFetching: false,
             orderList: [],

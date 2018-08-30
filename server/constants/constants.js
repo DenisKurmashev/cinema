@@ -1,3 +1,4 @@
+// In real world you should pick an object for this case and you should omit the 0 places.
 const DEFAULT_ROOM_SCHEMAS = [
     {
         placeSchema: [

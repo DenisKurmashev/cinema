@@ -1,5 +1,6 @@
 const errors = require("../helpers/errors");
 
+// same above
 module.exports = (accessFor = "admin") => 
     async (ctx, next) => {
 

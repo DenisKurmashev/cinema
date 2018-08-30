@@ -2,6 +2,17 @@ const deepCopy = (original) => {
     let result = null;
 
     try {
+        // Should remeber that parse+stringidy not works with non-serializable props
+        // Also Dates will be parsed as Strings, not as Dates.
+        var o = {
+            a: 1,
+            b: 2,
+            sum: function() { return a + b; },
+            data: new Date()
+           };
+           
+           var o2 = JSON.parse(JSON.stringify(o));
+
         result = JSON.parse(JSON.stringify(original));
     } catch(ex) {
         console.log(ex);
@@ -34,6 +45,7 @@ const optimizeSessions = (sessions) => {
     return sessions.map(item => optimizeSession(item)).reverse();
 };
 
+// Constants plz
 const getPlaceCountFromRoomSchema = (schema) => {
     if (!Array.isArray(schema))
         return null;
@@ -70,6 +82,17 @@ const isMoreThanOnePlaceExist = (sessions) => {
 
 };
 
+// Constants plz
+// Also, try to think how to would refactor this, e.g.:
+// you need to sum all array up: [1,2,3,4...]
+// imperative:
+// let sum = 0;
+// // for (let i =0; i< arr.length; i++) {
+//  sum += arr[i]
+// }
+// vs declarate
+// arr.reduce((curr, acc) => acc + curr, 0)
+// Try to find a balance between good readability, good quality, optimize/speed and future extendable/maintainable
 const findPlaceTypes = (roomSchema) => {
     let result = [];
 

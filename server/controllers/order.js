@@ -29,6 +29,7 @@ const newOrder = async ctx => {
 
     const placeObject = util.parsePlaceString(place);
     if (!placeObject) {
+        // Note you could easility refactor this piece of code in 1 small func
         ctx.status = errors.wrongCredentials.status;
         ctx.body = errors.wrongCredentials;
         return;

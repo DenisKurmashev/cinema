@@ -88,6 +88,7 @@ const UserContent = ({ user, userActions, films, filmsActions }) => {
 					filmsActions={filmsActions}
                 />
 
+                {/* admin move to const */}
                 {
                     user.isAuth && user.info.role === "admin" 
                     ? <AdminPageWrapper path={ADMIN} />

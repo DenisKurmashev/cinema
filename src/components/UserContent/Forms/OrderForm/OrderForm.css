@@ -6,8 +6,7 @@
     text-transform: uppercase;
 }
 
-.default-form__congratulation  
-.close-btn-wrapper {
+.default-form__congratulation .close-btn-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;

@@ -25,8 +25,7 @@
     border-radius: 0 0 8px 8px;
 }
 
-.default-form
-.default-form-subtitle {
+.default-form .default-form-subtitle {
     width: 90%;
     background: #B8B8B8;
     padding: 10px 5px;
@@ -35,8 +34,7 @@
     border-left: 8px solid var(--main-sub-color);
 }
 
-.default-form
-.default-form-result-content {
+.default-form .default-form-result-content {
     width: 100%;
     padding: 5px 0;
     text-align: center;
@@ -72,8 +70,9 @@
     0% {
         background-position-y: 0%;
     }
+
     100% {
-        background-position-y: 100%;        
+        background-position-y: 100%;
     }
 }
 

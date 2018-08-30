@@ -7,10 +7,8 @@ configure({ adapter: new Adapter() });
 import Header from "../../components/Header/Header";
 
 describe("Header component", () => {
-
-    test("Render without crashing", () => {
-        const wrapper = shallow(<Header />);
-        expect(wrapper);
-    }); 
-
+  test("Render without crashing", () => {
+    const wrapper = shallow(<Header />);
+    expect(wrapper);
+  });
 });

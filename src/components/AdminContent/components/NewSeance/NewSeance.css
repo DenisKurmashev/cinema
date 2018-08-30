@@ -1,5 +1,4 @@
-.default-form 
-.cinema-content {
+.default-form .cinema-content {
     width: 90%;
     display: flex;
     justify-content: center;

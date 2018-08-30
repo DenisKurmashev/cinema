@@ -6,6 +6,11 @@ const passport = require("../../../global-controllers/passport");
 const router = new Router();
 
 router.get("/", controller.getAll);
-router.post("/", passport.authenticate(), permission(), controller.newAdditional);
+router.post(
+  "/",
+  passport.authenticate(),
+  permission(),
+  controller.newAdditional
+);
 
 module.exports = router.routes();

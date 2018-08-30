@@ -1,10 +1,10 @@
 const Router = require("koa-router");
 
-const profile    = require("./profile");
-const films      = require("./films");
-const sessions   = require("./sessions");
-const cinema     = require("./cinema");
-const order      = require("./orders");
+const profile = require("./profile");
+const films = require("./films");
+const sessions = require("./sessions");
+const cinema = require("./cinema");
+const order = require("./orders");
 const additional = require("./additional");
 
 const passport = require("../../global-controllers/passport");

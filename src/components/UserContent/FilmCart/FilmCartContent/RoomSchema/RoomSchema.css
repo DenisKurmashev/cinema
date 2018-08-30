@@ -42,7 +42,7 @@
     border: 1px solid var(--main-sub-color);
     color: var(--main-sub-color);
     overflow: hidden;
-    box-shadow: 0 0 5px rgba(23,23,23,0.5);
+    box-shadow: 0 0 5px rgba(23, 23, 23, 0.5);
 }
 
 .room-schema__row-item:hover {
@@ -68,13 +68,13 @@
 .room-schema__row-item.love-seats {
     border-color: #C87A7A;
     width: 50px;
-    box-shadow: 0 0 7px rgba(200,122,122,0.5);
+    box-shadow: 0 0 7px rgba(200, 122, 122, 0.5);
 }
 
 .room-schema__row-item.vip {
     border-color: #57B53D;
     width: 75px;
-    box-shadow: 0 0 7px rgba(87,181,61,0.5);
+    box-shadow: 0 0 7px rgba(87, 181, 61, 0.5);
 }
 
 .room-schema__row-item.selected,
@@ -97,6 +97,6 @@
     background: #C89E9E;
 }
 
-.room-schema__row-item.selected-vip { 
+.room-schema__row-item.selected-vip {
     background: #8CB580;
 }

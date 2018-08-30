@@ -1,19 +1,17 @@
 const moment = require("moment");
 
 module.exports = async (ctx, next) => {
+  let requestBody = "";
 
-    let requestBody = "";
+  try {
+    requestBody = JSON.stringify(ctx.request.body);
+  } catch (ex) {
+    console.log("Can't stringify {ctx.request.body} in {logger} middleware.");
+  }
 
-    try {
-        requestBody = JSON.stringify(ctx.request.body);
+  console.log(
+    `${moment().format("HH:mm:ss")} ${ctx.method} ${ctx.path} ${requestBody}`
+  );
 
-    } catch(ex) {
-        console.log("Can't stringify {ctx.request.body} in {logger} middleware.");
-    }
-
-    console.log(
-        `${moment().format("HH:mm:ss")} ${ctx.method} ${ctx.path} ${requestBody}`
-    );
-
-    await next();
+  await next();
 };

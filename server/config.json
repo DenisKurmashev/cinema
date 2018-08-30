@@ -6,12 +6,12 @@
       "pass": "",
       "autoIndex": true,
       "poolSize": 10,
-      "useNewUrlParser": true 
+      "useNewUrlParser": true
     }
   },
   "bcryptSalt": 10,
   "jwt": "some string",
   "jwtOptions": {
-      "session": false
+    "session": false
   }
 }

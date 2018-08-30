@@ -2,10 +2,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--sub-bg-color);;
+    background: var(--sub-bg-color);
+    ;
     padding: 5px 10px;
     border-radius: 3px;
-    box-shadow: 0 0 5px rgba(23,23,23,0.5);
+    box-shadow: 0 0 5px rgba(23, 23, 23, 0.5);
 }
 
 .pagination li {
@@ -19,10 +20,12 @@
 
 .pagination .active {
     background: var(--main-btn-color);
-    color: var(--sub-bg-color);;
-    border-radius: 3px; 
+    color: var(--sub-bg-color);
+    ;
+    border-radius: 3px;
 }
 
-.pagination .break-me:hover, .pagination .disabled:hover {
+.pagination .break-me:hover,
+.pagination .disabled:hover {
     cursor: not-allowed;
 }

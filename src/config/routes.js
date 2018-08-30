@@ -9,11 +9,11 @@ import App from "../containers/App";
 const history = createBrowserHistory();
 
 const routes = (
-    <Provider store={store}>
-        <Router history={history}>
-            <App />
-        </Router>
-    </Provider>
+  <Provider store={store}>
+    <Router history={history}>
+      <App />
+    </Router>
+  </Provider>
 );
 
 export default routes;

@@ -7,5 +7,5 @@ global.render = render;
 global.mount = mount;
 
 console.error = message => {
-   throw new Error(message);
+  throw new Error(message);
 };

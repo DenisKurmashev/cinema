@@ -10,8 +10,7 @@
     padding: 10px 5px;
 }
 
-.add-room-schema__matrix
-.matrix-row {
+.add-room-schema__matrix .matrix-row {
     width: 100%;
     display: flex;
     align-items: center;
@@ -19,12 +18,10 @@
     flex-wrap: nowrap;
 }
 
-.matrix-row
-.matrix-row__item {
+.matrix-row .matrix-row__item {
     max-width: 40px;
 }
 
-.matrix-row
-.matrix-row__item input {
+.matrix-row .matrix-row__item input {
     max-width: 96%;
 }

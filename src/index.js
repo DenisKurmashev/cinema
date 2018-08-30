@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import routes from "./config/routes"; 
+import routes from "./config/routes";
 
 import "./styles/colors.css";
 import "./styles/indent.css";
@@ -9,7 +9,4 @@ import "./styles/common.css";
 
 import "./index.css";
 
-ReactDOM.render(
-    routes, 
-    document.getElementById("root")
-);
+ReactDOM.render(routes, document.getElementById("root"));

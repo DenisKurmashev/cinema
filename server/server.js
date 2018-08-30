@@ -5,24 +5,24 @@ const bodyParser = require("koa-bodyparser");
 const morgan = require("koa-morgan");
 
 module.exports = () => {
-    const app = new Koa();
-    
-    // middleware
-    const passport = require("./global-controllers/passport");
-    const cors = require("./global-controllers/cors");
+  const app = new Koa();
 
-    // routes
-    const routes = require("./routes");
+  // middleware
+  const passport = require("./global-controllers/passport");
+  const cors = require("./global-controllers/cors");
 
-    // Mounting
-    app.use(koaException());
-    app.use(cors());
-    app.use(serve(`${__dirname}/../public`));
-    app.use(bodyParser());
-    app.use(morgan("dev"))
+  // routes
+  const routes = require("./routes");
 
-    app.use(passport.initialize());
-    app.use(routes);
+  // Mounting
+  app.use(koaException());
+  app.use(cors());
+  app.use(serve(`${__dirname}/../public`));
+  app.use(bodyParser());
+  app.use(morgan("dev"));
 
-    return app;
+  app.use(passport.initialize());
+  app.use(routes);
+
+  return app;
 };

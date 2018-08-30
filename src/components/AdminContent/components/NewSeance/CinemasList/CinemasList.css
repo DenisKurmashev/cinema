@@ -5,8 +5,7 @@
     margin: 10px 0;
 }
 
-.cinema-content
-.cinema-content-list {
+.cinema-content .cinema-content-list {
     border-radius: 3px;
     width: 100%;
     margin: 10px 0;
@@ -17,9 +16,7 @@
     padding: 10px;
 }
 
-.cinema-content .cinema-content-selected-item {
-    
-}
+.cinema-content .cinema-content-selected-item {}
 
 .cinema-content .cinema-content-selected-item:hover {
     cursor: pointer;
@@ -40,12 +37,11 @@
     text-align: center;
 }
 
-.cinema-content-list
-.list-item:hover {
+.cinema-content-list .list-item:hover {
     cursor: pointer;
 }
 
-.list-item.gray, 
+.list-item.gray,
 .cinema-content .cinema-content-selected-item {
     background: #E7E7E7;
 }

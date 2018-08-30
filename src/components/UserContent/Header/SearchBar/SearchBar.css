@@ -9,17 +9,19 @@
 
 .search-bar-form {
     width: 80%;
-    background: var(--sub-bg-color);;
+    background: var(--sub-bg-color);
+    ;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
     padding: 5px 10px;
     border-radius: 3px;
-    box-shadow: 0 0 5px rgba(23,23,23,0.5);
+    box-shadow: 0 0 5px rgba(23, 23, 23, 0.5);
 }
 
-.search-bar-form__input, .search-bar-form__options {
+.search-bar-form__input,
+.search-bar-form__options {
     width: 98%;
     display: flex;
     align-items: center;
@@ -42,6 +44,7 @@
     .search-bar {
         width: 85%;
     }
+
     .search-bar-form {
         width: 90%;
     }
@@ -51,9 +54,11 @@
     .search-bar {
         width: 90%;
     }
+
     .search-bar-form {
         width: 100%;
     }
+
     .search-bar-form__options {
         flex-wrap: wrap;
     }

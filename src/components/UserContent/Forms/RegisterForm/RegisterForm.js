@@ -5,75 +5,123 @@ import PropTypes from "prop-types";
 import { validate, handleRegister } from "../util";
 import { LOGIN, REGISTER, ROOT } from "../../path";
 
-const InnerRegisterForm = ({ user, values, errors, touched, handleChange, handleSubmit, isSubmitting }) => {
-    if (user.isAuth) 
-        return <Redirect to={ROOT} />
+const InnerRegisterForm = ({
+  user,
+  values,
+  errors,
+  touched,
+  handleChange,
+  handleSubmit,
+  isSubmitting
+}) => {
+  if (user.isAuth) return <Redirect to={ROOT} />;
 
-    return (
-        <form onSubmit={handleSubmit} className="default-form" noValidate>
-			<div className="default-form__title">Sign up</div>
+  return (
+    <form onSubmit={handleSubmit} className="default-form" noValidate>
+      <div className="default-form__title">Sign up</div>
 
-            <div className="default-form__error">{touched.name && errors.name}</div>
-			<input type="text" placeholder="Name" autoComplete="off" name="name" onChange={handleChange} value={values.name} />
+      <div className="default-form__error">{touched.name && errors.name}</div>
+      <input
+        type="text"
+        placeholder="Name"
+        autoComplete="off"
+        name="name"
+        onChange={handleChange}
+        value={values.name}
+      />
 
-			<div className="default-form__error">{touched.email && errors.email}</div>
-			<input type="email" placeholder="Email" autoComplete="off" name="email" onChange={handleChange} value={values.email} />
+      <div className="default-form__error">{touched.email && errors.email}</div>
+      <input
+        type="email"
+        placeholder="Email"
+        autoComplete="off"
+        name="email"
+        onChange={handleChange}
+        value={values.email}
+      />
 
-			<div className="default-form__error">{touched.password && errors.password}</div>
-			<input type="password" placeholder="Password" name="password" onChange={handleChange} value={values.password} />
+      <div className="default-form__error">
+        {touched.password && errors.password}
+      </div>
+      <input
+        type="password"
+        placeholder="Password"
+        name="password"
+        onChange={handleChange}
+        value={values.password}
+      />
 
-			<button type="submit" className="btn" disabled={user.isLoginOrRegisterFetching}>Sign up</button>
-			
-            <Route path={REGISTER} render={props => <NavLink className="btn-underline" to={LOGIN}>Already have account? Sign in.</NavLink>} />
-        </form>	
-    );
-}
+      <button
+        type="submit"
+        className="btn"
+        disabled={user.isLoginOrRegisterFetching}
+      >
+        Sign up
+      </button>
+
+      <Route
+        path={REGISTER}
+        render={props => (
+          <NavLink className="btn-underline" to={LOGIN}>
+            Already have account? Sign in.
+          </NavLink>
+        )}
+      />
+    </form>
+  );
+};
 
 const RegisterForm = withFormik({
-    validateOnBlur: false,
-	mapPropsToValues: props => ({ name: "", email: "", password: "", user: props.user, userActions: props.userActions }),
-	validate,
-	handleSubmit: handleRegister,
-	onSubmit: (values, actions) => {
-		actions.setSubmitting(true);
-	},
+  validateOnBlur: false,
+  mapPropsToValues: props => ({
+    name: "",
+    email: "",
+    password: "",
+    user: props.user,
+    userActions: props.userActions
+  }),
+  validate,
+  handleSubmit: handleRegister,
+  onSubmit: (values, actions) => {
+    actions.setSubmitting(true);
+  }
 })(InnerRegisterForm);
 
 RegisterForm.propTypes = {
-    user: PropTypes.shape({
-        isLoginOrRegisterFetching: PropTypes.bool,
-        isAuth: PropTypes.bool,
-        error: PropTypes.string,
-        info: PropTypes.shape({
-            name: PropTypes.string,
-            role: PropTypes.string,
-        }),
-    }),
+  user: PropTypes.shape({
+    isLoginOrRegisterFetching: PropTypes.bool,
+    isAuth: PropTypes.bool,
+    error: PropTypes.string,
+    info: PropTypes.shape({
+      name: PropTypes.string,
+      role: PropTypes.string
+    })
+  }),
 
-    userActions: PropTypes.shape({
-        onLoginOrRegisterFetch: PropTypes.func,
-        login: PropTypes.func,
-        register: PropTypes.func, 
-        onLogout: PropTypes.func,
-    }),
+  userActions: PropTypes.shape({
+    onLoginOrRegisterFetch: PropTypes.func,
+    login: PropTypes.func,
+    register: PropTypes.func,
+    onLogout: PropTypes.func
+  })
 };
 RegisterForm.defaultProps = {
-    user: {
-        isLoginOrRegisterFetching: false,
-        isAuth: false,
-        error: "",
-        info: {
-            name: "",
-            role: "",
-        },
-    },
+  user: {
+    isLoginOrRegisterFetching: false,
+    isAuth: false,
+    error: "",
+    info: {
+      name: "",
+      role: ""
+    }
+  },
 
-    userActions: {
-        onLoginOrRegisterFetch: () => {},
-        login: () => {},
-        register: () => {}, 
-        onLogout: () => {},
-    },
+  userActions: {
+    onLoginOrRegisterFetch: () => {},
+    login: () => {},
+    register: () => {},
+    onLogout: () => {}
+  }
 };
 
 export default RegisterForm;

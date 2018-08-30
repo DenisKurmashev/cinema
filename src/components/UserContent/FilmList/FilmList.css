@@ -15,12 +15,12 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    box-shadow: 0 0 5px rgba(23,23,23,0.5);
+    box-shadow: 0 0 5px rgba(23, 23, 23, 0.5);
     transition: 0.3s;
 }
 
 .film-container-item:hover {
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .film-container-item__title {

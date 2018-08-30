@@ -8,63 +8,79 @@ import RoomSchema from "./RoomSchema/RoomSchema";
 import "./NewCinema.css";
 
 class InnerNewCinema extends PureComponent {
+  componentWillUnmount() {
+    const { cinemaActions } = this.props;
 
-    componentWillUnmount() {
-        const { cinemaActions } = this.props;
+    cinemaActions.onAddNewCinemaSuccess(null);
+    cinemaActions.onCurrentRoomSchemaChange([]);
+  }
 
-        cinemaActions.onAddNewCinemaSuccess(null);
-        cinemaActions.onCurrentRoomSchemaChange([]);
-    }
+  render() {
+    const {
+      cinema,
+      values,
+      errors,
+      touched,
+      handleChange,
+      handleSubmit
+    } = this.props;
 
-    render() {
-        const { cinema, values, errors, touched, handleChange, handleSubmit }
-            = this.props;
+    const { response, error } = cinema;
 
-        const { response, error } = cinema;
+    return (
+      <form onSubmit={handleSubmit} className="default-form" noValidate>
+        <div
+          className={
+            "default-form-result-content " +
+            (response ? "success" : error ? "failed" : "")
+          }
+        >
+          {response ? response : error ? error : null}
+        </div>
 
-        return (
-            <form onSubmit={handleSubmit} className="default-form" noValidate>
-                <div className={"default-form-result-content " + (response ? "success" : error ? "failed" : "")} >
-                    { 
-                        response
-                        ? response
-                        : error
-                            ? error
-                            : null
-                    }
-                </div>
+        <div className="default-form__title">Add new Cinema</div>
 
-                <div className="default-form__title">Add new Cinema</div>
-                
-                <div className="default-form__error">{touched.name && errors.name}</div>
-                <input type="text" placeholder="Name of cinema" name="name" onChange={handleChange} value={values.name} />
+        <div className="default-form__error">{touched.name && errors.name}</div>
+        <input
+          type="text"
+          placeholder="Name of cinema"
+          name="name"
+          onChange={handleChange}
+          value={values.name}
+        />
 
-                <div className="default-form__error">{touched.city && errors.city}</div>
-                <input type="text" placeholder="City" name="city" onChange={handleChange} value={values.city} />
+        <div className="default-form__error">{touched.city && errors.city}</div>
+        <input
+          type="text"
+          placeholder="City"
+          name="city"
+          onChange={handleChange}
+          value={values.city}
+        />
 
-                <RoomSchema />
+        <RoomSchema />
 
-                <button type="submit" className="btn" disabled={cinema.isFetching}>Add</button>
-                
-            </form>
-        );
-    }
-
+        <button type="submit" className="btn" disabled={cinema.isFetching}>
+          Add
+        </button>
+      </form>
+    );
+  }
 }
 
 const NewCinema = withFormik({
-    validateOnBlur: false,
+  validateOnBlur: false,
 
-    mapPropsToValues: props => ({ 
-        name: "",
-        city: "",
+  mapPropsToValues: props => ({
+    name: "",
+    city: "",
 
-        cinema: props.cinema, 
-        cinemaActions: props.cinemaActions 
-    }),
-    
-	validate: validateCinemaForm,
-	handleSubmit: handleSubmitCinemaForm,
+    cinema: props.cinema,
+    cinemaActions: props.cinemaActions
+  }),
+
+  validate: validateCinemaForm,
+  handleSubmit: handleSubmitCinemaForm
 })(InnerNewCinema);
 
 export default NewCinema;
